@@ -8,7 +8,7 @@ body:
     attributes:
       label: Tarea padre
       description: 'Numero de la tarea padre a la que pertenece esta subtarea, Ejemplo: "- #12345"'
-      placeholder: '- #numero_de_tarea_padre'
+      placeholder: "- #numero_de_tarea_padre"
     validations:
       required: true
 
