@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
       props: {},
       redirect: {
         destination: `${redirectTo}?to=${encodeURIComponent(
-          context.req.url || "/"
+          context.req.url || "/",
         )}`,
         permanent: false,
       },
