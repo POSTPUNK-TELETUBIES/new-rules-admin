@@ -10,7 +10,9 @@
     "refine": "refine",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -43,6 +45,7 @@
     "@storybook/nextjs": "^7.4.1",
     "@storybook/react": "^7.4.1",
     "@storybook/testing-library": "^0.2.0",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
@@ -55,6 +58,8 @@
     "prettier": "3.0.3",
     "storybook": "^7.4.1",
     "typescript": "^5.2.2"
+    "jsdom": "^22.1.0",
+    "vitest": "^0.34.4"
   },
   "refine": {
     "projectId": "wbFow6-LVVEGQ-3TNNwP"
