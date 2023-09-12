@@ -1,12 +1,12 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
       labels:
-        - 'dependabot'
-        - 'dependencias'
-      target-branch: 'dev'
+        - "dependabot"
+        - "dependencias"
+      target-branch: "dev"
     commit-message:
-      prefix: '[dependabot] '
+      prefix: "[dependabot] "

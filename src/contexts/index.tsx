@@ -15,7 +15,7 @@ type ColorModeContextType = {
 };
 
 export const ColorModeContext = createContext<ColorModeContextType>(
-  {} as ColorModeContextType
+  {} as ColorModeContextType,
 );
 
 export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
