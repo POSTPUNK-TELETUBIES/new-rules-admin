@@ -19,6 +19,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import { dataProvider } from "@refinedev/supabase";
 import { authProvider } from "src/authProvider";
 import { supabaseClient } from "src/utility";
+import { initMockService } from "src/mockServices/initMocker";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;
@@ -29,6 +30,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
+  initMockService();
   const renderComponent = () => {
     if (Component.noLayout) {
       return <Component {...pageProps} />;
