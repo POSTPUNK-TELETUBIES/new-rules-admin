@@ -1,5 +1,4 @@
 import { AuthPage } from "@refinedev/mui";
-
 import { GetServerSideProps } from "next";
 
 import { authProvider } from "src/authProvider";
