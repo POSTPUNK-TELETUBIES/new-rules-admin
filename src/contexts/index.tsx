@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { RefineThemes } from "@refinedev/mui";
 import { parseCookies, setCookie } from "nookies";
 import React, {
   PropsWithChildren,
@@ -53,7 +52,6 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
       }}
     >
       <ThemeProvider
-        // you can change the theme colors here. example: mode === "light" ? RefineThemes.Magenta : RefineThemes.MagentaDark
         theme={mode === "light" ? defaultTheme : darkTheme}
       >
         {children}
