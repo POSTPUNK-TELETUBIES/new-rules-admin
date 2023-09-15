@@ -8,6 +8,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { darkTheme } from "src/themes/darkTheme";
+import { defaultTheme } from "src/themes/defaultTheme";
 
 type ColorModeContextType = {
   mode: string;
@@ -52,7 +54,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     >
       <ThemeProvider
         // you can change the theme colors here. example: mode === "light" ? RefineThemes.Magenta : RefineThemes.MagentaDark
-        theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}
+        theme={mode === "light" ? defaultTheme : darkTheme}
       >
         {children}
       </ThemeProvider>
