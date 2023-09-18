@@ -18,6 +18,8 @@
   "plugins": ["@typescript-eslint", "react", "prettier", "sonar"],
   "rules": {
     "prettier/prettier": "error",
-    "sonar/deprecation": 1
+    "sonar/deprecation": 1,
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off"
   }
 }

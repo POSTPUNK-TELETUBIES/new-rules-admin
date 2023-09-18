@@ -1,10 +1,9 @@
 import "@refinedev/mui";
 
 export interface CustomTheme {
-  // Add custom variables here like below:
-  // status: {
-  //   danger: string;
-  // };
+  status: {
+    danger: string;
+  };
 }
 
 declare module "@refinedev/mui" {
