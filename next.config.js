@@ -4,6 +4,7 @@ const nextConfig = {
     newNextLinkBehavior: true,
   },
   output: 'export',
+  assetPrefix: './'
 };
 
 module.exports = nextConfig;
