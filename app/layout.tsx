@@ -1,6 +1,8 @@
 "use client";
 
 import { Header } from "@components/header";
+import  App  from "@components/table";
+
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/app";
 import { mockDataProvider } from "src/providers/data/mock";
@@ -30,6 +32,7 @@ export default function RootLayout({
           ]}
         >
           <Header></Header>
+          <App></App>
           {children}
         </Refine>
       </body>
