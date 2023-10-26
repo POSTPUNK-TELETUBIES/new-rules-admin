@@ -7,7 +7,7 @@ import HelpIcon from '@mui/icons-material/Help'
 import ChatIcon from '@mui/icons-material/Chat'
 
 const meta = {
-  title: 'Example/Button',
+  title: 'Components/SelectOptions',
   component: SelectOptions,
   parameters: {
     layout: 'centered',

@@ -1,9 +1,12 @@
-import { Box, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import { lazy } from 'react'
+
+const RulesTable = lazy(() => import('../components/RulesTable'))
 
 const Admin = () => {
   return (
-    <Box display={'flex'} gap={3} p={3}>
-      <Typography>Admin</Typography>
+    <Box component='main'>
+      <RulesTable />
     </Box>
   )
 }
