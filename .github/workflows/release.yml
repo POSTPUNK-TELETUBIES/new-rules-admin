@@ -3,7 +3,7 @@ on:
     tags:
       - 'dashboard*'
     paths:
-      - 'src/**'
+      - './'
 
 permissions:
   contents: write
