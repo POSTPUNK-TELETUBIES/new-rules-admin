@@ -1,4 +1,3 @@
-import React from 'react'
 import { describe, test, expect, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import Accordion from './Accordion'
@@ -9,7 +8,7 @@ describe('Accordion', () => {
       <Accordion title='Los 3 cerditos'>
         <h3>descripcion breve</h3>
         <p>contenido completo</p>
-      </Accordion>
+      </Accordion>,
     )
   })
 
