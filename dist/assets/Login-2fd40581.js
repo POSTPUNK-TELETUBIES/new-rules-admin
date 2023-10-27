@@ -1,0 +1,1 @@
+import{j as i,B as t,e as o}from"./material-e8e2acca.js";import{u as a}from"./router-d3d5b588.js";import"./react-9c580eb2.js";const m=()=>{const n=a();return i.jsx(t,{p:2,component:"main",children:i.jsx(o,{type:"submit",variant:"contained",color:"primary",onClick:()=>n("/admin"),children:"Iniciar Sesión"})})};export{m as default};
