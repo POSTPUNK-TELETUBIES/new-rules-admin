@@ -1,11 +1,14 @@
-import { LinearProgress } from '@mui/material'
-import { Suspense } from 'react'
-import { ToggleColorMode } from './theme/themeContext'
+import { Suspense, lazy } from 'react'
+import LinearProgress from '@mui/material/LinearProgress'
+import { ColorModeProvider } from './theme/ColorModeProvider.tsx'
 import { routes } from './routes/AppRouter'
 import { isMSWOn } from './config/worker.ts'
 import { DataProvider } from 'data_providers'
 import { providerNames } from './dataProviders/index.ts'
 import { RouterProvider } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const Header = lazy(() => import('./components/Header.tsx'))
 
 if (import.meta.env.DEV && isMSWOn) {
   const { worker } = await import('../mocks/browser.ts')
@@ -15,15 +18,24 @@ if (import.meta.env.DEV && isMSWOn) {
   })
 }
 
+const queryClient = new QueryClient()
+
 const App = () => {
   return (
-    <Suspense fallback={<LinearProgress />}>
-      <DataProvider providers={providerNames}>
-        <ToggleColorMode>
-          <RouterProvider router={routes} />
-        </ToggleColorMode>
-      </DataProvider>
-    </Suspense>
+    <QueryClientProvider client={queryClient}>
+      <ColorModeProvider>
+        <Suspense fallback={<LinearProgress />}>
+          <DataProvider providers={providerNames}>
+            <Suspense fallback={<LinearProgress />}>
+              <Header />
+            </Suspense>
+            <Suspense fallback={<LinearProgress />}>
+              <RouterProvider router={routes} />
+            </Suspense>
+          </DataProvider>
+        </Suspense>
+      </ColorModeProvider>
+    </QueryClientProvider>
   )
 }
 

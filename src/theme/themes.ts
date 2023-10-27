@@ -4,8 +4,8 @@ import {
   createTheme,
   responsiveFontSizes,
 } from '@mui/material'
+import { esES } from '@mui/material/locale'
 
-/* PALETA DE COLORES */
 const PRIMARY_COLORS: PaletteColorOptions = {
   light: '#06ABDF',
   main: '#0099CC',
@@ -18,30 +18,32 @@ const SECONDARY_COLORS: PaletteColorOptions = {
   contrastText: '#fff',
 }
 
-/* TEMAS */
 export const THEME_LIGHT: Theme = responsiveFontSizes(
-  createTheme({
-    palette: {
-      mode: 'light',
-      primary: {
-        ...PRIMARY_COLORS,
-      },
-      secondary: {
-        ...SECONDARY_COLORS,
-      },
-      common: {
-        white: '#fff',
-        black: '#151515',
-      },
-      background: {
-        paper: '#fff',
-        default: '#fafafa',
+  createTheme(
+    {
+      palette: {
+        mode: 'light',
+        primary: {
+          ...PRIMARY_COLORS,
+        },
+        secondary: {
+          ...SECONDARY_COLORS,
+        },
+        common: {
+          white: '#fff',
+          black: '#101010',
+        },
+        background: {
+          paper: '#fff',
+          default: '#fff',
+        },
       },
     },
-  }),
+    esES,
+  ),
   {
-    factor: 5, // factor para la fuente responsive
-  }
+    factor: 5,
+  },
 )
 
 export const THEME_DARK: Theme = createTheme({
@@ -56,7 +58,7 @@ export const THEME_DARK: Theme = createTheme({
     },
     background: {
       paper: '#151515',
-      default: '#151515',
+      default: '#101010',
     },
   },
 })
