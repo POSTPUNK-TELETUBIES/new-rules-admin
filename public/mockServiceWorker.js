@@ -112,7 +112,7 @@ self.addEventListener('fetch', function (event) {
   }
 
   // Generate unique request ID.
-  const requestId = crypto.getRandomValues(new Uint8Array(16)).join()
+  const requestId = Math.random().toString(16).slice(2)
 
   event.respondWith(
     handleRequest(event, requestId).catch((error) => {
