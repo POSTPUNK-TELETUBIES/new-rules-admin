@@ -8,9 +8,7 @@ import { Rule } from '../../types/rule'
 import SelectTableOptions from './SelecttableOptions'
 
 const fetchData = async () => {
-  const response = await fetch(
-    'https://raw.githubusercontent.com/jaenfigueroa/cdn-example/main/new-rules-admin/rules.json',
-  )
+  const response = await fetch('/rules')
   const data = await response.json()
   return data.rules
 }
