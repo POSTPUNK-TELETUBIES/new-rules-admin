@@ -31,7 +31,7 @@ export const handlers = [
             'swift',
             'kotlin',
           ])}:${faker.number.int({ min: 50000, max: 60000 })}`,
-          description: faker.lorem.sentence({ min: 10, max: 15 }),
+          rule: faker.lorem.sentence({ min: 10, max: 15 }),
           type: faker.helpers.arrayElement([
             'BUG',
             'VULNERABILITY',

@@ -65,7 +65,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
   },
   {
     header: 'REGLA',
-    accessorKey: 'description',
+    accessorKey: 'rule',
     minSize: 400,
     enableColumnFilterModes: true,
     filterFn: 'contains',
