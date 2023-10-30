@@ -11,19 +11,36 @@ El sistema de reportes de reglas de SonarQube es una herramienta que facilita la
 Asegúrate de que tu entorno cumple con los siguientes requisitos:
 
 - **Node.js**: Debe estar instalado en tu sistema.
-- **pnpm**: Gestor de paquetes. Puedes instalarlo con `npm`:
+- **pnpm**: Gestor de paquetes.
+
+**En Windows o Linux**
+
+Puedes instalarlo con `npm`:
 
 ```bash
 npm install -g pnpm
 ```
 
-Clona el repositorio en tu sistema local:
+Puedes instalarlo con `yarn`:
 
 ```bash
-git@github.com:POSTPUNK-TELETUBIES/new-rules-admin.git
+yarn global add pnpm
 ```
 
-Asegúrate de tener instalados los paquetes necesarios. Puedes hacerlo con `pnpm`:
+**En Mac**
+
+```bash
+brew install pnpm
+```
+
+Clona el repositorio en tu sistema local:
+
+```terminal
+git clone git@github.com:POSTPUNK-TELETUBIES/new-rules-admin.git
+```
+
+Asegúrate de tener instalados los paquetes necesarios.  
+En este proyecto, se emplea `pnpm` para llevar a cabo la instalación de los paquetes.
 
 ```terminal
 cd new-rules-admin
@@ -45,7 +62,8 @@ Para realizar el despliegue se configuro un archivo en la siguiente carpeta
 - La letra v hace referencia a la version y las x al numero de version y realiza un push del commit
 
 ```bash
-git tag dashboard-v0.0.1 && git push origin $_
+git tag dashboard-v0.0.1
+git push origin dashboard-v0.0.1
 ```
 
 ## 5. Preguntas Frecuentes
