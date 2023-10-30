@@ -50,5 +50,5 @@ git tag dashboard-v0.0.1 && git push origin $_
 
 ## 5. Preguntas Frecuentes
 
-1. Por que no me permite desplegar el desarrollo que he realizado, si ya le asigne una tag con el prefijo indicado?  
-   **R:** Este problema se debe a que estas intentando pushear un commit con una tag q ya ha sido utilizada para desplegar anteriormente verifique las tags usadas con el comando `git tag` y modifique el nombre de su tag por uno q no haya sido usado
+1. ¿Por qué no me permite desplegar el desarrollo que he realizado, si ya le asigne un tag con el prefijo indicado?  
+   **R:** Este problema se debe a que estas intentando pushear un commit con un tag q ya ha sido utilizada para desplegar anteriormente verifique las tags usadas con el comando `git tag` y modifique el nombre de su tag por uno q no haya sido usado
