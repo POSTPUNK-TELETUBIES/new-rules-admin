@@ -1,29 +1,40 @@
-export type RuleSeverity = 'INFO' | 'MINOR' | 'MAJOR' | 'CRITICAL' | 'BLOCKER'
+export enum RuleSeverity {
+  INFO = 'INFO',
+  MINOR = 'MINOR',
+  MAJOR = 'MAJOR',
+  CRITICAL = 'CRITICAL',
+  BLOCKER = 'BLOCKER',
+}
 
-export type RuleType =
-  | 'BUG'
-  | 'VULNERABILITY'
-  | 'CODE_SMELL'
-  | 'SECURITY_HOTSPOT'
+export enum RuleType {
+  BUG = 'BUG',
+  VULNERABILITY = 'VULNERABILITY',
+  CODE_SMELL = 'CODE_SMELL',
+  SECURITY_HOTSPOT = 'SECURITY_HOTSPOT',
+}
 
-export type RulesLanguages =
-  | 'HTML'
-  | 'CSS'
-  | 'Javascript'
-  | 'PHP'
-  | 'Python'
-  | 'Java'
-  | 'ruby'
-  | 'Go'
-  | 'Swift'
-  | 'Kotlin'
+export enum RuleLanguage {
+  HTML = 'html',
+  CSS = 'css',
+  Javascript = 'javascript',
+  PHP = 'php',
+  Python = 'python',
+  Java = 'java',
+  Ruby = 'ruby',
+  Go = 'go',
+  Swift = 'swift',
+  Kotlin = 'kotlin',
+}
 
-export type RuleStatus = 'ACTIVE' | 'DESACTIVE'
+export enum RuleStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
 
 export interface Rule {
   id: string
+  language: RuleLanguage
   code: string
-  language: RulesLanguages
   rule: string
   type: RuleType
   severity: RuleSeverity

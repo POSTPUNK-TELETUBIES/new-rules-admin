@@ -1,11 +1,11 @@
 import { Suspense, memo } from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import { MaterialReactTable } from 'material-react-table'
-import { columns } from './columns'
+import { columns } from './tableColumns'
 import { useQuery, UseQueryResult } from 'react-query'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import { Rule } from '../../types/rule'
-import SelectTableOptions from './SelecttableOptions'
+import TableOptionSelector from './TableOptionSelector'
 
 const fetchData = async () => {
   const response = await fetch('/rules')
@@ -14,7 +14,7 @@ const fetchData = async () => {
 }
 
 const RulesTable = memo(() => {
-  const { data, error, isLoading }: UseQueryResult<Rule[]> = useQuery(
+  const { data, error, isFetching }: UseQueryResult<Rule[]> = useQuery(
     'rules',
     fetchData,
   )
@@ -29,13 +29,13 @@ const RulesTable = memo(() => {
       renderRowActions={() => {
         return (
           <Suspense fallback={<Skeleton variant='text' />}>
-            <SelectTableOptions />
+            <TableOptionSelector />
           </Suspense>
         )
       }}
       enableStickyHeader
       enableStickyFooter
-      muiTableContainerProps={{ sx: { minHeight: 'calc(100vh - 200px)' } }}
+      muiTableContainerProps={{ sx: { minHeight: 'calc(100vh - 12.5rem)' } }}
       initialState={{
         pagination: { pageSize: 20, pageIndex: 0 },
         showGlobalFilter: true,
@@ -45,20 +45,22 @@ const RulesTable = memo(() => {
       }}
       positionGlobalFilter='left'
       muiSearchTextFieldProps={{
-        placeholder: `Buscar`,
-        sx: { minWidth: '300px' },
+        placeholder: 'Buscar',
+        sx: { minWidth: '18.75rem' },
         variant: 'outlined',
         size: 'small',
         style: {
-          paddingTop: '5px',
-          paddingLeft: '8px',
+          paddingTop: '0.3125rem',
+          paddingLeft: '0.5rem',
         },
       }}
       displayColumnDefOptions={{
         'mrt-row-actions': {
           header: '',
           size: 0,
-          muiTableBodyCellProps: { sx: { padding: 0, paddingLeft: '5px' } },
+          muiTableBodyCellProps: {
+            sx: { padding: 0, paddingLeft: '0.3125rem' },
+          },
         },
       }}
       muiTableHeadCellFilterTextFieldProps={{
@@ -68,8 +70,8 @@ const RulesTable = memo(() => {
         placeholder: 'Todos',
       }}
       state={{
-        isLoading: isLoading,
-        showAlertBanner: Boolean(error),
+        isLoading: isFetching,
+        showAlertBanner: !!error,
       }}
       muiToolbarAlertBannerProps={{
         color: 'error',

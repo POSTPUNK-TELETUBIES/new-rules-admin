@@ -22,7 +22,7 @@ const ITEMS_FOR_SELECTOR: ItemOfSelector[] = [
   },
 ]
 
-const SelectTableOptions = () => {
+const TableOptionSelector = () => {
   return (
     <SelectOptions
       icon={<MoreHorizIcon fontSize='small' />}
@@ -31,4 +31,4 @@ const SelectTableOptions = () => {
   )
 }
 
-export default SelectTableOptions
+export default TableOptionSelector

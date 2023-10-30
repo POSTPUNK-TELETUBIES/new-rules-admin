@@ -6,47 +6,13 @@ import Button from '@mui/material/Button'
 import { MRT_ColumnDef } from 'material-react-table'
 import { formatDate } from '../../utils/formatDate'
 import { getColorToRuleType } from '../../helpers/getColorForType'
+import { Rule } from '../../types/rule'
 import {
-  Rule,
-  RuleSeverity,
-  RuleStatus,
-  RuleType,
-  RulesLanguages,
-} from '../../types/rule'
-
-export const tableLanguageOptions: Array<
-  string | { text: RulesLanguages; value: string }
-> = [
-  { text: 'HTML', value: 'html' },
-  { text: 'CSS', value: 'css' },
-  { text: 'Javascript', value: 'javascript' },
-  { text: 'PHP', value: 'php' },
-  { text: 'Python', value: 'python' },
-  { text: 'Java', value: 'java' },
-  { text: 'Go', value: 'go' },
-  { text: 'Swift', value: 'swift' },
-  { text: 'Kotlin', value: 'kotlin' },
-]
-
-const tableTypeOptions: RuleType[] = [
-  'BUG',
-  'CODE_SMELL',
-  'VULNERABILITY',
-  'SECURITY_HOTSPOT',
-]
-
-const tableSeverityOptions: RuleSeverity[] = [
-  'INFO',
-  'MINOR',
-  'MAJOR',
-  'CRITICAL',
-  'BLOCKER',
-]
-
-const tableStateOptions: Array<string | { text: string; value: RuleStatus }> = [
-  { text: 'ACTIVADO', value: 'ACTIVE' },
-  { text: 'DESACTIVADO', value: 'DESACTIVE' },
-]
+  TABLE_LANGUAGES_OPTIONS,
+  TABLE_SEVERITY_OPTIONS,
+  TABLE_STATE_OPTIONS,
+  TABLE_TYPE_OPTIONS,
+} from './tableOptions'
 
 export const columns: MRT_ColumnDef<Rule>[] = [
   {
@@ -54,7 +20,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     accessorKey: 'code',
     maxSize: 10,
     filterVariant: 'select',
-    filterSelectOptions: tableLanguageOptions,
+    filterSelectOptions: TABLE_LANGUAGES_OPTIONS,
     filterFn: 'contains',
     enableClickToCopy: true,
     muiTableBodyCellCopyButtonProps: {
@@ -75,7 +41,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     accessorKey: 'type',
     maxSize: 5,
     filterVariant: 'multi-select',
-    filterSelectOptions: tableTypeOptions,
+    filterSelectOptions: TABLE_TYPE_OPTIONS,
     enableColumnFilterModes: false,
     Cell: ({ row }) => (
       <Button
@@ -92,7 +58,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     accessorKey: 'severity',
     maxSize: 5,
     filterVariant: 'multi-select',
-    filterSelectOptions: tableSeverityOptions,
+    filterSelectOptions: TABLE_SEVERITY_OPTIONS,
     enableColumnFilterModes: false,
   },
   {
@@ -101,7 +67,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     accessorKey: 'state',
     maxSize: 5,
     filterVariant: 'select',
-    filterSelectOptions: tableStateOptions,
+    filterSelectOptions: TABLE_STATE_OPTIONS,
     enableColumnFilterModes: false,
     Cell: ({ row }) => (
       <Chip
