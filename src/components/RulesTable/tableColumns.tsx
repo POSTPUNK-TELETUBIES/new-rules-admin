@@ -4,8 +4,8 @@ import CheckIcon from '@mui/icons-material/Check'
 import NotInterestedIcon from '@mui/icons-material/NotInterested'
 import Button from '@mui/material/Button'
 import { MRT_ColumnDef } from 'material-react-table'
-import { formatDate } from '../../utils/formatDate'
-import { getColorToRuleType } from '../../helpers/getColorForType'
+import { getDistanceFromNow } from '../../utils/getDistanceFromNow'
+import { getColorToRuleType } from '../../utils/getColorForType'
 import { Rule } from '../../types/rule'
 import {
   TABLE_LANGUAGES_OPTIONS,
@@ -31,7 +31,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
   },
   {
     header: 'REGLA',
-    accessorKey: 'description',
+    accessorKey: 'rule',
     minSize: 400,
     enableColumnFilterModes: true,
     filterFn: 'contains',
@@ -91,6 +91,6 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     maxSize: 5,
     sortingFn: 'datetime',
     filterFn: 'contains',
-    Cell: ({ row }) => formatDate(row.original.date),
+    Cell: ({ row }) => getDistanceFromNow(row.original.date),
   },
 ]

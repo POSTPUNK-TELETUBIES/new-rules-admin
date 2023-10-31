@@ -1,5 +1,7 @@
+import { Suspense } from 'react'
 import HistoryIcon from '@mui/icons-material/History'
 import AddIcon from '@mui/icons-material/Add'
+import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import SelectOptions, { ItemOfSelector } from '../SelectOptions'
@@ -24,10 +26,12 @@ const ITEMS_FOR_SELECTOR: ItemOfSelector[] = [
 
 const TableOptionSelector = () => {
   return (
-    <SelectOptions
-      icon={<MoreHorizIcon fontSize='small' />}
-      items={ITEMS_FOR_SELECTOR}
-    />
+    <Suspense fallback={<Skeleton variant='text' />}>
+      <SelectOptions
+        icon={<MoreHorizIcon fontSize='small' />}
+        items={ITEMS_FOR_SELECTOR}
+      />
+    </Suspense>
   )
 }
 
