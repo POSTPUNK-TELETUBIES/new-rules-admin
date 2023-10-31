@@ -1,9 +1,9 @@
 import { MaterialReactTable } from 'material-react-table'
 import { columns } from './tableColumns'
-import { useQuery, UseQueryResult } from 'react-query'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
-import { Rule } from '../../types/rule'
 import TableOptionSelector from './TableOptionSelector'
+import { useQuery } from '@tanstack/react-query'
+import { Rule } from '../../types/rule'
 
 const fetchData = async () => {
   const response = await fetch('/rules')
@@ -12,15 +12,15 @@ const fetchData = async () => {
 }
 
 const RulesTable = () => {
-  const { data, error, isFetching }: UseQueryResult<Rule[]> = useQuery(
-    'rules',
-    fetchData,
-  )
+  const { data, error, isLoading } = useQuery<Rule[], string>({
+    queryKey: ['rules'],
+    queryFn: fetchData,
+  })
 
   return (
     <MaterialReactTable
       columns={columns}
-      data={data || []}
+      data={data ?? []}
       enableColumnFilterModes
       enableRowActions
       positionActionsColumn='last'
@@ -62,7 +62,7 @@ const RulesTable = () => {
         placeholder: 'Todos',
       }}
       state={{
-        isLoading: isFetching,
+        isLoading,
         showAlertBanner: !!error,
       }}
       muiToolbarAlertBannerProps={{

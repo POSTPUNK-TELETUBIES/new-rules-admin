@@ -1,7 +1,5 @@
 import Box from '@mui/material/Box'
-import { lazy } from 'react'
-
-const RulesTable = lazy(() => import('../components/RulesTable'))
+import RulesTable from '../components/RulesTable'
 
 const Admin = () => {
   return (
