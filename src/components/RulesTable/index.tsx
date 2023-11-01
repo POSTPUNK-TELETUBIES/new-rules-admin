@@ -4,17 +4,15 @@ import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import TableOptionSelector from './TableOptionSelector'
 import { useQuery } from '@tanstack/react-query'
 import { Rule } from '../../types/rule'
-
-const fetchData = async () => {
-  const response = await fetch('/rules')
-  const data = await response.json()
-  return data.rules
-}
+import { axiosInstance } from '../../services/axios'
 
 const RulesTable = () => {
   const { data, error, isLoading } = useQuery<Rule[], string>({
     queryKey: ['rules'],
-    queryFn: fetchData,
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/rules')
+      return data.rules
+    },
   })
 
   return (
