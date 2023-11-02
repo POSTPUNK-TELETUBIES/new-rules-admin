@@ -4,7 +4,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import NotInterestedIcon from '@mui/icons-material/NotInterested'
 import Button from '@mui/material/Button'
 import { MRT_ColumnDef } from 'material-react-table'
-import { getDistanceFromNow } from '../../utils/getDistanceFromNow'
+import { getDateDifference } from '../../utils/getDateDifference'
 import { getColorToRuleType } from '../../utils/getColorForType'
 import { Rule } from '../../types/rule'
 import {
@@ -91,6 +91,6 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     maxSize: 5,
     sortingFn: 'datetime',
     filterFn: 'contains',
-    Cell: ({ row }) => getDistanceFromNow(row.original.date),
+    Cell: ({ row }) => getDateDifference(row.original.date),
   },
 ]
