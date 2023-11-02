@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { config } from '../config/config'
 
-const BASE_URL = config.getEnv('BASE_URL')
+const API_URL = config.getEnv('API_URL')
 
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  url: API_URL,
+  baseURL: 'api',
   headers: {},
 })
