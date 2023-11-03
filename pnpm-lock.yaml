@@ -44,9 +44,6 @@ dependencies:
   react-router-dom:
     specifier: ^6.17.0
     version: 6.17.0(react-dom@18.2.0)(react@18.2.0)
-  redaxios:
-    specifier: ^0.5.1
-    version: 0.5.1
 
 devDependencies:
   '@commitlint/cli':
@@ -8992,10 +8989,6 @@ packages:
       source-map: 0.6.1
       tslib: 2.6.2
     dev: true
-
-  /redaxios@0.5.1:
-    resolution: {integrity: sha512-FSD2AmfdbkYwl7KDExYQlVvIrFz6Yd83pGfaGjBzM9F6rpq8g652Q4Yq5QD4c+nf4g2AgeElv1y+8ajUPiOYMg==}
-    dev: false
 
   /redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}

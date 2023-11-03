@@ -1,5 +1,5 @@
 import { ButtonProps } from '@mui/material'
-import { RuleType } from '../types/rule'
+import { RuleType } from '../types/ruleEnums'
 
 export const getColorToRuleType: Record<RuleType, ButtonProps['color']> = {
   BUG: 'error',

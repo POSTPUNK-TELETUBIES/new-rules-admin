@@ -3,19 +3,19 @@ import {
   RuleStatus,
   RuleType,
   RuleLanguage,
-} from '../../types/rule'
+} from '../../types/ruleEnums'
 
 export const TABLE_LANGUAGES_OPTIONS: { text: string; value: RuleLanguage }[] =
   [
     { text: 'HTML', value: RuleLanguage.HTML },
     { text: 'CSS', value: RuleLanguage.CSS },
-    { text: 'Javascript', value: RuleLanguage.Javascript },
+    { text: 'Javascript', value: RuleLanguage.JAVASCRIPT },
     { text: 'PHP', value: RuleLanguage.PHP },
-    { text: 'Python', value: RuleLanguage.Python },
-    { text: 'Java', value: RuleLanguage.Java },
-    { text: 'Go', value: RuleLanguage.Go },
-    { text: 'Swift', value: RuleLanguage.Swift },
-    { text: 'Kotlin', value: RuleLanguage.Kotlin },
+    { text: 'Python', value: RuleLanguage.PYTHON },
+    { text: 'Java', value: RuleLanguage.JAVA },
+    { text: 'Go', value: RuleLanguage.GO },
+    { text: 'Swift', value: RuleLanguage.SWIFT },
+    { text: 'Kotlin', value: RuleLanguage.KOTLIN },
   ]
 
 export const TABLE_TYPE_OPTIONS: RuleType[] = [
