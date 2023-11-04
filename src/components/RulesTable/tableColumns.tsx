@@ -1,11 +1,6 @@
 import ContentCopy from '@mui/icons-material/ContentCopy'
-import Chip from '@mui/material/Chip'
-import CheckIcon from '@mui/icons-material/Check'
-import NotInterestedIcon from '@mui/icons-material/NotInterested'
-import Button from '@mui/material/Button'
 import { MRT_ColumnDef } from 'material-react-table'
 import { getDateDifference } from '../../utils/getDateDifference'
-import { getColorToRuleType } from '../../utils/getColorForType'
 import { Rule } from '../../types/rule'
 import {
   TABLE_LANGUAGES_OPTIONS,
@@ -13,6 +8,8 @@ import {
   TABLE_STATE_OPTIONS,
   TABLE_TYPE_OPTIONS,
 } from './tableOptions'
+import StateChip from '../atoms/StateChip'
+import TypeChip from '../atoms/TypeChip'
 
 export const columns: MRT_ColumnDef<Rule>[] = [
   {
@@ -43,15 +40,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     filterVariant: 'multi-select',
     filterSelectOptions: TABLE_TYPE_OPTIONS,
     enableColumnFilterModes: false,
-    Cell: ({ row }) => (
-      <Button
-        variant='outlined'
-        size='small'
-        color={getColorToRuleType[row.original.type]}
-      >
-        {row.original.type}
-      </Button>
-    ),
+    Cell: ({ row }) => <TypeChip value={row.original.type} />,
   },
   {
     header: 'SEVERIDAD',
@@ -68,15 +57,7 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     filterVariant: 'select',
     filterSelectOptions: TABLE_STATE_OPTIONS,
     enableColumnFilterModes: false,
-    Cell: ({ row }) => (
-      <Chip
-        variant='outlined'
-        size='small'
-        label={row.original.isActive ? 'Activado' : 'Desactivado'}
-        color={row.original.isActive ? 'success' : 'default'}
-        icon={row.original.isActive ? <CheckIcon /> : <NotInterestedIcon />}
-      />
-    ),
+    Cell: ({ row }) => <StateChip isActive={row.original.isActive} />,
     filterFn: (row, id, filterValue) => row.getValue(id) === filterValue,
   },
   {

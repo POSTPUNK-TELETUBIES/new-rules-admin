@@ -1,9 +1,11 @@
-import { ButtonProps } from '@mui/material'
+import { ChipProps } from '@mui/material'
 import { RuleType } from '../types/ruleEnums'
 
-export const getColorToRuleType: Record<RuleType, ButtonProps['color']> = {
+const getColorToRuleType: Record<RuleType, ChipProps['color']> = {
   BUG: 'error',
   VULNERABILITY: 'warning',
   CODE_SMELL: 'success',
   SECURITY_HOTSPOT: 'info',
 }
+
+export default getColorToRuleType
