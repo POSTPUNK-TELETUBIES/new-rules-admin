@@ -1,15 +1,15 @@
 import ContentCopy from '@mui/icons-material/ContentCopy'
 import { MRT_ColumnDef } from 'material-react-table'
-import { getDateDifference } from '../../utils/getDateDifference'
-import { Rule } from '../../types/rule'
 import {
   TABLE_LANGUAGES_OPTIONS,
   TABLE_SEVERITY_OPTIONS,
   TABLE_STATE_OPTIONS,
   TABLE_TYPE_OPTIONS,
 } from './tableOptions'
-import StateChip from '../atoms/StateChip'
-import TypeChip from '../atoms/TypeChip'
+import { Rule } from '../../../types/rule'
+import TypeChip from '../../atoms/TypeChip'
+import StateChip from '../../atoms/StateChip'
+import { getDateDifference } from '../../../utils/getDateDifference'
 
 export const columns: MRT_ColumnDef<Rule>[] = [
   {

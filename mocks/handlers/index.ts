@@ -7,7 +7,7 @@ export const handlers = [
     const offset = Number(req.url.searchParams.get('offset')) || 0
 
     const shouldUseCustomLimit = limit && offset
-    const rules = shouldUseCustomLimit ? createRules(limit) : createRules(7000)
+    const rules = shouldUseCustomLimit ? createRules(limit) : createRules(20)
 
     return res(ctx.status(200), ctx.json({ rules }))
   }),

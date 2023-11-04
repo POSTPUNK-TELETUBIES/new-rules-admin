@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
-import { columns } from '../components/RulesTable/tableColumns'
-import { createRules } from '../../mocks/factories/createRules'
+import { createRules } from '../../../mocks/factories/createRules'
+import { columns } from '../../components/organisms/RulesTable/tableColumns'
 
 const meta = {
-  title: 'Components/RulesTable',
+  title: 'organisms/RulesTable',
   component: MaterialReactTable,
   tags: ['autodocs'],
 } satisfies Meta<typeof MaterialReactTable>

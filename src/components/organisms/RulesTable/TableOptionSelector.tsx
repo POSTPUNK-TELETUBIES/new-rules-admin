@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add'
 import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import SelectOptions, { ItemOfSelector } from '../SelectOptions'
+import SelectOptions, { ItemOfSelector } from '../../molecules/SelectOptions'
 
 const ITEMS_FOR_SELECTOR: ItemOfSelector[] = [
   {

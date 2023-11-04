@@ -1,5 +1,5 @@
-import { Rule } from '../../types/rule'
-import { RuleSeverity, RuleType, RuleLanguage } from '../../types/ruleEnums'
+import { Rule } from '../../../types/rule'
+import { RuleLanguage, RuleSeverity, RuleType } from '../../../types/ruleEnums'
 
 export const TABLE_LANGUAGES_OPTIONS: { text: string; value: RuleLanguage }[] =
   [

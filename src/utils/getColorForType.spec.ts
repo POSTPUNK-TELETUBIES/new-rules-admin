@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { getColorToRuleType } from './getColorForType'
+import getColorToRuleType from './getColorForType'
 
 test('BUG maps to error', () => {
   expect(getColorToRuleType['BUG']).to.be.equal('error')
