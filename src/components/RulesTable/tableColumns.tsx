@@ -62,9 +62,8 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     enableColumnFilterModes: false,
   },
   {
-    id: 'col-state',
     header: 'ESTADO',
-    accessorKey: 'state',
+    accessorKey: 'isActive',
     maxSize: 5,
     filterVariant: 'select',
     filterSelectOptions: TABLE_STATE_OPTIONS,
@@ -72,25 +71,20 @@ export const columns: MRT_ColumnDef<Rule>[] = [
     Cell: ({ row }) => (
       <Chip
         variant='outlined'
-        label={row.original.state === 'ACTIVE' ? 'Activado' : 'Desactivado'}
-        color={row.original.state === 'ACTIVE' ? 'success' : 'default'}
         size='small'
-        icon={
-          row.original.state === 'ACTIVE' ? (
-            <CheckIcon />
-          ) : (
-            <NotInterestedIcon />
-          )
-        }
+        label={row.original.isActive ? 'Activado' : 'Desactivado'}
+        color={row.original.isActive ? 'success' : 'default'}
+        icon={row.original.isActive ? <CheckIcon /> : <NotInterestedIcon />}
       />
     ),
+    filterFn: (row, id, filterValue) => row.getValue(id) === filterValue,
   },
   {
     header: 'FECHA',
     accessorKey: 'date',
+    accessorFn: (dataRow) => getDateDifference(dataRow.date),
     maxSize: 5,
     sortingFn: 'datetime',
     filterFn: 'contains',
-    Cell: ({ row }) => getDateDifference(row.original.date),
   },
 ]

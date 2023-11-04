@@ -1,4 +1,4 @@
-import { RuleLanguage, RuleSeverity, RuleStatus, RuleType } from './ruleEnums'
+import { RuleLanguage, RuleSeverity, RuleType } from './ruleEnums'
 
 export interface Rule {
   id: string
@@ -7,6 +7,6 @@ export interface Rule {
   rule: string
   type: RuleType
   severity: RuleSeverity
-  state: RuleStatus
+  isActive: boolean
   date: Date
 }

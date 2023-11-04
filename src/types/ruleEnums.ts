@@ -25,8 +25,3 @@ export enum RuleLanguage {
   SWIFT = 'swift',
   KOTLIN = 'kotlin',
 }
-
-export enum RuleStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-}

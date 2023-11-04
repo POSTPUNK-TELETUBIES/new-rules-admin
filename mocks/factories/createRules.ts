@@ -29,7 +29,7 @@ export const createRules = (count: number) => {
       'CRITICAL',
       'BLOCKER',
     ]),
-    state: faker.helpers.arrayElement(['ACTIVE', 'INACTIVE']),
+    isActive: faker.datatype.boolean(),
     date: faker.date.anytime(),
   }))
 }

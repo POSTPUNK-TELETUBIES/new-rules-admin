@@ -1,9 +1,5 @@
-import {
-  RuleSeverity,
-  RuleStatus,
-  RuleType,
-  RuleLanguage,
-} from '../../types/ruleEnums'
+import { Rule } from '../../types/rule'
+import { RuleSeverity, RuleType, RuleLanguage } from '../../types/ruleEnums'
 
 export const TABLE_LANGUAGES_OPTIONS: { text: string; value: RuleLanguage }[] =
   [
@@ -33,7 +29,8 @@ export const TABLE_SEVERITY_OPTIONS: RuleSeverity[] = [
   RuleSeverity.BLOCKER,
 ]
 
-export const TABLE_STATE_OPTIONS: { text: string; value: RuleStatus }[] = [
-  { text: 'ACTIVADO', value: RuleStatus.ACTIVE },
-  { text: 'DESACTIVADO', value: RuleStatus.INACTIVE },
-]
+export const TABLE_STATE_OPTIONS: { text: string; value: Rule['isActive'] }[] =
+  [
+    { text: 'ACTIVADO', value: true },
+    { text: 'DESACTIVADO', value: false },
+  ]

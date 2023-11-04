@@ -12,6 +12,5 @@
     "go",
     "swift",
     "kotlin"
-  ],
-  "RuleStatus": ["ACTIVE", "INACTIVE"]
+  ]
 }
