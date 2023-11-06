@@ -1,9 +1,7 @@
-import { lazy } from 'react'
 import { Navigate, createHashRouter } from 'react-router-dom'
-
-const Login = lazy(() => import('../pages/Login'))
-const Admin = lazy(() => import('../pages/Admin'))
-const NotFound = lazy(() => import('../pages/NotFound'))
+import Login from '../pages/Login'
+import Admin from '../pages/Admin'
+import NotFound from '../pages/NotFound'
 
 export const routes = createHashRouter([
   {

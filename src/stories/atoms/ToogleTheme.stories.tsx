@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import ToogleTheme from '../theme/ToogleTheme'
-import { ColorModeProvider } from '../theme/ColorModeProvider'
 import { Box, Paper, Typography } from '@mui/material'
+import ToogleTheme from '../../theme/ToogleTheme'
+import { ColorModeProvider } from '../../theme/ColorModeProvider'
 
 const meta = {
-  title: 'Components/ToogleTheme',
+  title: 'atoms/ToogleTheme',
   component: ToogleTheme,
   parameters: {
     layout: 'centered',

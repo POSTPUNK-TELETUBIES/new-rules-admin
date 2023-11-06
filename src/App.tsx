@@ -6,9 +6,9 @@ import { isMSWOn } from './config/worker.ts'
 import { DataProvider } from 'data_providers'
 import { providerNames } from './dataProviders/index.ts'
 import { RouterProvider } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const Header = lazy(() => import('./components/Header.tsx'))
+const Header = lazy(() => import('./components/molecules/Header.tsx'))
 
 if (import.meta.env.DEV && isMSWOn) {
   const { worker } = await import('../mocks/browser.ts')
@@ -30,7 +30,11 @@ const App = () => {
               <Header />
             </Suspense>
             <Suspense fallback={<LinearProgress />}>
-              <RouterProvider router={routes} />
+              <RouterProvider
+                router={routes}
+                fallbackElement={<LinearProgress />}
+                future={{ v7_startTransition: true }}
+              />
             </Suspense>
           </DataProvider>
         </Suspense>

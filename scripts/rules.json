@@ -1,0 +1,16 @@
+{
+  "RuleSeverity": ["INFO", "MINOR", "MAJOR", "CRITICAL", "BLOCKER"],
+  "RuleType": ["BUG", "VULNERABILITY", "CODE SMELL", "SECURITY HOTSPOT"],
+  "RuleLanguage": [
+    "html",
+    "css",
+    "javascript",
+    "php",
+    "python",
+    "java",
+    "ruby",
+    "go",
+    "swift",
+    "kotlin"
+  ]
+}

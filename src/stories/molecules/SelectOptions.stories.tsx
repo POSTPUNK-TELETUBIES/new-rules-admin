@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import SelectOptions from '../components/SelectOptions'
+import SelectOptions from '../../components/molecules/SelectOptions'
 import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import SettingsIcon from '@mui/icons-material/Settings'
@@ -7,7 +7,7 @@ import HelpIcon from '@mui/icons-material/Help'
 import ChatIcon from '@mui/icons-material/Chat'
 
 const meta = {
-  title: 'Example/Button',
+  title: 'molecules/SelectOptions',
   component: SelectOptions,
   parameters: {
     layout: 'centered',
