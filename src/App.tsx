@@ -7,6 +7,7 @@ import { DataProvider } from 'data_providers'
 import { providerNames } from './dataProviders/index.ts'
 import { RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { SnackbarProvider } from 'notistack'
 
 const Header = lazy(() => import('./components/Header.tsx'))
 
@@ -24,16 +25,18 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ColorModeProvider>
-        <Suspense fallback={<LinearProgress />}>
-          <DataProvider providers={providerNames}>
-            <Suspense fallback={<LinearProgress />}>
-              <Header />
-            </Suspense>
-            <Suspense fallback={<LinearProgress />}>
-              <RouterProvider router={routes} />
-            </Suspense>
-          </DataProvider>
-        </Suspense>
+        <SnackbarProvider maxSnack={3}>
+          <Suspense fallback={<LinearProgress />}>
+            <DataProvider providers={providerNames}>
+              <Suspense fallback={<LinearProgress />}>
+                <Header />
+              </Suspense>
+              <Suspense fallback={<LinearProgress />}>
+                <RouterProvider router={routes} />
+              </Suspense>
+            </DataProvider>
+          </Suspense>
+        </SnackbarProvider>
       </ColorModeProvider>
     </QueryClientProvider>
   )
