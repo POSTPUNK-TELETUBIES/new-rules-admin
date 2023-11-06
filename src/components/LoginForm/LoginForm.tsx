@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { loginFormSchema } from '../../validations/LoginFormSchema'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 
 export interface ILoginForm {
