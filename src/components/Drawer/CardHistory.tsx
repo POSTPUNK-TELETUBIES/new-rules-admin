@@ -15,6 +15,9 @@ const CardHistory = (props: Props) => {
       <Typography variant='subtitle1' fontWeight={'bold'}>
         {props.user}
       </Typography>
+      <Typography variant='subtitle1' fontWeight={'bold'}>
+        {props.time}
+      </Typography>
       <Chip
         label={props.action}
         color={props.action === 'Activar regla' ? 'success' : 'error'}

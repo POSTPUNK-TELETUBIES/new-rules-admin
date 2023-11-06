@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Timeline from '@mui/lab/Timeline'
@@ -11,7 +11,6 @@ import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent'
 import { HISTORY } from '../data/history'
-import { Suspense, lazy } from 'react'
 import { Collapse, LinearProgress, ListItemText } from '@mui/material'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -95,9 +94,9 @@ const SectionHistory = () => {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <FormGroup>
-          {uniqueHistory.map((item, index) => (
+          {uniqueHistory.map((item) => (
             <FormControlLabel
-              key={index}
+              key={item.id}
               control={<Checkbox
                 checked={selectedUsers[item.user]}
                 onChange={() => handleCheckboxChange(item.user)}
@@ -116,9 +115,9 @@ const SectionHistory = () => {
         }}
       >
         <button onClick={toggleOrder}>{sortOrderText}</button>
-        {sortedHistory.map((item, index) => (
+        {sortedHistory.map((item) => (
 
-          <TimelineItem key={index}>
+          <TimelineItem key={item.id}>
             <TimelineOppositeContent>
               <Suspense fallback={<LinearProgress />}>{item.time}</Suspense>
             </TimelineOppositeContent>
