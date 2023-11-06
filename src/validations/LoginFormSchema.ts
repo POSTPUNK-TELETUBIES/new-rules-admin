@@ -1,6 +1,6 @@
 import { object, string } from 'yup'
 
-const regExp = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$/
+const regExp = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d).{8,}$/
 
 export const loginFormSchema = object({
   username: string()
