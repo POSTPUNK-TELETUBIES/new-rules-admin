@@ -28,12 +28,11 @@ const App = () => {
         <SnackbarProvider maxSnack={3}>
           <Suspense fallback={<LinearProgress />}>
             <DataProvider providers={providerNames}>
-              <Suspense fallback={<LinearProgress />}>
-                <Header />
-              </Suspense>
-              <Suspense fallback={<LinearProgress />}>
-                <RouterProvider router={routes} future={{ v7_startTransition: true }}/>
-              </Suspense>
+              <Header />
+              <RouterProvider
+                router={routes}
+                future={{ v7_startTransition: true }}
+              />
             </DataProvider>
           </Suspense>
         </SnackbarProvider>

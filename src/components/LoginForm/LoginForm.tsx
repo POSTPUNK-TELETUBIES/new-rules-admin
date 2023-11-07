@@ -1,8 +1,7 @@
 import { Avatar, Box, Button, TextField } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { FieldErrors, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { loginFormSchema } from '../../validations/LoginFormSchema'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { resolverYup } from '../../validations/LoginFormSchema'
 import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 
@@ -12,33 +11,39 @@ export interface ILoginForm {
 }
 
 const LoginForm = () => {
-  const navigate = useNavigate()
   const { register, handleSubmit, formState } = useForm<ILoginForm>({
-    resolver: yupResolver(loginFormSchema),
+    resolver: resolverYup,
   })
 
-  const { errors } = formState
+  const navigate = useNavigate()
 
+  const { errors } = formState
   const { enqueueSnackbar } = useSnackbar()
 
   const onSubmit = () => {
     navigate('/admin')
   }
 
-  useEffect(() => {
-    if (errors.username || errors.password) {
-      enqueueSnackbar(errors.username?.message ?? errors.password?.message, {
-        variant: 'error',
-      })
+  const showErrors = (errors: FieldErrors<ILoginForm>) => {
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        const errorMessage = errors[key as keyof ILoginForm]?.message
+        const variant = errorMessage ? 'error' : 'default'
+        enqueueSnackbar(errorMessage, {
+          variant,
+        })
+      }
     }
+  }
+
+  useEffect(() => {
+    showErrors(errors)
   }, [errors])
 
   return (
     <Box
       component='form'
       onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      autoComplete='off'
       display={'flex'}
       flexDirection={'column'}
       justifyContent={'center'}
