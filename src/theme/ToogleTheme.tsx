@@ -10,7 +10,11 @@ const ToogleTheme = memo(() => {
   const colorMode = useContext(ColorModeContext)
 
   return (
-    <IconButton onClick={colorMode.toggleColorMode} color='inherit'>
+    <IconButton
+      onClick={colorMode.toggleColorMode}
+      color='inherit'
+      title='Alternar tema claro/oscuro'
+    >
       {theme.palette.mode === 'dark' ? (
         <DarkModeIcon fontSize='medium' sx={{ color: 'white' }} />
       ) : (

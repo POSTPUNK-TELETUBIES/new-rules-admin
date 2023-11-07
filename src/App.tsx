@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { SnackbarProvider } from 'notistack'
 
-const Header = lazy(() => import('./components/Header.tsx'))
+const Header = lazy(() => import('./components/molecules/Header.tsx'))
 
 if (import.meta.env.DEV && isMSWOn) {
   const { worker } = await import('../mocks/browser.ts')
@@ -32,7 +32,7 @@ const App = () => {
                 <Header />
               </Suspense>
               <Suspense fallback={<LinearProgress />}>
-                <RouterProvider router={routes} />
+                <RouterProvider router={routes} future={{ v7_startTransition: true }}/>
               </Suspense>
             </DataProvider>
           </Suspense>
