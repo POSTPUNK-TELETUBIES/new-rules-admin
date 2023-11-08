@@ -1,31 +1,27 @@
 import { Avatar, Chip, Paper, Typography } from '@mui/material'
+import { HistoryAction } from "../../components/data/history"; 
 
-interface Props {
-  user: string
-  action: string
-  sustento: string
-  time: string
+
+export interface CardHistoryProps {
+  user: string;
+  action: HistoryAction;
+  sustain: string;
+  avatar: string;
 }
 
-const CardHistory = (props: Props) => {
+const CardHistory = ({ user, action, sustain, avatar  }: CardHistoryProps) => (
+  <Paper sx={{ p: 2 }}>
+    <Avatar src={avatar} alt={user} />
+    <Typography variant='subtitle1' fontWeight={'bold'}>
+      {`${user}`}
+    </Typography>
+    <Chip
+      label={action}
+      color={action === HistoryAction.ActivateRule ? 'success' : 'error'}
+      sx={{ marginTop: 1 }}
+    />
+    <Typography sx={{ marginTop: 1 }}>{sustain}</Typography>
+  </Paper>
+);
 
-  return (
-    <Paper sx={{ p: 2 }}>
-      <Avatar />
-      <Typography variant='subtitle1' fontWeight={'bold'}>
-        {props.user}
-      </Typography>
-      <Typography variant='subtitle1' fontWeight={'bold'}>
-        {props.time}
-      </Typography>
-      <Chip
-        label={props.action}
-        color={props.action === 'Activar regla' ? 'success' : 'error'}
-        style={{ margin: '10px 0' }}
-      />
-      <Typography>{props.sustento}</Typography>
-    </Paper>
-  )
-}
-
-export default CardHistory
+export default CardHistory;

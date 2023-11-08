@@ -1,6 +1,5 @@
-import { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar'
-import AvatarGroup from '@mui/material/AvatarGroup'
 import Timeline from '@mui/lab/Timeline'
 import TimelineItem from '@mui/lab/TimelineItem'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
@@ -8,138 +7,131 @@ import TimelineConnector from '@mui/lab/TimelineConnector'
 import TimelineContent from '@mui/lab/TimelineContent'
 import TimelineDot from '@mui/lab/TimelineDot'
 import TimelineOppositeContent, {
-  timelineOppositeContentClasses,
+    timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent'
-import { HISTORY } from '../data/history'
+import { History } from '../data/history'
 import { Collapse, LinearProgress, ListItemText } from '@mui/material'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemButton from '@mui/material/ListItemButton';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import Button from '@mui/material/Button';
+import CardHistory from './CardHistory';
 
-const CardHistory = lazy(() => import('./CardHistory'))
-
-const removeDuplicates = () => {
-  const uniqueUsers = new Set();
-  return HISTORY.filter((item) => {
-    if (!uniqueUsers.has(item.user)) {
-      uniqueUsers.add(item.user);
-      return true;
-    }
-    return false;
-  });
-};
+enum Order {
+    Ascending = 'asc',
+    Descending = 'desc',
+}
 
 const SectionHistory = () => {
-  const uniqueHistory = removeDuplicates();
-  const [order, setOrder] = useState('asc');
-  const initialSelectedUsers = uniqueHistory.reduce((acc, item) => {
-    acc[item.user] = true;
-    return acc;
-  }, {} as { [key: string]: boolean });
-  const [open, setOpen] = useState(false);
-  const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>(initialSelectedUsers);
-  const handleClick = () => {
-    setOpen(!open);
-  };
-  const toggleOrder = () => {
-    setOrder(order === 'asc' ? 'desc' : 'asc');
-  };
-  const handleCheckboxChange = (user: string) => {
-    setSelectedUsers((prevSelectedUsers: Record<string, boolean>) => ({
-      ...prevSelectedUsers,
-      [user]: !prevSelectedUsers[user],
-    }));
-  };
-  const sortOrderText = order === 'asc' ? 'Ordenar de manera descendente' : 'Ordenar de manera ascendente';
-  const filteredHistory = HISTORY.filter((item) => selectedUsers[item.user]);
-  const sortedHistory = filteredHistory.slice().sort((a, b) => {
-    if (order === 'asc') {
-      return a.time.localeCompare(b.time);
-    } else {
-      return b.time.localeCompare(a.time);
-    }
-  });
-  return (
-    <>
-      {/* LISTA DE USUARIOS */}
-      <Suspense fallback={<LinearProgress />}>
-        <AvatarGroup max={10}>
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-          <Avatar />
-        </AvatarGroup>
-      </Suspense>
+    const [order, setOrder] = useState(Order.Ascending);
+    const [open, setOpen] = useState(false);
+    const [data, setData] = useState<History[]>([]);
+    const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
+    const handleCheckboxChange = (user: string) => {
+        setSelectedUsers((prevSelectedUsers: Record<string, boolean>) => ({
+            ...prevSelectedUsers,
+            [user]: !prevSelectedUsers[user],
+        }));
+    };
+    const handleClick = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+    const toggleOrder = () => {
+        setOrder(order === Order.Ascending ? Order.Descending : Order.Ascending);
+    };
 
-      {/* LINEA DE TIEMPO */}
-      <ListItemButton onClick={handleClick}>
-        <ListItemText primary="Autores" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <FormGroup>
-          {uniqueHistory.map((item) => (
-            <FormControlLabel
-              key={item.id}
-              control={<Checkbox
-                checked={selectedUsers[item.user]}
-                onChange={() => handleCheckboxChange(item.user)}
-              />}
-              label={item.user}
-            />
-          ))}
-        </FormGroup>
-      </Collapse>
+    const sortedHistory = data.filter((item) => selectedUsers[item.user]).slice().sort((a, b) => {
+        if (order === Order.Ascending) {
+            return a.time.localeCompare(b.time);
+        }
+        return b.time.localeCompare(a.time);
+    });
 
-      <Timeline
-        sx={{
-          [`& .${timelineOppositeContentClasses.root}`]: {
-            flex: 0.2,
-          },
-        }}
-      >
-        <button onClick={toggleOrder}>{sortOrderText}</button>
-        {sortedHistory.map((item) => (
+    useEffect(() => {
+        fetch('/api/history')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setData(data);
+                const initialSelectedUsers = data.reduce((acc: { [x: string]: boolean; }, item: { user: string | number; }) => {
+                    acc[item.user] = true;
+                    return acc;
+                }, {} as { [key: string]: boolean });
+                setSelectedUsers(initialSelectedUsers);
 
-          <TimelineItem key={item.id}>
-            <TimelineOppositeContent>
-              <Suspense fallback={<LinearProgress />}>{item.time}</Suspense>
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>
-              <Suspense fallback={<LinearProgress />}>
-                <CardHistory
-                  user={item.user}
-                  action={item.action}
-                  sustento={item.sustento}
-                  time={item.time}
-                />
-              </Suspense>
-            </TimelineContent>
-          </TimelineItem>
-        ))}
-      </Timeline>
-    </>
-  )
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos:', error);
+            });
+    }, []);
+
+    return (
+        <>
+            <Suspense fallback={<LinearProgress />}>
+                {data.map((item) => (
+                    <Avatar
+                        key={item.id}
+                        alt={item.user}
+                        src={`/static/images/avatar/${item.avatar}.jpg`}
+                    />
+                ))}
+            </Suspense>
+            <ListItemButton onClick={handleClick}>
+                <ListItemText primary="Autores" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <FormGroup>
+                    {data.map((item) => (
+                        <FormControlLabel
+                            key={item.id}
+                            control={<Checkbox
+                                checked={selectedUsers[item.user]}
+                                onChange={() => handleCheckboxChange(item.user)}
+                            />}
+                            label={item.user}
+                        />
+                    ))}
+                </FormGroup>
+            </Collapse>
+
+            <Timeline
+                sx={{
+                    [`& .${timelineOppositeContentClasses.root}`]: {
+                        flex: 0.2,
+                    },
+                }}
+            >
+                <Button onClick={toggleOrder}>
+                    {order === Order.Ascending ? 'Ordenar de manera descendente' : 'Ordenar de manera ascendente'}
+                </Button>
+                {sortedHistory.map((item) => (
+                    <TimelineItem key={item.id}>
+                        <TimelineOppositeContent>
+                            <Suspense fallback={<LinearProgress />}>{item.time}</Suspense>
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot />
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                            <Suspense fallback={<LinearProgress />}>
+                                <CardHistory
+                                    avatar={item.avatar}
+                                    user={item.user}
+                                    action={item.action}
+                                    sustain={item.sustain}
+                                />
+                            </Suspense>
+                        </TimelineContent>
+                    </TimelineItem>
+                ))}
+
+            </Timeline>
+        </>
+    )
 }
 
 export default SectionHistory
