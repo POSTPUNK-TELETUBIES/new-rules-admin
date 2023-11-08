@@ -23,6 +23,7 @@
     "@mui/material": "^5.14.14",
     "@mui/styled-engine-sc": "6.0.0-alpha.4",
     "@mui/x-data-grid": "^6.16.2",
+    "@types/react-swipeable-views": "^0.13.4",
     "Timeline": "link:@mui/lab/Timeline",
     "data_providers": "^2.0.2",
     "date-fns": "^2.30.0",
