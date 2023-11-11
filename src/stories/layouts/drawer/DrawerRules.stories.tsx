@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import DrawerRules from '../../../components/layouts/DrawerRules'
+import DrawerRules from '../../../components/organisms/Drawer'
 import { ColorModeProvider } from '../../../theme/ColorModeProvider'
 import {
   DrawerContext,
   DrawerProvider,
-} from '../../../components/layouts/Drawercontext'
+} from '../../../components/organisms/Drawer/Drawercontext'
 import { useContext } from 'react'
 import { Button } from '@mui/material'
 

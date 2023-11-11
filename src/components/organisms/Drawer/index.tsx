@@ -4,7 +4,7 @@ import Drawer from '@mui/material/Drawer'
 import LinearProgress from '@mui/material/LinearProgress'
 import { DrawerContext } from './Drawercontext'
 
-const DrawerOptions = lazy(() => import('./DrawerOptions'))
+const DrawerSwitcher = lazy(() => import('./DrawerSwitcher'))
 
 const DrawerRules = () => {
   const { isOpenDrawer, setIsOpenDrawer } = useContext(DrawerContext)
@@ -15,9 +15,9 @@ const DrawerRules = () => {
       open={isOpenDrawer}
       onClose={() => setIsOpenDrawer(false)}
     >
-      <Box width={{ sx: '100%', md: '600px' }} maxWidth={'600px'}>
+      <Box>
         <Suspense fallback={<LinearProgress />}>
-          <DrawerOptions />
+          <DrawerSwitcher />
         </Suspense>
       </Box>
     </Drawer>

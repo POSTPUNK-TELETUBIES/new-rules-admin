@@ -5,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import SelectOptions, { ItemOfSelector } from '../../molecules/SelectOptions'
-import { DrawerContext } from '../../layouts/Drawercontext'
+import { DrawerContext } from '../Drawer/Drawercontext'
 import { Rule } from '../../../types/rule'
 
 type Props = {
