@@ -1,41 +1,33 @@
-import { Suspense } from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import ToogleTheme from '../../theme/ToogleTheme'
+import Box, { BoxProps } from '@mui/material/Box'
 import { useTheme } from '@mui/material'
+import { PropsWithChildren } from 'react'
 
-export default function Header() {
+interface Props extends BoxProps {
+  logo: JSX.Element
+}
+
+const Header = ({ logo, children, ...rest }: PropsWithChildren<Props>) => {
   const theme = useTheme()
 
   return (
     <Box
       component={'header'}
-      sx={{ flexGrow: 1 }}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      p={0.5}
-      pl={1}
-      style={{
+      sx={{
         background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
       }}
+      display={'flex'}
+      flexGrow={1}
+      justifyContent={'space-between'}
+      alignItems={'center'}
+      pl={2}
+      pr={1}
+      height={50}
+      {...rest}
     >
-      <Box>
-        <Typography
-          variant='h5'
-          component='h1'
-          sx={{ flexGrow: 1 }}
-          fontWeight={'bold'}
-          color={'white'}
-        >
-          Pacifico
-        </Typography>
-      </Box>
-      <Box>
-        <Suspense>
-          <ToogleTheme />
-        </Suspense>
-      </Box>
+      <Box>{logo}</Box>
+      <Box>{children}</Box>
     </Box>
   )
 }
+
+export default Header
