@@ -34,7 +34,7 @@ const a11yProps = (index: string) => {
 const DrawerOptions = () => {
   const [value, setValue] = React.useState('rulesCuration')
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
   }
 
