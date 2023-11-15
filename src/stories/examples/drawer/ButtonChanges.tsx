@@ -10,51 +10,24 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { useState } from 'react'
+import { boxStyle, buttonStyle, fabStyle } from './StylesButtonChanges'
+import { stateRules } from '../../../utils/buttonChanges'
 
 interface ButtonProps {
-  backgroundColor?: string;
-  onClick?: () => void;
+  onClick?: () => void
 }
 
-const ButtonChanges = ({
-  backgroundColor,
-  ...props
-}: ButtonProps) => {
-  
+const ButtonChanges = ({ ...props }: ButtonProps) => {
   const [showswitch, setshowswitch] = useState(false)
 
   const switchVisibility = () => {
     setshowswitch(!showswitch)
   }
 
-  const boxStyle = {
-    position: 'fixed',
-    bottom: '80px',
-    right: '80px',
-    width: '350px',
-    background: '#fff',
-    padding: '15px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  }
-
-  const buttonStyle = {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  }
-
-  const fabStyle = {
-    position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-  }
-
   return (
     <>
       <Fab
-        type="button"
-        style={{ backgroundColor }}
+        type='button'
         {...props}
         sx={fabStyle}
         color='primary'
@@ -71,16 +44,13 @@ const ButtonChanges = ({
               defaultValue='female'
               name='radio-buttons-group'
             >
-              <FormControlLabel
-                value='activar'
-                control={<Radio />}
-                label='Activar regla'
-              />
-              <FormControlLabel
-                value='desactivar'
-                control={<Radio />}
-                label='Desactivar regla'
-              />
+              {stateRules.map((state) => (
+                <FormControlLabel
+                  value={state.value}
+                  control={<Radio />}
+                  label={state.label}
+                />
+              ))}
             </RadioGroup>
 
             <TextField
@@ -91,11 +61,11 @@ const ButtonChanges = ({
               sx={{ width: '350px', mt: 2 }}
             />
 
-            <div style={buttonStyle}>
+            <Box sx={buttonStyle}>
               <Button variant='contained' sx={{ width: '100px', p: 1, mt: 2 }}>
                 Guardar
               </Button>
-            </div>
+            </Box>
           </FormControl>
         </Box>
       )}

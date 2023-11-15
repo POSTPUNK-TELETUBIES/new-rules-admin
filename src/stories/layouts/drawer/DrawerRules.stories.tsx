@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import DrawerRules from '../../../components/drawer/DrawerRules';
+import DrawerRules from '../../examples/drawer/DrawerRules.example';
 
 const meta = {
   title: 'Layouts/Drawer/Drawer Rules',

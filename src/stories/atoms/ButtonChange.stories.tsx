@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ButtonChanges from '../../components/drawer/ButtonChanges';
+import ButtonChanges from '../examples/drawer/ButtonChanges';
 
 const meta = {
   title: 'atoms/Button Changes',
