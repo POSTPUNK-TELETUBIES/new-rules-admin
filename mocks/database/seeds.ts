@@ -5,10 +5,11 @@ import {
   ruleSeverityValues,
   ruleTypeValues,
 } from './arrayOfEnums'
+import { RuleDTO } from '../../src/types/rule'
 
 export const seeds = () => {
   Array.from({ length: 100 }, () => {
-    DB_MOCK.rule.create({
+    const rule: RuleDTO = {
       id: faker.string.uuid(),
       code: `${faker.helpers.arrayElement(
         ruleLanguageValues,
@@ -21,7 +22,9 @@ export const seeds = () => {
       rule: faker.lorem.sentence({ min: 5, max: 10 }),
       is_active_sonarqube: faker.datatype.boolean(),
       is_active_local: faker.datatype.boolean(),
-      date: faker.date.anytime().toDateString(),
-    })
+      date: faker.date.anytime(),
+    }
+
+    DB_MOCK.rule.create(rule)
   })
 }
