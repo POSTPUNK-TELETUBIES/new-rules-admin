@@ -1,10 +1,6 @@
 import Typography from '@mui/material/Typography'
 
-interface Props {
-  text: string
-}
-
-const Logo = ({ text = 'Pacifico' }: Props) => {
+const Logo = () => {
   return (
     <Typography
       variant='h5'
@@ -13,7 +9,7 @@ const Logo = ({ text = 'Pacifico' }: Props) => {
       fontWeight={'bold'}
       color={'white'}
     >
-      {text}
+      Pacifico
     </Typography>
   )
 }

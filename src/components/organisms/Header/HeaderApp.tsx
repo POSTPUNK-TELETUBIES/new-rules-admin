@@ -6,7 +6,7 @@ import SelectProfileOptions from './SelectProfileOptions'
 
 const HeaderApp = () => {
   return (
-    <Header logo={<Logo text='Pacifico' />}>
+    <Header logo={<Logo />}>
       <ToogleTheme />
       <SelectProposalOptions />
       <SelectProfileOptions />

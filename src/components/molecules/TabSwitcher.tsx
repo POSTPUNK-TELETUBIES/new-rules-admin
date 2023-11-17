@@ -12,11 +12,11 @@ export interface ColumnItem {
   Skeleton: JSX.Element
 }
 
-interface Props extends BoxProps {
+interface TabSwitcherProps extends BoxProps {
   items: ColumnItem[]
 }
 
-const TabSwitcher = ({ items, ...rest }: Props) => {
+const TabSwitcher = ({ items, ...rest }: Readonly<TabSwitcherProps>) => {
   const { columnActive, setColumnActive } = useContext(DrawerContext)
 
   return (
@@ -30,13 +30,13 @@ const TabSwitcher = ({ items, ...rest }: Props) => {
           variant='fullWidth'
         >
           {items.map((column) => (
-            <Tab key={crypto.randomUUID()} label={column.label} />
+            <Tab key={column.order} label={column.label} />
           ))}
         </Tabs>
       </AppBar>
 
       {items.map((column) => (
-        <Box key={crypto.randomUUID()}>
+        <Box key={column.order}>
           {columnActive === column.order && (
             <Box sx={{ p: 3 }}>
               <Suspense fallback={column.Skeleton}>{column.component}</Suspense>

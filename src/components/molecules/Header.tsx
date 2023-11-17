@@ -13,7 +13,8 @@ const Header = ({ logo, children, ...rest }: PropsWithChildren<Props>) => {
     <Box
       component={'header'}
       sx={{
-        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        background: () =>
+          `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
       }}
       display={'flex'}
       flexGrow={1}

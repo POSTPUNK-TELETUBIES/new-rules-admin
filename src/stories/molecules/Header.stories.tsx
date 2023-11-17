@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    logo: <Logo text='Pacifico' />,
+    logo: <Logo />,
     children: (
       <IconButton>
         <AddAPhotoIcon sx={{ color: 'white' }} />
@@ -45,7 +45,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    logo: <Logo text='Oechsle' />,
+    logo: <Logo />,
     sx: { background: 'linear-gradient(90deg, #FF1053, #035E7B)' },
     children: (
       <>
@@ -62,7 +62,7 @@ export const Secondary: Story = {
 
 export const Tertiary: Story = {
   args: {
-    logo: <Logo text='Spotify' />,
+    logo: <Logo />,
     sx: { background: 'linear-gradient(90deg, #22CE5E, #404040)' },
     children: (
       <>
@@ -82,7 +82,7 @@ export const Tertiary: Story = {
 
 export const Quaternary: Story = {
   args: {
-    logo: <Logo text='Claro' />,
+    logo: <Logo />,
     sx: { background: 'crimson' },
     children: (
       <>
