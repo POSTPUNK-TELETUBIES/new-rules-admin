@@ -6,16 +6,16 @@ import {
   TABLE_STATE_OPTIONS,
   TABLE_TYPE_OPTIONS,
 } from './tableOptions'
-import { Rule } from '../../../types/rule'
+import { RuleDTO } from '../../../types/rule'
 import TypeChip from '../../atoms/TypeChip'
 import StateChip from '../../atoms/StateChip'
 import { getDateDifference } from '../../../utils/getDateDifference'
 
-export const columns: MRT_ColumnDef<Rule>[] = [
+export const columns: MRT_ColumnDef<RuleDTO>[] = [
   {
     header: 'CÓDIGO',
     accessorKey: 'code',
-    maxSize: 10,
+    maxSize: 0,
     filterVariant: 'select',
     filterSelectOptions: TABLE_LANGUAGES_OPTIONS,
     filterFn: 'contains',
@@ -29,14 +29,14 @@ export const columns: MRT_ColumnDef<Rule>[] = [
   {
     header: 'REGLA',
     accessorKey: 'rule',
-    minSize: 400,
+    minSize: 320,
     enableColumnFilterModes: true,
     filterFn: 'contains',
   },
   {
     header: 'TIPO',
     accessorKey: 'type',
-    maxSize: 5,
+    maxSize: 0,
     filterVariant: 'multi-select',
     filterSelectOptions: TABLE_TYPE_OPTIONS,
     enableColumnFilterModes: false,
@@ -45,26 +45,38 @@ export const columns: MRT_ColumnDef<Rule>[] = [
   {
     header: 'SEVERIDAD',
     accessorKey: 'severity',
-    maxSize: 5,
+    maxSize: 0,
     filterVariant: 'multi-select',
     filterSelectOptions: TABLE_SEVERITY_OPTIONS,
     enableColumnFilterModes: false,
   },
   {
-    header: 'ESTADO',
-    accessorKey: 'isActive',
-    maxSize: 5,
+    header: 'EST. SONARQUBE',
+    accessorKey: 'is_active_sonarqube',
+    maxSize: 0,
     filterVariant: 'select',
     filterSelectOptions: TABLE_STATE_OPTIONS,
     enableColumnFilterModes: false,
-    Cell: ({ row }) => <StateChip isActive={row.original.isActive} />,
+    Cell: ({ row }) => (
+      <StateChip isActive={row.original.is_active_sonarqube} />
+    ),
+    filterFn: (row, id, filterValue) => row.getValue(id) === filterValue,
+  },
+  {
+    header: 'EST. PROPUESTO',
+    accessorKey: 'is_active_local',
+    maxSize: 0,
+    filterVariant: 'select',
+    filterSelectOptions: TABLE_STATE_OPTIONS,
+    enableColumnFilterModes: false,
+    Cell: ({ row }) => <StateChip isActive={row.original.is_active_local} />,
     filterFn: (row, id, filterValue) => row.getValue(id) === filterValue,
   },
   {
     header: 'FECHA',
     accessorKey: 'date',
     accessorFn: (dataRow) => getDateDifference(dataRow.date),
-    maxSize: 5,
+    maxSize: 0,
     sortingFn: 'datetime',
     filterFn: 'contains',
   },

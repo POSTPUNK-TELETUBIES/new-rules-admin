@@ -4,10 +4,10 @@ import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import TableOptionSelector from './TableOptionSelector'
 import { useQuery } from '@tanstack/react-query'
 import { axiosInstance } from '../../../services/axios'
-import { Rule } from '../../../types/rule'
+import { RuleDTO } from '../../../types/rule'
 
 const RulesTable = () => {
-  const { data, error, isLoading } = useQuery<Rule[], string>({
+  const { data, error, isLoading } = useQuery<RuleDTO[], string>({
     queryKey: ['rules'],
     queryFn: async () => {
       const { data } = await axiosInstance.get('/rules')
@@ -31,7 +31,7 @@ const RulesTable = () => {
         showGlobalFilter: true,
         density: 'comfortable',
         columnPinning: { right: ['mrt-row-actions'] },
-        showColumnFilters: true,
+        showColumnFilters: false,
       }}
       positionGlobalFilter='left'
       muiSearchTextFieldProps={{

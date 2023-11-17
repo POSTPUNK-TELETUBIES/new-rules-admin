@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
-import { createRules } from '../../../mocks/factories/createRules'
+import { createManyRules } from '../../../mocks/helpers/createRules'
 import { columns } from '../../components/organisms/RulesTable/tableColumns'
 
 const meta = {
@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    data: createRules(5),
+    data: createManyRules(5),
     columns: columns as MRT_ColumnDef<Record<string, unknown>>[],
     localization: MRT_Localization_ES,
     initialState: {
