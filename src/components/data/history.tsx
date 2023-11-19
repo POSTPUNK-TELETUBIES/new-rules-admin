@@ -9,7 +9,7 @@ export type History = {
     id: number
     user: string
     sustain: string
-    time: string
+    time: Date
     action: HistoryAction;
 }
 

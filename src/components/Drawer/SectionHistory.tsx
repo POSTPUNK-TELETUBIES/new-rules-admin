@@ -9,15 +9,13 @@ import TimelineDot from '@mui/lab/TimelineDot'
 import TimelineOppositeContent, {
     timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent'
-import { History } from '../data/history'
-import { Collapse, LinearProgress, ListItemText } from '@mui/material'
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import ListItemButton from '@mui/material/ListItemButton';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { Box, LinearProgress, ListItemText } from '@mui/material'
+import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import CardHistory from './CardHistory';
+import { useQuery } from '@tanstack/react-query';
+import historyService from './historyService';
 
 enum Order {
     Ascending = 'asc',
@@ -25,10 +23,14 @@ enum Order {
 }
 
 const SectionHistory = () => {
-    const [order, setOrder] = useState(Order.Ascending);
     const [open, setOpen] = useState(false);
-    const [data, setData] = useState<History[]>([]);
-    const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
+    const [order, setOrder] = useState(Order.Ascending);
+    const { data, refetch } = useQuery({
+        queryKey: ['historyData', order],
+        queryFn: () => historyService.fetchHistoryData(),
+    });
+    const [selectedUsers, setSelectedUsers] = useState<Record<string, boolean>>({});
+
     const handleCheckboxChange = (user: string) => {
         setSelectedUsers((prevSelectedUsers: Record<string, boolean>) => ({
             ...prevSelectedUsers,
@@ -38,65 +40,79 @@ const SectionHistory = () => {
     const handleClick = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-    const toggleOrder = () => {
-        setOrder(order === Order.Ascending ? Order.Descending : Order.Ascending);
-    };
 
-    const sortedHistory = data.filter((item) => selectedUsers[item.user]).slice().sort((a, b) => {
-        if (order === Order.Ascending) {
-            return a.time.localeCompare(b.time);
-        }
-        return b.time.localeCompare(a.time);
-    });
+    const sortedHistory = data
+        ?.filter((item) => selectedUsers[item.user])
+        .slice()
+        .sort((a, b) => {
+            if (order === Order.Ascending) {
+                return new Date(a.time).getTime() - new Date(b.time).getTime();
+            }
+
+            return new Date(b.time).getTime() - new Date(a.time).getTime();
+        });
 
     useEffect(() => {
-        fetch('/api/history')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setData(data);
-                const initialSelectedUsers = data.reduce((acc: { [x: string]: boolean; }, item: { user: string | number; }) => {
+        if (data) {
+            const initialSelectedUsers = data.reduce(
+                (acc: { [x: string]: boolean }, item: { user: string | number }) => {
                     acc[item.user] = true;
                     return acc;
-                }, {} as { [key: string]: boolean });
-                setSelectedUsers(initialSelectedUsers);
+                },
+                {} as { [key: string]: boolean }
+            );
 
-            })
-            .catch((error) => {
-                console.error('Error al obtener datos:', error);
-            });
-    }, []);
+            setSelectedUsers(initialSelectedUsers);
+        }
+    }, [data]);
 
+    const handleChangeOrder = () => {
+        setOrder((prevOrder) =>
+            prevOrder === Order.Ascending ? Order.Descending : Order.Ascending
+        );
+        refetch();
+    };
     return (
         <>
             <Suspense fallback={<LinearProgress />}>
-                {data.map((item) => (
-                    <Avatar
-                        key={item.id}
-                        alt={item.user}
-                        src={`/static/images/avatar/${item.avatar}.jpg`}
-                    />
-                ))}
-            </Suspense>
-            <ListItemButton onClick={handleClick}>
-                <ListItemText primary="Autores" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <FormGroup>
-                    {data.map((item) => (
-                        <FormControlLabel
+                <Box sx={{ display: 'flex', flexDirection: 'row', mb: 3 }}>
+                    {data?.map((item) => (
+                        <Avatar
                             key={item.id}
-                            control={<Checkbox
-                                checked={selectedUsers[item.user]}
-                                onChange={() => handleCheckboxChange(item.user)}
-                            />}
-                            label={item.user}
+                            alt={item.user}
+                            src={`/static/images/avatar/${item.avatar}.jpg`}
+                            sx={{ ml: 0.5 }}
                         />
                     ))}
-                </FormGroup>
-            </Collapse>
-
+                </Box>
+            </Suspense>
+            <Accordion expanded={open} onChange={handleClick}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <ListItemButton>
+                        <ListItemText primary="Autores" />
+                    </ListItemButton>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FormGroup>
+                        {data?.map((item) => (
+                            <FormControlLabel
+                                key={item.id}
+                                control={
+                                    <Checkbox
+                                        checked={selectedUsers[item.user]}
+                                        onChange={() => handleCheckboxChange(item.user)}
+                                    />
+                                }
+                                label={item.user}
+                            />
+                        ))}
+                    </FormGroup>
+                </AccordionDetails>
+            </Accordion>
             <Timeline
                 sx={{
                     [`& .${timelineOppositeContentClasses.root}`]: {
@@ -104,13 +120,17 @@ const SectionHistory = () => {
                     },
                 }}
             >
-                <Button onClick={toggleOrder}>
-                    {order === Order.Ascending ? 'Ordenar de manera descendente' : 'Ordenar de manera ascendente'}
+                <Button onClick={handleChangeOrder}>
+                    {order === Order.Ascending
+                        ? 'Ordenar de manera descendente'
+                        : 'Ordenar de manera ascendente'}
                 </Button>
-                {sortedHistory.map((item) => (
+                {sortedHistory?.map((item) => (
                     <TimelineItem key={item.id}>
                         <TimelineOppositeContent>
-                            <Suspense fallback={<LinearProgress />}>{item.time}</Suspense>
+                            <Suspense fallback={<LinearProgress />}>
+                                {item.time.toLocaleString()}
+                            </Suspense>
                         </TimelineOppositeContent>
                         <TimelineSeparator>
                             <TimelineDot />
