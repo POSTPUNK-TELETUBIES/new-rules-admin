@@ -1,18 +1,17 @@
 import { Suspense, useCallback, useContext } from 'react'
 import HistoryIcon from '@mui/icons-material/History'
-import AddIcon from '@mui/icons-material/Add'
 import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
-import SelectOptions, { ItemOfSelector } from '../../molecules/SelectOptions'
+import SelectOptions, { ItemOfSelector } from '../SelectOptions'
 import { DrawerContext } from '../Drawer/Drawercontext'
-import { Rule } from '../../../types/rule'
+import { Rule } from '../../types/rule'
 
-type Props = {
+type TableOptionSelectorProps = {
   item: Rule
 }
 
-const TableOptionSelector = ({ item }: Props) => {
+const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
   const { setIsOpenDrawer, setColumnActive, setItemActive } =
     useContext(DrawerContext)
 
@@ -32,14 +31,9 @@ const TableOptionSelector = ({ item }: Props) => {
       onClick: handleItemClick(0),
     },
     {
-      icon: <AddIcon />,
-      text: 'Agregar propuesta',
-      onClick: handleItemClick(1),
-    },
-    {
       icon: <HistoryIcon />,
       text: 'Historial de propuestas',
-      onClick: handleItemClick(2),
+      onClick: handleItemClick(1),
     },
   ]
 

@@ -6,10 +6,10 @@ import {
   TABLE_STATE_OPTIONS,
   TABLE_TYPE_OPTIONS,
 } from './tableOptions'
-import { Rule } from '../../../types/rule'
-import TypeChip from '../../atoms/TypeChip'
-import StateChip from '../../atoms/StateChip'
-import { getDateDifference } from '../../../utils/getDateDifference'
+import { Rule } from '../../types/rule'
+import TypeChip from '../Chip/TypeChip'
+import StateChip from '../Chip/StateChip'
+import { getDateDifference } from '../../utils/getDateDifference'
 
 export const columns: MRT_ColumnDef<Rule>[] = [
   {

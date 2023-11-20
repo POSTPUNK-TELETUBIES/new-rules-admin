@@ -1,6 +1,6 @@
 import Avatar from '@mui/material/Avatar'
 import LogoutIcon from '@mui/icons-material/Logout'
-import SelectOptions from '../../molecules/SelectOptions'
+import SelectOptions from '../SelectOptions'
 
 const SelectProfileOptions = () => {
   return (

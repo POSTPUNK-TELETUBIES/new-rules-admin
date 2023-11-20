@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
-import RulesTable from '../components/organisms/RulesTable'
-import { DrawerProvider } from '../components/organisms/Drawer/Drawercontext'
-import DrawerRules from '../components/organisms/Drawer'
+import RulesTable from '../components/RulesTable'
+import { DrawerProvider } from '../components/Drawer/Drawercontext'
+import DrawerRules from '../components/Drawer'
 
 const Admin = () => {
   return (

@@ -1,4 +1,4 @@
-import buildTabSwitcher from '../../molecules/buildTabSwitcher'
+import buildTabSwitcher from './buildTabSwitcher'
 
 const TabSwitcher = buildTabSwitcher({
   detail: {

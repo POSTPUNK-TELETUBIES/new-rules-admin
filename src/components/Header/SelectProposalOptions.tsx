@@ -4,9 +4,9 @@ import HistoryIcon from '@mui/icons-material/History'
 import SyncAltIcon from '@mui/icons-material/SyncAlt'
 import Badge from '@mui/material/Badge'
 import StorageIcon from '@mui/icons-material/Storage'
-import type { ItemOfSelector } from '../../molecules/SelectOptions'
+import type { ItemOfSelector } from '../SelectOptions'
 
-const SelectOptions = lazy(() => import('../../molecules/SelectOptions'))
+const SelectOptions = lazy(() => import('../SelectOptions'))
 
 const ITEMS: ItemOfSelector[] = [
   {

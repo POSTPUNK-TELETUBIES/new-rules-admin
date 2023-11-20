@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import SectionHistorySkeleton from '../../../components/atoms/skeletons/SectionHistorySkeleton'
+import SectionHistorySkeleton from '../../../components/skeletons/SectionHistorySkeleton'
 import { Box } from '@mui/material'
 
 const meta = {

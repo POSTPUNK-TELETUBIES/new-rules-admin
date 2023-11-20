@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import LinearProgress from '@mui/material/LinearProgress'
 import { routes } from './routes/AppRouter'
 import { RouterProvider } from 'react-router-dom'
-import HeaderApp from './components/organisms/Header/HeaderApp.tsx'
+import HeaderApp from './components/Header/HeaderApp.tsx'
 import AppProviders from './AppProviders.tsx'
 
 const App = () => {

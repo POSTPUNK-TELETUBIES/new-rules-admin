@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Box } from '@mui/material'
-import DrawerSwitcher from '../../../components/organisms/Drawer/DrawerSwitcher'
+import DrawerSwitcher from '../../../components/Drawer/DrawerSwitcher'
 import { ColorModeProvider } from '../../../theme/ColorModeProvider'
-import { DrawerProvider } from '../../../components/organisms/Drawer/Drawercontext'
+import { DrawerProvider } from '../../../components/Drawer/Drawercontext'
 
 const meta = {
   title: 'molescules/DrawerSwitcher',
