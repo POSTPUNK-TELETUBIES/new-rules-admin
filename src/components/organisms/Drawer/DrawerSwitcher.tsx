@@ -1,31 +1,18 @@
-import TabSwitcher, { ColumnItem } from '../../molecules/TabSwitcher'
-import SectionDetailsSkeleton from '../../atoms/skeletons/SectionDetailsSkeleton'
-import SectionCuracionSkeleton from '../../atoms/skeletons/SectionCuracionSkeleton'
-import SectionHistorySkeleton from '../../atoms/skeletons/SectionHistorySkeleton'
+import buildTabSwitcher from '../../molecules/buildTabSwitcher'
 
-const COLUMNS: ColumnItem[] = [
-  {
-    order: 0,
+const TabSwitcher = buildTabSwitcher({
+  detail: {
     label: 'Detalles de la regla',
-    component: <>Contenido de Detalles de la regla</>,
-    Skeleton: <SectionDetailsSkeleton />,
+    bodyElement: <div> Soy el cuerpo de los detalles de la regla</div>,
   },
-  {
-    order: 1,
-    label: 'Curación de la regla',
-    component: <>Contenido de Curación de la regla</>,
-    Skeleton: <SectionCuracionSkeleton />,
+  curation: {
+    label: 'Curacion de reglas',
+    bodyElement: <div>Soy el cuerpo de la curacion</div>,
   },
-  {
-    order: 2,
-    label: 'Historial de propuestas',
-    component: <>Contenido de Historial de propuestas</>,
-    Skeleton: <SectionHistorySkeleton />,
-  },
-]
+})
 
 const DrawerSwitcher = () => {
-  return <TabSwitcher items={COLUMNS} />
+  return <TabSwitcher />
 }
 
 export default DrawerSwitcher
