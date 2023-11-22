@@ -11,8 +11,8 @@ const data = createHistory(5);
 
 export const userCard = (_args: CardHistoryProps) => (
   <div>
-    {data.map((item, index) => (
-      <CardHistory key={index} {...item} />
+    {data.map((item) => (
+      <CardHistory key={item.id} {...item} />
     ))}
   </div>
 );

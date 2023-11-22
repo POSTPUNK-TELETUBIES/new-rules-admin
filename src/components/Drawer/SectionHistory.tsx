@@ -9,8 +9,7 @@ import TimelineDot from '@mui/lab/TimelineDot'
 import TimelineOppositeContent, {
     timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent'
-import { Box, LinearProgress, ListItemText } from '@mui/material'
-import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton, Box, LinearProgress, ListItemText } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import CardHistory from './CardHistory';
