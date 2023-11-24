@@ -15,11 +15,7 @@ import Button from '@mui/material/Button';
 import CardHistory from './CardHistory';
 import { useQuery } from '@tanstack/react-query';
 import historyService from './historyService';
-
-enum Order {
-    Ascending = 'asc',
-    Descending = 'desc',
-}
+import { sortByOrder, Order } from './historyUtils';
 
 const SectionHistory = () => {
     const [open, setOpen] = useState(false);
@@ -28,42 +24,35 @@ const SectionHistory = () => {
         queryKey: ['historyData', order],
         queryFn: () => historyService.fetchHistoryData(),
     });
-    const [selectedUsers, setSelectedUsers] = useState<Record<string, boolean>>({});
+    const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+        if (data) {
+            const initialSelectedUsers = new Set<string>(data.map((item) => item.user));
+            setSelectedUsers(initialSelectedUsers);
+        }
+    }, [data]);
 
     const handleCheckboxChange = (user: string) => {
-        setSelectedUsers((prevSelectedUsers: Record<string, boolean>) => ({
-            ...prevSelectedUsers,
-            [user]: !prevSelectedUsers[user],
-        }));
+        setSelectedUsers((prevSelectedUsers) => {
+            const newSelectedUsers = new Set(prevSelectedUsers);
+            if (newSelectedUsers.has(user)) {
+                newSelectedUsers.delete(user);
+            } else {
+                newSelectedUsers.add(user);
+            }
+            return newSelectedUsers;
+        });
     };
+
     const handleClick = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
     const sortedHistory = data
-        ?.filter((item) => selectedUsers[item.user])
+        ?.filter((item) => selectedUsers.has(item.user))
         .slice()
-        .sort((a, b) => {
-            if (order === Order.Ascending) {
-                return new Date(a.time).getTime() - new Date(b.time).getTime();
-            }
-
-            return new Date(b.time).getTime() - new Date(a.time).getTime();
-        });
-
-    useEffect(() => {
-        if (data) {
-            const initialSelectedUsers = data.reduce(
-                (acc: { [x: string]: boolean }, item: { user: string | number }) => {
-                    acc[item.user] = true;
-                    return acc;
-                },
-                {} as { [key: string]: boolean }
-            );
-
-            setSelectedUsers(initialSelectedUsers);
-        }
-    }, [data]);
+        .sort(sortByOrder(order));
 
     const handleChangeOrder = () => {
         setOrder((prevOrder) =>
@@ -71,6 +60,8 @@ const SectionHistory = () => {
         );
         refetch();
     };
+
+
     return (
         <>
             <Suspense fallback={<LinearProgress />}>
@@ -102,7 +93,7 @@ const SectionHistory = () => {
                                 key={item.id}
                                 control={
                                     <Checkbox
-                                        checked={selectedUsers[item.user]}
+                                        checked={selectedUsers.has(item.user)}
                                         onChange={() => handleCheckboxChange(item.user)}
                                     />
                                 }
