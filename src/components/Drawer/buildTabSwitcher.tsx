@@ -7,15 +7,12 @@ interface TabSwitchOptions {
 }
 
 const buildTabSwitcher = (tabsOptions: Record<string, TabSwitchOptions>) => {
-  return () => {
-    const [currentTab, setCurrentTab] = useState(() => {
-      const [firstState] = Object.keys(tabsOptions)
-      return firstState
-    })
+  return ({ defaultTab }: { defaultTab: string }) => {
+    const [currentTab, setCurrentTab] = useState<string>(defaultTab)
 
     return (
       <>
-        <AppBar position='static' component='header'>
+        <AppBar position='static'>
           <Tabs
             value={currentTab}
             onChange={(_, newColumnValue) => setCurrentTab(newColumnValue)}

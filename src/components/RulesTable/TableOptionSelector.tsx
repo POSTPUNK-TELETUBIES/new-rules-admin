@@ -16,7 +16,7 @@ const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
     useContext(DrawerContext)
 
   const handleItemClick = useCallback(
-    (columnIndex: number) => () => {
+    (columnIndex: string) => () => {
       setIsOpenDrawer(true)
       setColumnActive(columnIndex)
       setItemActive(item)
@@ -28,12 +28,12 @@ const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
     {
       icon: <ChromeReaderModeIcon />,
       text: 'Detalles de la regla',
-      onClick: handleItemClick(0),
+      onClick: handleItemClick('detail'),
     },
     {
       icon: <HistoryIcon />,
       text: 'Historial de propuestas',
-      onClick: handleItemClick(1),
+      onClick: handleItemClick('curation'),
     },
   ]
 

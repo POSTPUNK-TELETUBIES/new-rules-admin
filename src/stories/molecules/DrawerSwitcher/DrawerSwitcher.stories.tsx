@@ -1,30 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Box } from '@mui/material'
-import DrawerSwitcher from '../../../components/Drawer/DrawerSwitcher'
 import { ColorModeProvider } from '../../../theme/ColorModeProvider'
-import { DrawerProvider } from '../../../components/Drawer/Drawercontext'
+import ExampleComponent from './ComponentExample'
 
 const meta = {
   title: 'molescules/DrawerSwitcher',
-  component: DrawerSwitcher,
+  component: ExampleComponent,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <ColorModeProvider>
-        <DrawerProvider>
-          <Box component='body'>
-            <Story />
-          </Box>
-        </DrawerProvider>
-      </ColorModeProvider>
+      <Box component='body'>
+        <ColorModeProvider>
+          <Story />
+        </ColorModeProvider>
+      </Box>
     ),
   ],
-} satisfies Meta<typeof DrawerSwitcher>
+} satisfies Meta<typeof ExampleComponent>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Active: Story = {}
+export const Active: Story = {
+  args: {
+    defaultTab: 'detail',
+  },
+}
