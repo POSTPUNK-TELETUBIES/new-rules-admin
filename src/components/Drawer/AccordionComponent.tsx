@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton, LinearProgress, ListItemText } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton, ListItemText } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { History } from "../data/history";
 
