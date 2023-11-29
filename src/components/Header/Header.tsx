@@ -1,5 +1,4 @@
 import Box, { BoxProps } from '@mui/material/Box'
-import { useTheme } from '@mui/material'
 import { PropsWithChildren } from 'react'
 
 interface Props extends BoxProps {
@@ -7,13 +6,11 @@ interface Props extends BoxProps {
 }
 
 const Header = ({ logo, children, ...rest }: PropsWithChildren<Props>) => {
-  const theme = useTheme()
-
   return (
     <Box
       component={'header'}
       sx={{
-        background: () =>
+        background: (theme) =>
           `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
       }}
       display={'flex'}

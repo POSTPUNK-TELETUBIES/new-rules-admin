@@ -1,10 +1,19 @@
 import Stack from '@mui/material/Stack'
-import Skeleton from '@mui/material/Skeleton'
+import { SkeletonProps } from '@mui/material/Skeleton'
+import SkeletonContainer from './SkeletonContainer'
+
+const skeletonItems: SkeletonProps[] = [
+  {
+    height: 60,
+  },
+  {
+    height: 560,
+  },
+]
 
 const SectionHistorySkeleton = () => (
   <Stack spacing={2}>
-    <Skeleton animation='wave' variant='rounded' height={60} />
-    <Skeleton animation='wave' variant='rounded' height={560} />
+    <SkeletonContainer items={skeletonItems} />
   </Stack>
 )
 

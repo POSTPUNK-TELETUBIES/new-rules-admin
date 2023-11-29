@@ -38,6 +38,13 @@ export const THEME_LIGHT: Theme = responsiveFontSizes(
           default: '#fff',
         },
       },
+      components: {
+        MuiSkeleton: {
+          defaultProps: {
+            animation: 'wave',
+          },
+        },
+      },
     },
     esES,
   ),
