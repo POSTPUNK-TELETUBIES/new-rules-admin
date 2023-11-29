@@ -4,14 +4,14 @@ import {
   Card,
   Typography,
 } from '@mui/material'
-import { CurationForm } from './CurationForm.example'
+import { CurationForm } from './CurationForm'
 export interface CardCurationProps {
   name: string
   avatar: string
   isActive: boolean
 }
 
-const CardCuration = ({ name, avatar }: CardCurationProps) => {
+export const CardCuration = ({ name, avatar }: CardCurationProps) => {
   
   return (
     <Card sx={{ minWidth: 300, p: 2 }}>
@@ -26,4 +26,3 @@ const CardCuration = ({ name, avatar }: CardCurationProps) => {
   )
 }
 
-export default CardCuration

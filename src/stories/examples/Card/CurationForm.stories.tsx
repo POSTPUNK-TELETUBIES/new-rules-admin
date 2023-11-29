@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CurationForm } from './CurationForm.example';
+import { CurationForm } from './CurationForm';
 
 const meta = {
   title: 'Examples/Curation Form',
