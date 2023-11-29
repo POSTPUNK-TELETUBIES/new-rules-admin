@@ -8,7 +8,6 @@ import { CurationForm } from './CurationForm'
 export interface CardCurationProps {
   name: string
   avatar: string
-  isActive: boolean
 }
 
 export const CardCuration = ({ name, avatar }: CardCurationProps) => {
