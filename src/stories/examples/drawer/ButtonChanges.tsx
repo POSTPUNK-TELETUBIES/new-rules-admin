@@ -13,11 +13,11 @@ import { useState } from 'react'
 import { boxStyle, buttonStyle, fabStyle } from './StylesButtonChanges'
 import { stateRules } from '../../../utils/buttonChanges'
 
-interface ButtonProps {
+interface ButtonSaveProps {
   onClick?: () => void
 }
 
-const ButtonChanges = ({ ...props }: ButtonProps) => {
+const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
   const [showswitch, setshowswitch] = useState(false)
 
   const switchVisibility = () => {

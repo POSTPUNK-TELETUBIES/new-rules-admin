@@ -1,14 +1,14 @@
 import { Paper } from '@mui/material'
 import ButtonChanges from './ButtonChanges'
-import { faker } from '@faker-js/faker'
 
 const RulesCuration = () => {
   return (
     <>
       <Paper sx={{ p: 2 }}>
-      {
-        faker.lorem.lines({min:50, max:50})
-      }
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+        repudiandae ullam recusandae perferendis quae vero quisquam soluta vel
+        adipisci sint nobis in dignissimos, reiciendis corporis magni, eaque
+        quas aspernatur quo.
       </Paper>
       <ButtonChanges />
     </>
