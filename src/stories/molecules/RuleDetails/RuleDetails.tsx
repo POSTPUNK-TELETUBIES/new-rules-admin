@@ -88,7 +88,7 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
         </Typography>
         <Typography color='primary'>DESCRIPCIÓN DE LA REGLA</Typography>
 
-        <iframe ref={iframeRef} />
+        <iframe ref={iframeRef} title='Descripción de la regla' />
       </Box>
     </Box>
   )
