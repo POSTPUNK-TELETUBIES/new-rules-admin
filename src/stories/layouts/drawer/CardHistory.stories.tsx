@@ -7,7 +7,7 @@ export default {
   component: CardHistory,
 } as Meta;
 
-const data = createHistory(5);
+const data = createHistory();
 
 export const userCard = (_args: CardHistoryProps) => (
   <div>

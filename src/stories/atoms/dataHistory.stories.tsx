@@ -7,7 +7,6 @@ export default {
 export const HistoryAPI = () => {
     const historyData = createHistory();
 
-    console.log(historyData);
     return (
         <div>
             <h1>Console log de datos de historia:</h1>

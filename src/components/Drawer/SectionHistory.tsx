@@ -1,21 +1,11 @@
 import { useState, Suspense, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar'
-import Timeline from '@mui/lab/Timeline'
-import TimelineItem from '@mui/lab/TimelineItem'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineDot from '@mui/lab/TimelineDot'
-import TimelineOppositeContent, {
-    timelineOppositeContentClasses,
-} from '@mui/lab/TimelineOppositeContent'
-import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton, Box, LinearProgress, ListItemText } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
-import CardHistory from './CardHistory';
+import { Box, LinearProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import historyService from './historyService';
 import { sortByOrder, Order } from './historyUtils';
+import TimelineSection from './TimelineComponent';
+import AccordionComponent from './AccordionComponent';
 
 const SectionHistory = () => {
     const [open, setOpen] = useState(false);
@@ -50,10 +40,11 @@ const SectionHistory = () => {
     };
 
     const sortedHistory = data
-        ?.filter((item) => selectedUsers.has(item.user))
-        .slice()
-        .sort(sortByOrder(order));
-
+        ? data
+            .filter((item) => selectedUsers.has(item.user))
+            .slice()
+            .sort(sortByOrder(order))
+        : [];
     const handleChangeOrder = () => {
         setOrder((prevOrder) =>
             prevOrder === Order.Ascending ? Order.Descending : Order.Ascending
@@ -76,70 +67,18 @@ const SectionHistory = () => {
                     ))}
                 </Box>
             </Suspense>
-            <Accordion expanded={open} onChange={handleClick}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <ListItemButton>
-                        <ListItemText primary="Autores" />
-                    </ListItemButton>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <FormGroup>
-                        {data?.map((item) => (
-                            <FormControlLabel
-                                key={item.id}
-                                control={
-                                    <Checkbox
-                                        checked={selectedUsers.has(item.user)}
-                                        onChange={() => handleCheckboxChange(item.user)}
-                                    />
-                                }
-                                label={item.user}
-                            />
-                        ))}
-                    </FormGroup>
-                </AccordionDetails>
-            </Accordion>
-            <Timeline
-                sx={{
-                    [`& .${timelineOppositeContentClasses.root}`]: {
-                        flex: 0.2,
-                    },
-                }}
-            >
-                <Button onClick={handleChangeOrder}>
-                    {order === Order.Ascending
-                        ? 'Ordenar de manera descendente'
-                        : 'Ordenar de manera ascendente'}
-                </Button>
-                {sortedHistory?.map((item) => (
-                    <TimelineItem key={item.id}>
-                        <TimelineOppositeContent>
-                            <Suspense fallback={<LinearProgress />}>
-                                {item.time.toLocaleString()}
-                            </Suspense>
-                        </TimelineOppositeContent>
-                        <TimelineSeparator>
-                            <TimelineDot />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent>
-                            <Suspense fallback={<LinearProgress />}>
-                                <CardHistory
-                                    avatar={item.avatar}
-                                    user={item.user}
-                                    action={item.action}
-                                    sustain={item.sustain}
-                                />
-                            </Suspense>
-                        </TimelineContent>
-                    </TimelineItem>
-                ))}
-
-            </Timeline>
+            <AccordionComponent
+                data={data}
+                open={open}
+                handleClick={handleClick}
+                selectedUsers={selectedUsers}
+                handleCheckboxChange={handleCheckboxChange}
+            />
+            <TimelineSection
+                sortedHistory={sortedHistory}
+                order={order}
+                handleChangeOrder={handleChangeOrder}
+            />
         </>
     )
 }
