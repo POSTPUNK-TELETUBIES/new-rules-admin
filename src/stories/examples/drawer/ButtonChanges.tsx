@@ -18,10 +18,10 @@ interface ButtonSaveProps {
 }
 
 const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
-  const [showswitch, setshowswitch] = useState(false)
+  const [showSwitch, setShowSwitch] = useState(false)
 
   const switchVisibility = () => {
-    setshowswitch(!showswitch)
+    setShowSwitch(!showSwitch)
   }
 
   return (
@@ -36,7 +36,7 @@ const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
       >
         <AddIcon />
       </Fab>
-      {showswitch && (
+      {showSwitch && (
         <Box sx={boxStyle}>
           <FormControl>
             <RadioGroup
@@ -46,6 +46,7 @@ const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
             >
               {stateRules.map((state) => (
                 <FormControlLabel
+                  key={state.label}
                   value={state.value}
                   control={<Radio />}
                   label={state.label}

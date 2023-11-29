@@ -16,7 +16,7 @@ export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   initialIsActive?: boolean
 }
 
-// Todo: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
+// TODO: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
 
 export const CurationForm = ({
   onSubmit = async () => Promise.resolve(undefined),
