@@ -8,7 +8,6 @@ import TimelineSection from './TimelineComponent';
 import AccordionComponent from './AccordionComponent';
 
 const SectionHistory = () => {
-    const [open, setOpen] = useState(false);
     const [order, setOrder] = useState(Order.Ascending);
     const { data, refetch } = useQuery({
         queryKey: ['historyData', order],
@@ -34,11 +33,6 @@ const SectionHistory = () => {
             return newSelectedUsers;
         });
     };
-
-    const handleClick = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
     const sortedHistory = data
         ? data
             .filter((item) => selectedUsers.has(item.user))
@@ -69,8 +63,6 @@ const SectionHistory = () => {
             </Suspense>
             <AccordionComponent
                 data={data}
-                open={open}
-                handleClick={handleClick}
                 selectedUsers={selectedUsers}
                 handleCheckboxChange={handleCheckboxChange}
             />

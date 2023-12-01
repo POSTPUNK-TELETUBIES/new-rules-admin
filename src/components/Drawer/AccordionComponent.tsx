@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Checkbox, FormGroup, FormControlLabel, ListItemButton, ListItemText } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { History } from "../data/history";
 
 interface AccordionComponentProps {
     data?: History[];
-    open: boolean;
-    handleClick: () => void;
     selectedUsers: Set<string>;
     handleCheckboxChange: (user: string) => void;
 }
 
-const AccordionComponent: React.FC<AccordionComponentProps> = ({ data, open, handleClick, selectedUsers, handleCheckboxChange }) => {
+const AccordionComponent: React.FC<AccordionComponentProps> = ({ data, selectedUsers, handleCheckboxChange }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleClick = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+    
     return (
         <Accordion expanded={open} onChange={handleClick}>
             <AccordionSummary
