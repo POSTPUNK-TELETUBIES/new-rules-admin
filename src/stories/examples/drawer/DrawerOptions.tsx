@@ -1,6 +1,6 @@
 import { AppBar, Box, LinearProgress, Tab, Tabs } from '@mui/material'
 import React from 'react'
-import RulesCuration from './RulesCuration'
+import { RulesCuration } from './RulesCuration'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -31,7 +31,7 @@ const a11yProps = (index: string) => {
   }
 }
 
-const DrawerOptions = () => {
+export const DrawerOptions = () => {
   const [value, setValue] = React.useState('rulesCuration')
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
@@ -68,5 +68,3 @@ const DrawerOptions = () => {
     </Box>
   )
 }
-
-export default DrawerOptions

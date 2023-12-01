@@ -59,11 +59,11 @@ export const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
               id='filled-hidden-label-normal'
               variant='outlined'
               label='Sustento'
-              sx={{ width: '350px', mt: 2 }}
+              sx={{ width: '22rem', mt: 2 }}
             />
 
             <Box sx={buttonStyle}>
-              <Button variant='contained' sx={{ width: '100px', p: 1, mt: 2 }}>
+              <Button variant='contained' sx={{ width: '6.25rem', p: 1, mt: 2 }}>
                 Guardar
               </Button>
             </Box>
