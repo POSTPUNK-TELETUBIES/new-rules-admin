@@ -17,15 +17,15 @@ import {
 
 export default function Header() {
   const theme = useTheme()
-  const [isMenuOpen, menuOpen] = useState(false)
+  const [isMenuOpen, setMenuOpen] = useState(false)
   const moreIconRef = useRef(null)
 
   const handleMoreIconClick = () => {
-    menuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
+    setMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
   }
 
   const handleClose = () => {
-    menuOpen(false)
+    setMenuOpen(false)
   }
 
   return (
