@@ -18,6 +18,3 @@ export const handlers = [
     return res(ctx.status(200), ctx.json({ rules: [...allRules] }))
   }),
 ]
-
-// limit/take -> numero de elementos a devolver
-// offset/skip -> numero de elementos a saltar

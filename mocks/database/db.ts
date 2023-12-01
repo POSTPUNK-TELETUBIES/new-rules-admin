@@ -20,5 +20,4 @@ export const DB_MOCK: DB = factory({
   },
 })
 
-// rellenar la DB
 seeds()
