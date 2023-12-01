@@ -1,41 +1,80 @@
-import { Suspense } from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
+import { Suspense, useState, useRef } from 'react'
 import ToogleTheme from '../../theme/ToogleTheme'
-import { useTheme } from '@mui/material'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import DeleteIcon from '@mui/icons-material/Delete'
+import DownloadIcon from '@mui/icons-material/Download';
+import {
+  AppBar,
+  Box,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+  useTheme,
+} from '@mui/material'
 
 export default function Header() {
   const theme = useTheme()
+  const [isMenuOpen, menuOpen] = useState(false)
+  const moreIconRef = useRef(null)
+
+  const handleMoreIconClick = () => {
+    menuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
+  }
+
+  const handleClose = () => {
+    menuOpen(false)
+  }
 
   return (
-    <Box
-      component={'header'}
-      sx={{ flexGrow: 1 }}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      p={0.5}
-      pl={1}
-      style={{
-        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-      }}
-    >
-      <Box>
-        <Typography
-          variant='h5'
-          component='h1'
-          sx={{ flexGrow: 1 }}
-          fontWeight={'bold'}
-          color={'white'}
-        >
-          Pacifico
-        </Typography>
-      </Box>
-      <Box>
-        <Suspense>
-          <ToogleTheme />
-        </Suspense>
-      </Box>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position='static'
+        style={{
+          background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        }}
+      >
+        <Toolbar>
+          <Typography
+            variant='h6'
+            noWrap
+            component='div'
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            PACIFICO
+          </Typography>
+          <Suspense>
+            <ToogleTheme />
+          </Suspense>
+          <IconButton
+            aria-label='display more actions'
+            onClick={handleMoreIconClick}
+            ref={moreIconRef}
+          >
+            <MoreIcon />
+          </IconButton>
+          <Menu
+            anchorEl={moreIconRef.current}
+            open={isMenuOpen}
+            onClose={handleClose}
+          >
+            <MenuItem>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              Revertir{' '}
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <DownloadIcon />
+              </ListItemIcon>
+              Descargar reportes
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
     </Box>
   )
 }

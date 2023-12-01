@@ -17,7 +17,7 @@ interface ButtonSaveProps {
   onClick?: () => void
 }
 
-export const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
+const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
   const [showSwitch, setShowSwitch] = useState(false)
 
   const switchVisibility = () => {
@@ -73,3 +73,4 @@ export const ButtonChanges = ({ ...props }: ButtonSaveProps) => {
     </>
   )
 }
+export default ButtonChanges;
