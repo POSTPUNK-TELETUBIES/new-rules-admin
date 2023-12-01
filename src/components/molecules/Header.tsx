@@ -17,7 +17,7 @@ import {
 
 export default function Header() {
   const theme = useTheme()
-  const [isMenuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const moreIconRef = useRef(null)
 
   const handleMoreIconClick = () => {
@@ -57,7 +57,7 @@ export default function Header() {
           </IconButton>
           <Menu
             anchorEl={moreIconRef.current}
-            open={isMenuOpen}
+            open={menuOpen}
             onClose={handleClose}
           >
             <MenuItem>
