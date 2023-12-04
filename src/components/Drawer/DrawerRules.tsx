@@ -23,7 +23,7 @@ const DrawerRules = () => {
       >
         <Box sx={{ width: '600px' }}>
           <Suspense fallback={<LinearProgress />}>
-            <DrawerOptions/>
+            <DrawerOptions />
           </Suspense>
         </Box>
       </Drawer>

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import ToogleTheme from '../../theme/ToogleTheme'
+import ToogleTheme from '../theme/ToogleTheme'
 import { useTheme } from '@mui/material'
 
 export default function Header() {
