@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Header from '../../components/molecules/Header'
+import Header from '../../components/Header'
 import { ColorModeProvider } from '../../theme/ColorModeProvider'
 import { Box } from '@mui/material'
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import SelectOptions from '../../components/molecules/SelectOptions'
+import SelectOptions from '../../components/SelectOptions'
 import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import SettingsIcon from '@mui/icons-material/Settings'

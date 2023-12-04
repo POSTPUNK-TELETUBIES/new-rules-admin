@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import StateChip from '../../components/atoms/StateChip'
+import StateChip from '../../components/Chips/StateChip'
 
 const meta = {
   title: 'atoms/StateChip',

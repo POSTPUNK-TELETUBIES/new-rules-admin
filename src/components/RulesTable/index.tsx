@@ -3,8 +3,8 @@ import { columns } from './tableColumns'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import TableOptionSelector from './TableOptionSelector'
 import { useQuery } from '@tanstack/react-query'
-import { axiosInstance } from '../../../services/axios'
-import { Rule } from '../../../types/rule'
+import { axiosInstance } from '../../services/axios'
+import { Rule } from '../../types/rule'
 
 const RulesTable = () => {
   const { data, error, isLoading } = useQuery<Rule[], string>({
