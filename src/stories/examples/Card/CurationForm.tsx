@@ -16,6 +16,11 @@ export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   initialIsActive?: boolean
 }
 
+const ButtonSwitch = (
+  hasSwitch: boolean = false, 
+  initialIsActive: boolean  = false ) =>
+  hasSwitch ? 'Guardar' : initialIsActive ? 'Desactivar' : 'Activar';
+
 // TODO: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
 
 export const CurationForm = ({
@@ -39,7 +44,7 @@ export const CurationForm = ({
       <Typography>{errors.explanation?.message}</Typography>
       <Box display='flex'>
         <Button type='submit'>
-          {hasSwitch ? 'Guardar' : initialIsActive ? 'Desactivar' : 'Activar'}
+          {ButtonSwitch(hasSwitch, initialIsActive)}
         </Button>
       </Box>
     </Box>
