@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
-import { createManyRules } from '../../../mocks/helpers/createRules'
-import { columns } from '../../components/organisms/RulesTable/tableColumns'
+import { createRules } from '../../../mocks/factories/createRules'
+import { columns } from '../../components/RulesTable/tableColumns'
 
 const meta = {
   title: 'organisms/RulesTable',
