@@ -7,8 +7,8 @@ import {
   TABLE_TYPE_OPTIONS,
 } from './tableOptions'
 import { Rule } from '../../types/rule'
-import TypeChip from '../Chip/TypeChip'
-import StateChip from '../Chip/StateChip'
+import TypeChip from '../Chips/TypeChip'
+import StateChip from '../Chips/StateChip'
 import { getDateDifference } from '../../utils/getDateDifference'
 
 export const columns: MRT_ColumnDef<Rule>[] = [
