@@ -6,8 +6,8 @@ const tabsOptions = {
     bodyElement: <div> Soy el cuerpo de los detalles de la regla</div>,
   },
   curation: {
-    label: 'Curacion de reglas',
-    bodyElement: <div>Soy el cuerpo de la curacion</div>,
+    label: 'Historial de propuestas',
+    bodyElement: <div>Soy el cuerpo del Historial de propuestas</div>,
   },
 }
 

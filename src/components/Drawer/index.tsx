@@ -1,12 +1,10 @@
-import { Suspense, lazy, useContext } from 'react'
+import { PropsWithChildren, Suspense, useContext } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import LinearProgress from '@mui/material/LinearProgress'
 import { DrawerContext } from './Drawercontext'
 
-const DrawerSwitcher = lazy(() => import('./DrawerSwitcher'))
-
-const DrawerRules = () => {
+const DrawerBase = ({ children }: PropsWithChildren) => {
   const { isOpenDrawer, setIsOpenDrawer } = useContext(DrawerContext)
 
   return (
@@ -16,12 +14,10 @@ const DrawerRules = () => {
       onClose={() => setIsOpenDrawer(false)}
     >
       <Box>
-        <Suspense fallback={<LinearProgress />}>
-          <DrawerSwitcher />
-        </Suspense>
+        <Suspense fallback={<LinearProgress />}>{children}</Suspense>
       </Box>
     </Drawer>
   )
 }
 
-export default DrawerRules
+export default DrawerBase

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import DrawerRules from '../../../components/Drawer'
-import { ColorModeProvider } from '../../../theme/ColorModeProvider'
+import DrawerBase from '../../../components/Drawer'
+
 import {
   DrawerContext,
   DrawerProvider,
@@ -10,24 +10,20 @@ import { Button } from '@mui/material'
 
 const meta = {
   title: 'Layouts/Drawer Rules',
-  component: DrawerRules,
+  component: DrawerBase,
   parameters: {
     layout: 'centered',
   },
   decorators: [
-    (Story) => {
+    () => {
       return (
-        <ColorModeProvider>
-          <DrawerProvider>
-            <DrawerContainer>
-              <Story />
-            </DrawerContainer>
-          </DrawerProvider>
-        </ColorModeProvider>
+        <DrawerProvider>
+          <AppExample />
+        </DrawerProvider>
       )
     },
   ],
-} satisfies Meta<typeof DrawerRules>
+} satisfies Meta<typeof DrawerBase>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -37,14 +33,19 @@ export const Default: Story = {
   args: {},
 }
 
-const DrawerContainer = ({ children }: { children: JSX.Element }) => {
+const AppExample = () => {
   const { setIsOpenDrawer } = useContext(DrawerContext)
+
   return (
     <>
       <Button variant='outlined' onClick={() => setIsOpenDrawer(true)}>
         Abrir drawer
       </Button>
-      {children}
+      <DrawerBase>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+        unde totam incidunt deleniti molestias explicabo? Accusantium reiciendis
+        laborum tempora deserunt!
+      </DrawerBase>
     </>
   )
 }
