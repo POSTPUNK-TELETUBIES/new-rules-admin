@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material'
-import { ButtonChanges } from './ButtonChanges'
+import ButtonChanges from './ButtonChanges'
 
 export const RulesCuration = () => {
   return (
