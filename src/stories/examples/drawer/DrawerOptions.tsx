@@ -1,5 +1,6 @@
 import { AppBar, Box, LinearProgress, Tab, Tabs } from '@mui/material'
-import React from 'react'
+import { Suspense, useState } from 'react'
+import RulesCuration from './RulesCuration'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -18,7 +19,7 @@ const CustomTabPanel = (props: TabPanelProps) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 2 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   )
 }
@@ -31,7 +32,7 @@ const a11yProps = (index: string) => {
 }
 
 const DrawerOptions = () => {
-  const [value, setValue] = React.useState('rulesCuration')
+  const [value, setValue] = useState('rulesCuration')
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
@@ -48,23 +49,19 @@ const DrawerOptions = () => {
           variant='fullWidth'
           aria-label='full width tabs example'
         >
-          <Tab label='Curación de reglas' {...a11yProps('rulesCuration')} />
-          <Tab
-            label='Historial de propuestas'
-            {...a11yProps('changeHistory')}
-          />
+          <Tab label='Curación de reglas' value='rulesCuration' {...a11yProps('rulesCuration')} />
+          <Tab label='Historial de propuestas' value='agregar' {...a11yProps('changeHistory')}/>
         </Tabs>
       </AppBar>
 
-      <CustomTabPanel value={value} index={'rulesCuration'}>
-        <React.Suspense fallback={<LinearProgress />}>
-          {/* CONTENIDO */}
-        </React.Suspense>
+      <CustomTabPanel value={value} index='rulesCuration'>
+        <Suspense fallback={<LinearProgress />}>
+          <RulesCuration />
+        </Suspense>
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={'changeHistory'}>
-        <React.Suspense fallback={<LinearProgress />}>
-          {/* CONTENIDO */}
-        </React.Suspense>
+      <CustomTabPanel value={value} index='changeHistory'>
+        <Suspense fallback={<LinearProgress />}>
+        </Suspense>
       </CustomTabPanel>
     </Box>
   )

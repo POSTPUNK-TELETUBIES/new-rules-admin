@@ -13,7 +13,7 @@ const DrawerRules = () => {
 
   return (
     <>
-      <Button onClick={toggleDrawer(true)} sx={{ mt: 32 }}>
+      <Button onClick={toggleDrawer(true)} >
         Abrir drawer
       </Button>
       <Drawer

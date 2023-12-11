@@ -1,0 +1,14 @@
+import { Meta, Source, Story, Canvas } from '@storybook/blocks';
+import DrawerRules from './DrawerRules.example.tsx'
+import data  from './DrawerRules.example.tsx?raw'
+
+<Meta
+  title="Examples/DrawerRules"
+  component={DrawerRules}
+/>
+
+<div style={{display: 'grid'}}>
+    <DrawerRules />
+</div>
+
+<Source code={data} dark />

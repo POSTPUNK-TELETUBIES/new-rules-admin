@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import DrawerRules from '../../../components/Drawer/DrawerRules'
+import type { Meta, StoryObj } from '@storybook/react';
+import DrawerRules from '../../examples/drawer/DrawerRules.example';
 
 const meta = {
-  title: 'Layouts/Drawer Rules',
+  title: 'Layouts/Drawer/Drawer Rules',
   component: DrawerRules,
   parameters: {
     layout: 'centered',
