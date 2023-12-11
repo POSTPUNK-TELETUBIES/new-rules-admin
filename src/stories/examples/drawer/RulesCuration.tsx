@@ -1,7 +1,7 @@
 import { Paper } from '@mui/material'
-import ButtonChanges from './ButtonChanges'
+import { ButtonChanges } from './ButtonChanges'
 
-const RulesCuration = () => {
+export const RulesCuration = () => {
   return (
     <>
       <Paper sx={{ p: 2 }}>
@@ -14,5 +14,3 @@ const RulesCuration = () => {
     </>
   )
 }
-
-export default RulesCuration

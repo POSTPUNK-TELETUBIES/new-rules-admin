@@ -1,12 +1,12 @@
 export const boxStyle = {
   position: 'fixed',
-  bottom: '80px',
-  right: '80px',
-  width: '350px',
+  bottom: '5rem',
+  right: '5rem',
+  width: '22rem',
   background: '#fff',
-  padding: '15px',
+  padding: '1rem',
   border: '1px solid #ccc',
-  borderRadius: '4px',
+  borderRadius: '0.25rem',
 }
 
 export const buttonStyle = {
@@ -17,6 +17,6 @@ export const buttonStyle = {
 
 export const fabStyle = {
   position: 'fixed',
-  bottom: '20px',
-  right: '20px',
+  bottom: '1.25rem',
+  right: '1.25rem',
 }
