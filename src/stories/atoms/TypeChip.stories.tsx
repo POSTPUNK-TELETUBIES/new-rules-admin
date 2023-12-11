@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import TypeChip from '../../components/atoms/TypeChip'
+import TypeChip from '../../components/Chips/TypeChip'
 import { RuleType } from '../../types/ruleEnums'
 
 const meta = {
