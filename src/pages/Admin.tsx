@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import RulesTable from '../components/organisms/RulesTable'
+import RulesTable from '../components/RulesTable'
 
 const Admin = () => {
   return (

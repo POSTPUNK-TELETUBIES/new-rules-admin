@@ -12,29 +12,27 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-  useTheme,
 } from '@mui/material'
 
 export default function Header() {
-  const theme = useTheme()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const moreIconRef = useRef(null)
 
   const handleMoreIconClick = () => {
-    setMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
+    setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen)
   }
 
   const handleClose = () => {
-    setMenuOpen(false)
+    setIsMenuOpen(false)
   }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position='static'
-        style={{
+        sx={(theme) => ({
           background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-        }}
+        })}
       >
         <Toolbar>
           <Typography
@@ -57,14 +55,14 @@ export default function Header() {
           </IconButton>
           <Menu
             anchorEl={moreIconRef.current}
-            open={menuOpen}
+            open={isMenuOpen}
             onClose={handleClose}
           >
             <MenuItem>
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
-              Revertir{' '}
+              Revertir
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
