@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import DrawerBase from '../../../components/Drawer'
-
+import DrawerBase from '../../examples/drawer'
 import {
   DrawerContext,
   DrawerProvider,
-} from '../../../components/Drawer/Drawercontext'
+} from '../../examples/drawer/Drawercontext'
 import { useContext } from 'react'
 import { Button } from '@mui/material'
 

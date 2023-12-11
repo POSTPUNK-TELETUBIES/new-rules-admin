@@ -1,4 +1,4 @@
-import buildTabSwitcher from '../../../components/Drawer/buildTabSwitcher'
+import buildTabSwitcher from '../../examples/drawer/buildTabSwitcher'
 
 const tabsOptions = {
   detail: {

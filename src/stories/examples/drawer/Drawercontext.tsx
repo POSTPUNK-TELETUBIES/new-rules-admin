@@ -6,7 +6,7 @@ import {
   useMemo,
   PropsWithChildren,
 } from 'react'
-import { Rule } from '../../types/rule'
+import { Rule } from '../../../types/rule'
 
 interface IDrawerContext {
   isOpenDrawer: boolean
