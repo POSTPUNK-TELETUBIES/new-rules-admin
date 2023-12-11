@@ -18,7 +18,7 @@ export const CardCuration = ({ name, avatar }: CardCurationProps) => {
         <Avatar src={avatar} alt={name} sx={{ textTransform: 'uppercase' }} />
       </Box>
       <Typography sx={{ mt: 1 }} variant='subtitle1' fontWeight={'bold'}>
-        {`${name}`}
+        {name}
       </Typography>
       <CurationForm/>
     </Card>

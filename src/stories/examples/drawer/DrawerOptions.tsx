@@ -1,5 +1,5 @@
 import { AppBar, Box, LinearProgress, Tab, Tabs } from '@mui/material'
-import React from 'react'
+import { Suspense, useState } from 'react'
 import { RulesCuration } from './RulesCuration'
 
 interface TabPanelProps {
@@ -32,7 +32,7 @@ const a11yProps = (index: string) => {
 }
 
 export const DrawerOptions = () => {
-  const [value, setValue] = React.useState('rulesCuration')
+  const [value, setValue] = useState('rulesCuration')
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
@@ -55,15 +55,13 @@ export const DrawerOptions = () => {
       </AppBar>
 
       <CustomTabPanel value={value} index='rulesCuration'>
-        <React.Suspense fallback={<LinearProgress />}>
-          {/* CONTENIDO */}
+        <Suspense fallback={<LinearProgress />}>
           <RulesCuration />
-        </React.Suspense>
+        </Suspense>
       </CustomTabPanel>
       <CustomTabPanel value={value} index='changeHistory'>
-        <React.Suspense fallback={<LinearProgress />}>
-          {/* CONTENIDO */}
-        </React.Suspense>
+        <Suspense fallback={<LinearProgress />}>
+        </Suspense>
       </CustomTabPanel>
     </Box>
   )

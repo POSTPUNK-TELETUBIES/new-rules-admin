@@ -25,10 +25,11 @@ export const DrawerRules = () => {
       >
         <Box sx={{ width: '40rem' }}>
           <Suspense fallback={<LinearProgress />}>
-            <DrawerOptions/>
+            <DrawerOptions />
           </Suspense>
         </Box>
       </Drawer>
     </>
   )
 }
+
