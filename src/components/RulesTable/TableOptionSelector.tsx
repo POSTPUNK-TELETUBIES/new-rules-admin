@@ -1,30 +1,42 @@
-import { Suspense } from 'react'
+import { Suspense, useCallback, useContext } from 'react'
 import HistoryIcon from '@mui/icons-material/History'
-import AddIcon from '@mui/icons-material/Add'
 import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import SelectOptions, { ItemOfSelector } from '../SelectOptions'
+import { Rule } from '../../types/rule'
+import { DrawerContext } from '../../stories/examples/drawer/Drawercontext'
 
-const ITEMS_FOR_SELECTOR: ItemOfSelector[] = [
-  {
-    icon: <ChromeReaderModeIcon />,
-    text: 'Detalles de la regla',
-    onClick: () => {},
-  },
-  {
-    icon: <AddIcon />,
-    text: 'Agregar propuesta',
-    onClick: () => {},
-  },
-  {
-    icon: <HistoryIcon />,
-    text: 'Historial de propuestas',
-    onClick: () => {},
-  },
-]
+type TableOptionSelectorProps = {
+  item: Rule
+}
 
-const TableOptionSelector = () => {
+const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
+  const { setIsOpenDrawer, setColumnActive, setItemActive } =
+    useContext(DrawerContext)
+
+  const handleItemClick = useCallback(
+    (columnIndex: string) => () => {
+      setIsOpenDrawer(true)
+      setColumnActive(columnIndex)
+      setItemActive(item)
+    },
+    [setIsOpenDrawer, setColumnActive],
+  )
+
+  const ITEMS_FOR_SELECTOR: ItemOfSelector[] = [
+    {
+      icon: <ChromeReaderModeIcon />,
+      text: 'Detalles de la regla',
+      onClick: handleItemClick('detail'),
+    },
+    {
+      icon: <HistoryIcon />,
+      text: 'Historial de propuestas',
+      onClick: handleItemClick('curation'),
+    },
+  ]
+
   return (
     <Suspense fallback={<Skeleton variant='text' />}>
       <SelectOptions
