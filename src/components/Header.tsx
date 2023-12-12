@@ -1,8 +1,7 @@
 import { Suspense, useState, useRef } from 'react'
-import ToogleTheme from '../../theme/ToogleTheme'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import DeleteIcon from '@mui/icons-material/Delete'
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from '@mui/icons-material/Download'
 import {
   AppBar,
   Box,
@@ -13,6 +12,7 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material'
+import ToogleTheme from '../theme/ToogleTheme'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
