@@ -3,7 +3,8 @@ import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import { columns } from '../../../components/RulesTable/tableColumns'
 import AppProviders from '../../../AppProviders'
-import { getRulesExample } from './getRulesExample'
+import { generateOneRule } from '../../../../mocks/generators/generateOneRule'
+import { RuleDTO } from '../../../types/rule'
 
 const meta = {
   title: 'organisms/RulesTable',
@@ -21,9 +22,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const rulesExample: RuleDTO[] = Array.from({ length: 100 }, () => {
+  const rule: RuleDTO = generateOneRule()
+  return rule
+})
+
 export const Primary: Story = {
   args: {
-    data: getRulesExample(),
+    data: rulesExample ?? [],
     columns: columns as MRT_ColumnDef<Record<string, unknown>>[],
     localization: MRT_Localization_ES,
     initialState: {
