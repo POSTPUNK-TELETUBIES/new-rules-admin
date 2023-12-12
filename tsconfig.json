@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "mocks/generators/generateOneRule.ts"],
+  "include": ["src", "mocks/creators/createOneRule.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -6,7 +6,7 @@ import {
   ruleTypeValues,
 } from '../database/arrayOfEnums'
 
-export const generateOneRule = (): RuleDTO => {
+export const createOneRule = (): RuleDTO => {
   const rule: RuleDTO = {
     id: faker.string.uuid(),
     code: `${faker.helpers.arrayElement(ruleLanguageValues)}:${faker.number.int(
