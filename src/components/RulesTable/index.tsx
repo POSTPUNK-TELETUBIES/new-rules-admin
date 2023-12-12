@@ -22,7 +22,9 @@ const RulesTable = () => {
       enableColumnFilterModes
       enableRowActions
       positionActionsColumn='last'
-      renderRowActions={() => <TableOptionSelector />}
+      renderRowActions={(cell) => (
+        <TableOptionSelector item={cell.row.original} />
+      )}
       enableStickyHeader
       enableStickyFooter
       muiTableContainerProps={{ sx: { minHeight: 'calc(100vh - 12.5rem)' } }}
