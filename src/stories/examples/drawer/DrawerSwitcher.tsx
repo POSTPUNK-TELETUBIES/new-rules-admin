@@ -1,3 +1,4 @@
+import SectionHistory from '../../../components/Drawer/SectionHistory'
 import buildTabSwitcher from './buildTabSwitcher'
 import { DrawerContext } from './Drawercontext'
 import { useContext } from 'react'
@@ -9,7 +10,7 @@ const tabsOptions = {
   },
   curation: {
     label: 'Historial de propuestas',
-    bodyElement: <div>Soy el cuerpo del historial de propuestas</div>,
+    bodyElement: <SectionHistory/>,
   },
 }
 

@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { createRules } from './../factories/createRules'
-import createHistoryResponse from './historyHandler';
+import handleHistoryRequest from './apiHistoryHandler';
 
 export const handlers = [
   rest.get('/api/rules', (req, res, ctx) => {
@@ -12,11 +12,9 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.json({ rules }))
   }),
-  rest.get('/api/history', (req, res, ctx) => {
-    const limit = Number(req.url.searchParams.get('limit'))
-    const response = createHistoryResponse(limit);
-    return res(ctx.status(200), ctx.json({ response }));
-  }),
+  rest.get('/api/history',handleHistoryRequest),
+
+  
 ];
 
 

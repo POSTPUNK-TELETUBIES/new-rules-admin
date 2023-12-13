@@ -2,17 +2,21 @@ import { useState, Suspense, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar'
 import { Box, LinearProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import historyService from './historyService';
 import { sortByOrder, Order } from './historyUtils';
 import TimelineSection from './TimelineComponent';
 import AccordionComponent from './AccordionComponent';
+import { axiosInstance } from '../../services/axios'
+import { History } from '../data/history'
 
 const SectionHistory = () => {
+    const { data } = useQuery<History[], string>({
+        queryKey: ['history'],  
+        queryFn: async () => {
+          const { data } = await axiosInstance.get('/history')  
+          return data.history
+        },
+      })
     const [order, setOrder] = useState(Order.Ascending);
-    const { data, refetch } = useQuery({
-        queryKey: ['historyData', order],
-        queryFn: () => historyService.fetchHistoryData(),
-    });
     const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
 
     useEffect(() => {
@@ -43,7 +47,6 @@ const SectionHistory = () => {
         setOrder((prevOrder) =>
             prevOrder === Order.Ascending ? Order.Descending : Order.Ascending
         );
-        refetch();
     };
 
 
@@ -62,9 +65,10 @@ const SectionHistory = () => {
                 </Box>
             </Suspense>
             <AccordionComponent
-                data={data}
+                data={data ?? []}
                 selectedUsers={selectedUsers}
                 handleCheckboxChange={handleCheckboxChange}
+                
             />
             <TimelineSection
                 sortedHistory={sortedHistory}

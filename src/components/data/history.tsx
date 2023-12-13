@@ -4,7 +4,7 @@ export enum HistoryAction {
     DeactivateRule = 'Deactivate Rule',
 }
 
-export type History = {
+export interface History  {
     avatar: any
     id: number
     user: string
