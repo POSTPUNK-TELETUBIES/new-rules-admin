@@ -1,14 +1,4 @@
 import { rest } from 'msw'
-import { createRules } from './../factories/createRules'
+import { getRules } from './../resolvers/index'
 
-export const handlers = [
-  rest.get('/api/rules', (req, res, ctx) => {
-    const limit = Number(req.url.searchParams.get('limit')) || 20
-    const offset = Number(req.url.searchParams.get('offset')) || 0
-
-    const shouldUseCustomLimit = limit && offset
-    const rules = shouldUseCustomLimit ? createRules(limit) : createRules(20)
-
-    return res(ctx.status(200), ctx.json({ rules }))
-  }),
-]
+export const handlers = [rest.get('/api/rules', getRules)]

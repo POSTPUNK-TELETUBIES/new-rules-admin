@@ -1,4 +1,4 @@
-import { Rule } from '../../types/rule'
+import { RuleDTO } from '../../types/rule'
 import { RuleLanguage, RuleSeverity, RuleType } from '../../types/ruleEnums'
 
 export const TABLE_LANGUAGES_OPTIONS: { text: string; value: RuleLanguage }[] =
@@ -29,8 +29,10 @@ export const TABLE_SEVERITY_OPTIONS: RuleSeverity[] = [
   RuleSeverity.BLOCKER,
 ]
 
-export const TABLE_STATE_OPTIONS: { text: string; value: Rule['isActive'] }[] =
-  [
-    { text: 'ACTIVADO', value: true },
-    { text: 'DESACTIVADO', value: false },
-  ]
+export const TABLE_STATE_OPTIONS: {
+  text: string
+  value: RuleDTO['is_active_sonarqube' | 'is_active_local']
+}[] = [
+  { text: 'ACTIVADO', value: true },
+  { text: 'DESACTIVADO', value: false },
+]
