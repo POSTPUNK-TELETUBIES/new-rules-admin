@@ -1,13 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
-import { createRules } from '../../../mocks/factories/createRules'
-import { columns } from '../../components/RulesTable/tableColumns'
+import { columns } from '../../../components/RulesTable/tableColumns'
+import AppProviders from '../../../AppProviders'
+import { rulesExample } from './rulesExample'
 
 const meta = {
   title: 'organisms/RulesTable',
   component: MaterialReactTable,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <AppProviders>
+        <Story />
+      </AppProviders>
+    ),
+  ],
 } satisfies Meta<typeof MaterialReactTable>
 
 export default meta
@@ -15,7 +23,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    data: createRules(5),
+    data: rulesExample ?? [],
     columns: columns as MRT_ColumnDef<Record<string, unknown>>[],
     localization: MRT_Localization_ES,
     initialState: {

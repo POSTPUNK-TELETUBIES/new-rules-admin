@@ -4,11 +4,11 @@ import Skeleton from '@mui/material/Skeleton'
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import SelectOptions, { ItemOfSelector } from '../SelectOptions'
-import { Rule } from '../../types/rule'
 import { DrawerContext } from '../../stories/examples/drawer/Drawercontext'
+import { RuleDTO } from '../../types/rule'
 
 type TableOptionSelectorProps = {
-  item: Rule
+  item: RuleDTO
 }
 
 const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {

@@ -1,12 +1,12 @@
-import { RuleLanguage, RuleSeverity, RuleType } from './ruleEnums'
+import { RuleSeverity, RuleType } from './ruleEnums'
 
-export interface Rule {
+export interface RuleDTO {
   id: string
-  language: RuleLanguage
   code: string
   rule: string
   type: RuleType
   severity: RuleSeverity
-  isActive: boolean
+  is_active_sonarqube: boolean
+  is_active_local: boolean
   date: Date
 }
