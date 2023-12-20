@@ -9,7 +9,7 @@ interface AccordionComponentProps {
     handleCheckboxChange: (user: string) => void;
 }
 
-const AccordionComponent: React.FC<AccordionComponentProps> = ({ data, selectedUsers, handleCheckboxChange }) => {
+export const AccordionComponent: React.FC<AccordionComponentProps> = ({ data, selectedUsers, handleCheckboxChange }) => {
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -46,5 +46,3 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({ data, selectedU
         </Accordion>
     );
 }
-
-export default AccordionComponent;

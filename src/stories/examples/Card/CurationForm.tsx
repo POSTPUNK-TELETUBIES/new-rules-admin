@@ -14,12 +14,20 @@ export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   onSubmit?: SubmitHandler<CurationDTO>
   hasSwitch?: boolean
   initialIsActive?: boolean
+  initialValues?: Partial<CurationDTO>
+  isEditing?: boolean
 }
 
 const ButtonSwitch = (
-  hasSwitch: boolean = false, 
-  initialIsActive: boolean  = false ) =>
-  hasSwitch ? 'Guardar' : initialIsActive ? 'Desactivar' : 'Activar';
+  hasSwitch: boolean = false,
+  initialIsActive: boolean = false,
+  isEditing: boolean = false,
+) => {
+  if (isEditing) {
+    return 'Guardar'
+  }
+  return hasSwitch ? (initialIsActive ? 'Desactivar' : 'Activar') : 'Guardar'
+}
 
 // TODO: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
 
@@ -27,6 +35,8 @@ export const CurationForm = ({
   onSubmit = async () => Promise.resolve(undefined),
   hasSwitch,
   initialIsActive,
+  initialValues,
+  isEditing = false,
   ...boxProps
 }: Readonly<CurationFormProps>) => {
   const {
@@ -44,9 +54,10 @@ export const CurationForm = ({
       <Typography>{errors.explanation?.message}</Typography>
       <Box display='flex'>
         <Button type='submit'>
-          {ButtonSwitch(hasSwitch, initialIsActive)}
+          {ButtonSwitch(hasSwitch, initialIsActive, isEditing)}
         </Button>
       </Box>
     </Box>
   )
 }
+

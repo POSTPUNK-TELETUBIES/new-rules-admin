@@ -3,12 +3,12 @@ import Avatar from '@mui/material/Avatar'
 import { Box, LinearProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { sortByOrder, Order } from './historyUtils';
-import TimelineSection from './TimelineComponent';
-import AccordionComponent from './AccordionComponent';
+import { TimelineSection } from './TimelineComponent';
+import { AccordionComponent } from './AccordionComponent';
 import { axiosInstance } from '../../services/axios'
 import { History } from '../data/history'
 
-const SectionHistory = () => {
+export const SectionHistory = () => {
     const { data } = useQuery<History[], string>({
         queryKey: ['history'],  
         queryFn: async () => {
@@ -78,5 +78,3 @@ const SectionHistory = () => {
         </>
     )
 }
-
-export default SectionHistory

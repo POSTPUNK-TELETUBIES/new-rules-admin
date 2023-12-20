@@ -17,7 +17,7 @@ interface TimelineSectionProps {
     handleChangeOrder: () => void;
 }
 
-const TimelineSection: React.FC<TimelineSectionProps> = ({ sortedHistory, order, handleChangeOrder }) => {
+export const TimelineSection: React.FC<TimelineSectionProps> = ({ sortedHistory, order, handleChangeOrder }) => {
     return (
         <Timeline
             sx={{
@@ -31,7 +31,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ sortedHistory, order,
                     ? 'Ordenar de manera descendente'
                     : 'Ordenar de manera ascendente'}
             </Button>
-            {sortedHistory?.map((item) => (
+            {sortedHistory?.map((item, index) => (
                 <TimelineItem key={item.id}>
                     <TimelineOppositeContent>
                         <Suspense fallback={<LinearProgress />}>
@@ -49,6 +49,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ sortedHistory, order,
                                 user={item.user}
                                 action={item.action}
                                 sustain={item.sustain}
+                                showEditButton={index === 0}
                             />
                         </Suspense>
                     </TimelineContent>
@@ -58,5 +59,3 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ sortedHistory, order,
         </Timeline>
     );
 }
-
-export default TimelineSection;
