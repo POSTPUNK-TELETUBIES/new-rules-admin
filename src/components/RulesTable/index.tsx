@@ -9,7 +9,7 @@ import { useGetList } from 'data_providers'
 import { AsyncProviderNames } from '../../types/providers'
 import { ProxyRequest } from '../../services/ProxyRequest'
 
-const pathJsonRules = '/public/rules.json'
+const pathJsonRules = '/new-rules-admin/dist/rules.json'
 
 const RulesTable = () => {
 
