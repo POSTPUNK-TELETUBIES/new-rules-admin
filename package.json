@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "ts-node scripts/dbToJson.ts",
+    "prebuild": "ts-node-esm scripts/dbToJson.ts",
     "build": "tsc && vite build",
     "generate-enums": "node scripts/generateRuleEnums.js scripts/rules.json src/types/ruleEnums.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
