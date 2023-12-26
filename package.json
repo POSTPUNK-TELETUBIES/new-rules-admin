@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "ts-node scripts/dbToJson.ts",
     "build": "tsc && vite build",
     "generate-enums": "node scripts/generateRuleEnums.js scripts/rules.json src/types/ruleEnums.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -54,6 +55,7 @@
     "@storybook/testing-library": "^0.2.2",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^8.0.1",
+    "@types/node": "^20.10.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.7",
@@ -71,6 +73,7 @@
     "msw": "^1.3.2",
     "prettier": "^3.0.3",
     "storybook": "^7.5.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vitest": "^0.34.6"
