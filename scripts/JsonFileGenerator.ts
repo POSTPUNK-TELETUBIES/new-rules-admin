@@ -12,10 +12,8 @@ interface Options {
 }
 
 interface IJsonFileGenerator {
-
+  //Todo: Change to private methods and create a public method to generate the json files
   generateRules(options?: Options): void;
-  generateUsers(options?: Options): void;
-  generateAll(options?: Options): void;
 }
 
 const defaultOptions: Options = {
@@ -41,10 +39,6 @@ class JsonFileGenerator implements IJsonFileGenerator {
     console.log('Rules generated Succesfully!')
 
   }
-
-  async generateUsers() { }
-
-  async generateAll() { }
 
 }
 
