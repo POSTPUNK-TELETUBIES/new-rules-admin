@@ -7,19 +7,21 @@ import { useQuery } from '@tanstack/react-query'
 import { RuleDTO } from '../../types/rule'
 import { useGetList } from 'data_providers'
 import { AsyncProviderNames } from '../../types/providers'
-import { ProxyRequest } from '../../services/ProxyRequest'
+import ProxyRequest from '../../services/ProxyRequest'
 
 const pathJsonRules = '/new-rules-admin/dist/rules.json'
 
 const RulesTable = () => {
 
   const getRules = useGetList(AsyncProviderNames.RULES)
+  const proxyRequestRules = new ProxyRequest(pathJsonRules)
 
   const { data, error, isLoading } = useQuery<RuleDTO[], string>({
-    queryKey: ['rules'],
     queryFn: async () => {
-      return await ProxyRequest(getRules,pathJsonRules)
+      const rules =  await proxyRequestRules.makeRequest(getRules)
+      return rules as RuleDTO[]
     },
+    queryKey: ['rules'],
   })
 
   return (
