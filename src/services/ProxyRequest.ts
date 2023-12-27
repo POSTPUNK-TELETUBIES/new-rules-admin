@@ -1,4 +1,4 @@
-interface CustomError {
+export interface CustomError {
     message: string;
   }
 
