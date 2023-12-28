@@ -1,4 +1,4 @@
-import { createHistory } from '../../../mocks/factories/dataHistory'
+import { createHistory } from '../../../mocks/creators/createOneHistory'
 
 export default {
     title: 'atoms/HistoryAPI',
