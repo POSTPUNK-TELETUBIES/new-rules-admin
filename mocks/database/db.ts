@@ -28,6 +28,8 @@ export const DB_MOCK: DB = factory({
     sustain: String,
     time: Date,
     action: Number,
+    ruleId: String,
+
   }
 })
 

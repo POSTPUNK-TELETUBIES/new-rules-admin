@@ -1,4 +1,3 @@
-
 export enum HistoryAction {
     ActivateRule = 'Activate Rule',
     DeactivateRule = 'Deactivate Rule',
@@ -11,5 +10,6 @@ export interface HistoryDTO  {
     sustain: string
     time: Date
     action: HistoryAction;
+    ruleId?: string; 
 }
 

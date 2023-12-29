@@ -7,11 +7,14 @@ import { axiosInstance } from '../../services/axios'
 import { HistoryDTO } from '../../types/history'
 import AvatarsComponent from './AvatarsComponent'
 
-const SectionHistory = () => {
+interface SectionHistoryProps {
+  ruleId: any; 
+}
+const SectionHistory: React.FC<SectionHistoryProps> = ({ ruleId }) => {
   const { data } = useQuery<HistoryDTO[], string>({
-    queryKey: ['history'],
+    queryKey: ['history', ruleId],
     queryFn: async () => {
-      const { data } = await axiosInstance.get('/history')
+      const { data } = await axiosInstance.get(`/history/${ruleId}`); 
       return data.history
     },
   })
@@ -20,12 +23,16 @@ const SectionHistory = () => {
 
   useEffect(() => {
     if (data) {
+      // Filtrar las historias que tienen el mismo ruleId
+      const filteredData = data.filter((item) => item.ruleId === ruleId);
+
+      // Inicializar los usuarios seleccionados basados en las historias filtradas
       const initialSelectedUsers = new Set<string>(
-        data.map((item) => item.user),
-      )
-      setSelectedUsers(initialSelectedUsers)
+        filteredData.map((item) => item.user),
+      );
+      setSelectedUsers(initialSelectedUsers);
     }
-  }, [data])
+  }, [data, ruleId]);
 
   const handleCheckboxChange = (user: string) => {
     setSelectedUsers((prevSelectedUsers) => {

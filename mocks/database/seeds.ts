@@ -7,9 +7,10 @@ import { createOneHistory } from '../creators/createOneHistory'
 export const seeds = () => {
   Array.from({ length: 5 }, () => {
     const rule: RuleDTO = createOneRule()
-    const history: HistoryDTO = createOneHistory()
     DB_MOCK.rule.create(rule)
-    DB_MOCK.history.create(history)
-
+    Array.from({ length: 3 }, () => {
+      const history: HistoryDTO = createOneHistory(rule)
+      DB_MOCK.history.create(history)
+    })
   })
 }
