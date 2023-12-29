@@ -9,4 +9,5 @@ export interface RuleDTO {
   is_active_sonarqube: boolean
   is_active_local: boolean
   date: Date
+  description: string
 }

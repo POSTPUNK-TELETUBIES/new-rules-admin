@@ -2,7 +2,7 @@ import { RestContext } from 'msw'
 import { DB_MOCK } from '../database/db'
 import { RequestTypeMSW, ResponseTypeMSW } from '../../src/types/mswTypes'
 
-export const getRules = (
+const getRules = (
   req: RequestTypeMSW,
   res: ResponseTypeMSW,
   ctx: RestContext,
@@ -21,3 +21,5 @@ export const getRules = (
 
   return res(ctx.status(200), ctx.json({ rules: [...allRules] }))
 }
+
+export default getRules
