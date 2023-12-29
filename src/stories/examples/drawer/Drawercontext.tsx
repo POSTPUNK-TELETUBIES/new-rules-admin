@@ -32,7 +32,7 @@ export const DrawerProvider = ({ children }: PropsWithChildren) => {
       itemSelectedId,
       setItemSeletedId,
     }),
-    [isOpenDrawer, setIsOpenDrawer, columnActive, setColumnActive],
+    [isOpenDrawer, columnActive, itemSelectedId],
   )
 
   return (
