@@ -12,8 +12,8 @@ interface IDrawerContext {
   setIsOpenDrawer: Dispatch<SetStateAction<boolean>>
   columnActive: string
   setColumnActive: Dispatch<SetStateAction<string>>
-  itemActiveId: string
-  setItemActiveId: Dispatch<SetStateAction<string>>
+  itemSelectedId: string
+  setItemSeletedId: Dispatch<SetStateAction<string>>
 }
 
 export const DrawerContext = createContext<IDrawerContext>({} as IDrawerContext)
@@ -21,7 +21,7 @@ export const DrawerContext = createContext<IDrawerContext>({} as IDrawerContext)
 export const DrawerProvider = ({ children }: PropsWithChildren) => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false)
   const [columnActive, setColumnActive] = useState<string>('')
-  const [itemActiveId, setItemActiveId] = useState<string>('')
+  const [itemSelectedId, setItemSeletedId] = useState<string>('')
 
   const sharedData: IDrawerContext = useMemo(
     () => ({
@@ -29,8 +29,8 @@ export const DrawerProvider = ({ children }: PropsWithChildren) => {
       setIsOpenDrawer,
       columnActive,
       setColumnActive,
-      itemActiveId,
-      setItemActiveId,
+      itemSelectedId,
+      setItemSeletedId,
     }),
     [isOpenDrawer, setIsOpenDrawer, columnActive, setColumnActive],
   )

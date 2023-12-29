@@ -12,14 +12,14 @@ type TableOptionSelectorProps = {
 }
 
 const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
-  const { setIsOpenDrawer, setColumnActive, setItemActiveId } =
+  const { setIsOpenDrawer, setColumnActive, setItemSeletedId } =
     useContext(DrawerContext)
 
   const handleItemClick = useCallback(
     (columnIndex: string) => () => {
       setIsOpenDrawer(true)
       setColumnActive(columnIndex)
-      setItemActiveId(item.id)
+      setItemSeletedId(item.id)
     },
     [setIsOpenDrawer, setColumnActive],
   )

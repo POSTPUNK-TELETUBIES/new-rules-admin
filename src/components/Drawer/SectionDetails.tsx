@@ -6,12 +6,12 @@ import { useContext } from 'react'
 import { DrawerContext } from '../../stories/examples/drawer/Drawercontext'
 
 const SectionDetails = () => {
-  const { itemActiveId } = useContext(DrawerContext)
+  const { itemSelectedId } = useContext(DrawerContext)
 
   const { data } = useQuery<RuleDTO, string>({
     queryKey: ['details'],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/details/?id=${itemActiveId}`)
+      const { data } = await axiosInstance.get(`/details/?id=${itemSelectedId}`)
       return data.details
     },
   })
