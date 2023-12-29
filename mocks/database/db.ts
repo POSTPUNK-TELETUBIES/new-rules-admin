@@ -17,6 +17,7 @@ export const DB_MOCK: DB = factory({
     is_active_sonarqube: Boolean,
     is_active_local: Boolean,
     date: Date,
+    description: String,
   },
 })
 

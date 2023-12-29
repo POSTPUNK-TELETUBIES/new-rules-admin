@@ -7,6 +7,7 @@ interface RuleDetailsProps {
   isActive: boolean
   subtitle: string
   htmlCode: string
+  date: Date
 }
 
 const RuleDetails: React.FC<RuleDetailsProps> = ({
@@ -15,6 +16,7 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
   isActive,
   subtitle,
   htmlCode,
+  date,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
@@ -39,7 +41,7 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
   }, [htmlCode])
 
   return (
-    <Box display='flex' flexDirection='column' gap={2}>
+    <Box display='flex' flexDirection='column' gap={3}>
       <Box
         style={{
           display: 'flex',
@@ -48,12 +50,12 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
         }}
       >
         <Box display='flex' gap={1}>
+          <Chip label={type} variant='outlined' title='tipo de regla' />
           <Chip
             label={severity}
             variant='outlined'
             title='Severidad de la regla'
           />
-          <Chip label={type} variant='outlined' title='tipo de regla' />
         </Box>
         <Typography>
           Regla{' '}
@@ -62,7 +64,7 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
           </Typography>{' '}
           desde:{' '}
           <Typography component='span' color='primary' fontWeight='bold'>
-            {new Date().toLocaleDateString()}
+            {new Date(date).toLocaleDateString()}
           </Typography>
         </Typography>
       </Box>
@@ -86,7 +88,9 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({
         >
           {subtitle}
         </Typography>
-        <Typography color='primary'>DESCRIPCIÓN DE LA REGLA</Typography>
+        <Typography color='primary' mt={1}>
+          DESCRIPCIÓN DE LA REGLA
+        </Typography>
 
         <iframe ref={iframeRef} title='Descripción de la regla' />
       </Box>
