@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Accordion,
   AccordionSummary,
@@ -16,18 +16,30 @@ interface AccordionComponentProps {
   data?: HistoryDTO[]
   selectedUsers: Set<string>
   handleCheckboxChange: (user: string) => void
+  ruleId: string
 }
 
 const AccordionComponent: React.FC<AccordionComponentProps> = ({
   data,
   selectedUsers,
   handleCheckboxChange,
+  ruleId,
 }) => {
   const [open, setOpen] = useState(false)
+  const [filteredAuthors, setFilteredAuthors] = useState<string[]>([])
 
   const handleClick = () => {
     setOpen((prevOpen) => !prevOpen)
   }
+
+  useEffect(() => {
+    // Filtrar autores basándose en el ruleId específico
+    const uniqueAuthors = data
+      ? [...new Set(data.filter(item => item.ruleId === ruleId).map((item) => item.user))]
+      : [];
+
+    setFilteredAuthors(uniqueAuthors);
+  }, [data, ruleId])
 
   return (
     <Accordion expanded={open} onChange={handleClick}>
@@ -42,16 +54,16 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({
       </AccordionSummary>
       <AccordionDetails>
         <FormGroup>
-          {data?.map((item) => (
+          {filteredAuthors.map((author) => (
             <FormControlLabel
-              key={item.id}
+              key={author}
               control={
                 <Checkbox
-                  checked={selectedUsers.has(item.user)}
-                  onChange={() => handleCheckboxChange(item.user)}
+                checked={selectedUsers.has(author)}
+                onChange={() => handleCheckboxChange(author)}
                 />
               }
-              label={item.user}
+              label={author}
             />
           ))}
         </FormGroup>

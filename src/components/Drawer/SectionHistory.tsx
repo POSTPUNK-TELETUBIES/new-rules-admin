@@ -23,10 +23,8 @@ const SectionHistory: React.FC<SectionHistoryProps> = ({ ruleId }) => {
 
   useEffect(() => {
     if (data) {
-      // Filtrar las historias que tienen el mismo ruleId
       const filteredData = data.filter((item) => item.ruleId === ruleId);
 
-      // Inicializar los usuarios seleccionados basados en las historias filtradas
       const initialSelectedUsers = new Set<string>(
         filteredData.map((item) => item.user),
       );
@@ -64,6 +62,7 @@ const SectionHistory: React.FC<SectionHistoryProps> = ({ ruleId }) => {
         data={data ?? []}
         selectedUsers={selectedUsers}
         handleCheckboxChange={handleCheckboxChange}
+        ruleId={ruleId}
       />
       <TimelineSection
         sortedHistory={sortedHistory}
