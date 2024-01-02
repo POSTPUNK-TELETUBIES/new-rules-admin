@@ -5,6 +5,7 @@ import {
   ruleSeverityValues,
   ruleTypeValues,
 } from '../database/arrayOfEnums'
+import { createHistory } from '../factories/dataHistory'
 
 export const createOneRule = (): RuleDTO => {
   const rule: RuleDTO = {
@@ -21,6 +22,7 @@ export const createOneRule = (): RuleDTO => {
     is_active_sonarqube: faker.datatype.boolean(),
     is_active_local: faker.datatype.boolean(),
     date: faker.date.anytime(),
+    history: createHistory(20),
   }
 
   return rule

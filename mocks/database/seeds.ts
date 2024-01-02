@@ -7,5 +7,8 @@ export const seeds = () => {
     const rule: RuleDTO = createOneRule()
 
     DB_MOCK.rule.create(rule)
+
+    // TODO: crear un historial para cada regla
+    // DB_MOCK.
   })
 }
