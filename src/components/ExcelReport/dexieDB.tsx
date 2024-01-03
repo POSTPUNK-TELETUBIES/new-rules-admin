@@ -44,16 +44,15 @@ export async function obtenerHistorias(): Promise<StoredHistoryDTO[]> {
   const historiasAlmacenadas = await db.historias.toArray()
 
   const historiasMasRecientesPorRuleId: Record<string, StoredHistoryDTO> = {}
-
   historiasAlmacenadas.forEach((historia) => {
     const ruleId = historia.ruleId
-
-    if (historiasMasRecientesPorRuleId[ruleId!]) {
-      if (historia.time > historiasMasRecientesPorRuleId[ruleId!].time) {
-        historiasMasRecientesPorRuleId[ruleId!] = historia
+    if (ruleId) {
+      if (
+        !historiasMasRecientesPorRuleId[ruleId] ||
+        historia.time > historiasMasRecientesPorRuleId[ruleId].time
+      ) {
+        historiasMasRecientesPorRuleId[ruleId] = historia
       }
-    } else {
-      historiasMasRecientesPorRuleId[ruleId!] = historia
     }
   })
 

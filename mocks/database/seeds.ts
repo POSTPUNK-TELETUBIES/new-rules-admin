@@ -10,20 +10,16 @@ import {
 } from '../../src/components/ExcelReport/dexieDB'
 
 export const seeds = async () => {
-  try {
-    await limpiarBaseDeDatos()
+  await limpiarBaseDeDatos()
 
-    Array.from({ length: 10 }, async () => {
-      const rule: RuleDTO = createOneRule()
-      DB_MOCK.rule.create(rule)
-      await agregarRule(rule)
-      Array.from({ length: 5 }, async () => {
-        const history: HistoryDTO = createOneHistory(rule)
-        DB_MOCK.history.create(history)
-        await agregarHistoria(history)
-      })
+  Array.from({ length: 10 }, async () => {
+    const rule: RuleDTO = createOneRule()
+    DB_MOCK.rule.create(rule)
+    await agregarRule(rule)
+    Array.from({ length: 5 }, async () => {
+      const history: HistoryDTO = createOneHistory(rule)
+      DB_MOCK.history.create(history)
+      await agregarHistoria(history)
     })
-  } catch (error) {
-    throw error
-  }
+  })
 }
