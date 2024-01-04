@@ -10,16 +10,7 @@ import { AsynProviderNames } from '../../types/providers'
 import { useGetList } from 'data_providers'
 
 const SectionHistory = () => {
-  // const { data } = useQuery<History[], string>({
-  //   queryFn: async () => {
-  //     const { data } = await axiosInstance.get('/history')
-  //     return data.history
-  //   },
-  //   queryKey: ['history'],
-  // })
-
   const getHistory = useGetList(AsynProviderNames.HISTORY)
-  // const proxyRequestHistory = new ProxyRequest(pathJsonRules)
 
   const { data } = useQuery<History[], string>({
     queryFn: async () => {
@@ -28,8 +19,6 @@ const SectionHistory = () => {
     },
     queryKey: ['history'],
   })
-
-  ///////////////////
 
   const [order, setOrder] = useState(Order.Ascending)
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set())

@@ -21,5 +21,6 @@ export const createOneRule = (): Omit<RuleDTO, 'history'> => {
     is_active_sonarqube: faker.datatype.boolean(),
     is_active_local: faker.datatype.boolean(),
     date: faker.date.anytime(),
+    description: '<h1>Hola mundo</h1><input type="text" />',
   }
 }
