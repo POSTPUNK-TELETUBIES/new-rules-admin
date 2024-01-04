@@ -10,11 +10,9 @@ export const fillDB = () => {
 
     const rule_base = createOneRule()
 
-    const rule = DB_MOCK.rule.create({
+    DB_MOCK.rule.create({
       ...rule_base,
       history,
     })
-
-    console.log(rule)
   })
 }

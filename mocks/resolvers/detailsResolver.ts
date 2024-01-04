@@ -9,8 +9,6 @@ export const detailsResolver: ResponseResolver = ({ request }) => {
     where: { id: { equals: id_rule } },
   })
 
-  console.log('detailsResolver', details)
-
   return HttpResponse.json(
     {
       details,

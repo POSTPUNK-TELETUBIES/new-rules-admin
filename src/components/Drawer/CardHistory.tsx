@@ -1,14 +1,14 @@
 import { Avatar, Chip, IconButton, Paper, Typography } from '@mui/material'
-import { HistoryAction } from '../../components/data/history'
 import EditIcon from '@mui/icons-material/Edit'
 import { CurationForm } from '../../stories/examples/Card/CurationForm'
 import { useState } from 'react'
 import { useUpdateOne } from 'data_providers'
 import { AsynProviderNames } from '../../types/providers'
+import { ProposalAction } from '../../types/proposal'
 
 export interface CardHistoryProps {
   user: string
-  action: HistoryAction
+  action: ProposalAction
   sustain: string
   avatar: string
   showEditButton?: boolean
@@ -50,7 +50,7 @@ const CardHistory = ({
       </Typography>
       <Chip
         label={action}
-        color={action === HistoryAction.ActivateRule ? 'success' : 'error'}
+        color={action === ProposalAction.ActivateRule ? 'success' : 'error'}
         sx={{ marginTop: 1 }}
       />
       {isEditing ? (

@@ -6,16 +6,12 @@ const historyListResolver: ResponseResolver = ({ request }) => {
   const id_rule = url.searchParams.get('id')
 
   const rule = DB_MOCK.rule.findFirst({
-    where: {
-      id: {
-        equals: id_rule,
-      },
-    },
+    where: { id: { equals: id_rule } },
   })
 
   return HttpResponse.json(
     {
-      history: rule?.history ?? [],
+      history: rule?.history,
     },
     {
       status: 200,

@@ -1,21 +1,27 @@
-import { useState, Suspense, useEffect } from 'react'
+import { useState, Suspense, useEffect, useContext } from 'react'
 import Avatar from '@mui/material/Avatar'
 import { Box, LinearProgress } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { sortByOrder, Order } from './historyUtils'
 import { TimelineSection } from './TimelineComponent'
 import { AccordionComponent } from './AccordionComponent'
-import { History } from '../data/history'
 import { AsynProviderNames } from '../../types/providers'
-import { useGetList } from 'data_providers'
+import { useGetOne } from 'data_providers'
+import { DrawerContext } from '../../stories/examples/drawer/Drawercontext'
+import { ProposalDTO } from '../../types/proposal'
 
 const SectionHistory = () => {
-  const getHistory = useGetList(AsynProviderNames.HISTORY)
+  const { itemActive } = useContext(DrawerContext)
+  const getHistory = useGetOne(AsynProviderNames.HISTORY)
 
-  const { data } = useQuery<History[], string>({
+  const { data } = useQuery<ProposalDTO[], string>({
     queryFn: async () => {
-      const history = await getHistory()
-      return history as History[]
+      const data = await getHistory({
+        filter: {
+          id: itemActive,
+        },
+      })
+      return data
     },
     queryKey: ['history'],
   })
@@ -63,7 +69,7 @@ const SectionHistory = () => {
             <Avatar
               key={item.id}
               alt={item.user}
-              src={`/static/images/avatar/${item.avatar}.jpg`}
+              src={`/static/images/avatar/${'item.avatar'}.jpg`}
               sx={{ ml: 0.5 }}
             />
           ))}
