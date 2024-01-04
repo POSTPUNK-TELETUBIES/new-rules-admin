@@ -4,7 +4,7 @@ export enum ProposalAction {
 }
 
 export interface ProposalDTO {
-  id: number
+  id: string
   user: string
   sustain: string
   time: Date
