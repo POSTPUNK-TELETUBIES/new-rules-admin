@@ -3,16 +3,25 @@ import { columns } from './tableColumns'
 import { MRT_Localization_ES } from 'material-react-table/locales/es'
 import TableOptionSelector from './TableOptionSelector'
 import { useQuery } from '@tanstack/react-query'
-import { axiosInstance } from '../../services/axios'
+
 import { RuleDTO } from '../../types/rule'
+import { useGetList } from 'data_providers'
+import { AsyncProviderNames } from '../../types/providers'
+import ProxyRequest from '../../services/ProxyRequest'
+
+const pathJsonRules = '/new-rules-admin/dist/rules.json'
 
 const RulesTable = () => {
+
+  const getRules = useGetList(AsyncProviderNames.RULES)
+  const proxyRequestRules = new ProxyRequest(pathJsonRules)
+
   const { data, error, isLoading } = useQuery<RuleDTO[], string>({
-    queryKey: ['rules'],
     queryFn: async () => {
-      const { data } = await axiosInstance.get('/rules')
-      return data.rules
+      const rules =  await proxyRequestRules.makeRequest(getRules)
+      return rules as RuleDTO[]
     },
+    queryKey: ['rules'],
   })
 
   return (
