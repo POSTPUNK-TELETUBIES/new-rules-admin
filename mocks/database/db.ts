@@ -1,4 +1,3 @@
-// import { createOneRule } from './../creators/createOneRule'
 import { ProposalDTO } from './../../src/types/proposal'
 import { FactoryAPI } from '@mswjs/data/lib/glossary'
 import { fillDB } from './fillDB'

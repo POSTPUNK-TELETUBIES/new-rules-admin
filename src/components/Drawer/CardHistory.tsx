@@ -24,7 +24,7 @@ const CardHistory = ({
   showEditButton,
 }: CardHistoryProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false)
-  const [sustento, setSustento] = useState<string>(sustain)
+  const [justification, setJustification] = useState<string>(sustain)
 
   const updateHistory = useUpdateOne(AsynProviderNames.HISTORY)
 
@@ -35,7 +35,7 @@ const CardHistory = ({
         newText: dataform.explanation,
       })
 
-      setSustento(updatedProposal?.sustain)
+      setJustification(updatedProposal?.sustain)
       setIsEditing(false)
     } catch (error) {
       throw new Error(error as string)
@@ -59,11 +59,11 @@ const CardHistory = ({
         <CurationForm
           onSubmit={handleSave}
           isEditing={isEditing}
-          initialValues={{ explanation: sustento }}
+          initialValues={{ explanation: justification }}
         />
       ) : (
         <>
-          <Typography sx={{ marginTop: 1 }}>{sustento}</Typography>
+          <Typography sx={{ marginTop: 1 }}>{justification}</Typography>
           {showEditButton && (
             <IconButton
               aria-label='edit'

@@ -3,8 +3,6 @@ import { DB_MOCK } from './../database/db'
 
 export const ruleResolver: ResponseResolver = ({
   request,
-  // params,
-  // cookies,
 }) => {
   const url = new URL(request.url)
   const limit = Number(url.searchParams.get('limit') ?? 20)
