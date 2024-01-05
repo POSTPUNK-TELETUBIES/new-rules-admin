@@ -50,7 +50,12 @@ export const CurationForm = ({
       {hasSwitch && (
         <Switch defaultChecked={initialIsActive} {...register('isActive')} />
       )}
-      <TextField placeholder='sustento' {...register('explanation')} />
+      <TextField
+        placeholder='sustento'
+        {...register('explanation')}
+        size='small'
+        sx={{ mt: 2, mb: 1 }}
+      />
       <Typography>{errors.explanation?.message}</Typography>
       <Box display='flex'>
         <Button type='submit'>
@@ -60,4 +65,3 @@ export const CurationForm = ({
     </Box>
   )
 }
-

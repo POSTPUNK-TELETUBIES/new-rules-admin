@@ -26,7 +26,7 @@ const SectionHistory = () => {
     queryKey: ['history'],
   })
 
-  const [order, setOrder] = useState(Order.Ascending)
+  const [order, setOrder] = useState(Order.Descending)
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set())
 
   useEffect(() => {

@@ -12,6 +12,7 @@ import TimelineOppositeContent, {
 import CardHistory from './CardHistory'
 import { Order } from './historyUtils'
 import { ProposalDTO } from '../../types/proposal'
+import { getDateDifference } from '../../utils/getDateDifference'
 
 interface TimelineSectionProps {
   sortedHistory: ProposalDTO[]
@@ -41,7 +42,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
         <TimelineItem key={item.id}>
           <TimelineOppositeContent>
             <Suspense fallback={<LinearProgress />}>
-              {item.time.toLocaleString()}
+              {getDateDifference(item.time)}
             </Suspense>
           </TimelineOppositeContent>
           <TimelineSeparator>
