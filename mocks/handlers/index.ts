@@ -11,6 +11,6 @@ export const handlers = [
   http.get('/api/details', detailsResolver),
 
   http.get('/api/history', historyListResolver),
-  http.get('/api/history/add', historyAddResolver),
-  http.get('/api/history/update', historyUpdateResolver),
+  http.post('/api/history', historyAddResolver),
+  http.put('/api/history', historyUpdateResolver),
 ]
