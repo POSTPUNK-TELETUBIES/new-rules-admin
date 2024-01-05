@@ -1,6 +1,6 @@
-import { createOneProposal } from '../creators/createOneProposal'
+import { createOneProposal } from '../factories/createOneProposal'
 import { DB_MOCK } from './db'
-import { createOneRule } from '../creators/createOneRule'
+import { createOneRule } from '../factories/createOneRule'
 import { faker } from '@faker-js/faker'
 
 export const fillDB = () => {
