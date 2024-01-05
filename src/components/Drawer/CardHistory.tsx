@@ -1,10 +1,11 @@
 import { Avatar, Chip, IconButton, Paper, Typography } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import { CurationForm } from '../../stories/examples/Card/CurationForm'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUpdateOne } from 'data_providers'
 import { AsynProviderNames } from '../../types/providers'
 import { ProposalAction } from '../../types/proposal'
+import { useMutation } from '@tanstack/react-query'
 
 export interface CardHistoryProps {
   id: string
@@ -28,14 +29,19 @@ const CardHistory = ({
 
   const updateHistory = useUpdateOne(AsynProviderNames.HISTORY)
 
-  const handleSave = async (dataform: any) => {
-    try {
-      const updatedProposal = await updateHistory({
-        id: id,
-        newText: dataform.explanation,
-      })
+  const { mutate, data } = useMutation({
+    mutationFn: async (mutateData: { id: string; explanation: string }) => {
+      return await updateHistory(mutateData)
+    },
+  })
 
-      setJustification(updatedProposal?.sustain)
+  useEffect(() => {
+    setJustification(data?.sustain || justification)
+  }, [data])
+
+  const handleSave = async (dataform: { explanation: string }) => {
+    try {
+      mutate({ ...dataform, id: id })
       setIsEditing(false)
     } catch (error) {
       throw new Error(error as string)

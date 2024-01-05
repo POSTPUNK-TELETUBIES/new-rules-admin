@@ -22,9 +22,11 @@ export class HistoryService implements IDataProvider {
   }
 
   async updateOne(payload: Partial<any>): Promise<any> {
-    const { id, newText } = payload
+    const { id, explanation } = payload
 
-    const url = `/history/?id=${id}&newText=${encodeURIComponent(newText)}`
+    const url = `/history/?id=${id}&explanation=${encodeURIComponent(
+      explanation,
+    )}`
 
     const { data } = await this.client.put(url, payload)
 

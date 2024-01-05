@@ -4,7 +4,7 @@ import { DB_MOCK } from '../../database/db'
 const historyUpdateResolver: ResponseResolver = ({ request }) => {
   const url = new URL(request.url)
   const id = url.searchParams.get('id')
-  const newText = url.searchParams.get('newText')
+  const explanation = url.searchParams.get('explanation')
 
   const proposal = DB_MOCK.proposal.update({
     where: {
@@ -13,7 +13,7 @@ const historyUpdateResolver: ResponseResolver = ({ request }) => {
       },
     },
     data: {
-      sustain: newText,
+      sustain: explanation,
     },
   })
 
