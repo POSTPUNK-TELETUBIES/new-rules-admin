@@ -1,10 +1,15 @@
 import { createOneProposal } from '../creators/createOneProposal'
 import { DB_MOCK } from './db'
 import { createOneRule } from '../creators/createOneRule'
+import { faker } from '@faker-js/faker'
 
 export const fillDB = () => {
-  Array.from({ length: 10 }, () => {
-    const history = Array.from({ length: 4 }, () =>
+  const countRules = faker.number.int({ min: 15, max: 20 })
+
+  Array.from({ length: countRules }, () => {
+    const countProposals = faker.number.int({ min: 1, max: 5 })
+
+    const history = Array.from({ length: countProposals }, () =>
       DB_MOCK.proposal.create(createOneProposal()),
     )
 

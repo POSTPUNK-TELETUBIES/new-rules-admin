@@ -7,6 +7,7 @@ import { AsynProviderNames } from '../../types/providers'
 import { ProposalAction } from '../../types/proposal'
 
 export interface CardHistoryProps {
+  id: string
   user: string
   action: ProposalAction
   sustain: string
@@ -15,13 +16,14 @@ export interface CardHistoryProps {
 }
 
 const CardHistory = ({
+  id,
   user,
   action,
   sustain,
   avatar,
   showEditButton,
 }: CardHistoryProps) => {
-  const [isEditing, setIsEditing] = useState<boolean>(true)
+  const [isEditing, setIsEditing] = useState<boolean>(false)
   const [sustento, setSustento] = useState<string>(sustain)
 
   const updateHistory = useUpdateOne(AsynProviderNames.HISTORY)
@@ -29,7 +31,7 @@ const CardHistory = ({
   const handleSave = async (dataform: any) => {
     try {
       const updatedProposal = await updateHistory({
-        id: 1,
+        id: id,
         newText: dataform.explanation,
       })
 

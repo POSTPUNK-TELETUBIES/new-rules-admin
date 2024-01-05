@@ -9,4 +9,5 @@ export interface ProposalDTO {
   sustain: string
   time: Date
   action: ProposalAction
+  avatar: string
 }

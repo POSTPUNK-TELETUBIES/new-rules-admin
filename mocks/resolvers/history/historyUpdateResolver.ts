@@ -3,28 +3,24 @@ import { DB_MOCK } from '../../database/db'
 
 const historyUpdateResolver: ResponseResolver = ({ request }) => {
   const url = new URL(request.url)
-  const id = Number(url.searchParams.get('id') ?? 20)
-  const proposalText = url.searchParams.get('proposalText')
+  const id = url.searchParams.get('id')
+  const newText = url.searchParams.get('newText')
 
-  console.log(id, proposalText)
-
-  const proposal = DB_MOCK.rule.update({
+  const proposal = DB_MOCK.proposal.update({
     where: {
       id: {
         equals: id,
       },
     },
     data: {
-      history: {
-        set: proposalText,
-      },
+      sustain: newText,
     },
   })
 
   return HttpResponse.json(
     {
       proposal: {
-        sustain: 'sustento ya modificado de ejemplo',
+        sustain: proposal?.sustain,
       },
     },
     {

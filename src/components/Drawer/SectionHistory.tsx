@@ -69,7 +69,7 @@ const SectionHistory = () => {
             <Avatar
               key={item.id}
               alt={item.user}
-              src={`/static/images/avatar/${'item.avatar'}.jpg`}
+              src={item.avatar}
               sx={{ ml: 0.5 }}
             />
           ))}

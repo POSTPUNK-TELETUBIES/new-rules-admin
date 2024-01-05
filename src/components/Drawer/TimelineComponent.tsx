@@ -51,7 +51,8 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
           <TimelineContent>
             <Suspense fallback={<LinearProgress />}>
               <CardHistory
-                avatar={'item.avatar'}
+                id={item.id}
+                avatar={item.avatar}
                 user={item.user}
                 action={item.action}
                 sustain={item.sustain}

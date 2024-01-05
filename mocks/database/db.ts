@@ -29,6 +29,7 @@ export const DB_MOCK: DB = factory({
     sustain: String,
     time: Date,
     action: String,
+    avatar: String,
   },
 })
 

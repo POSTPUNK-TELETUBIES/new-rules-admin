@@ -22,13 +22,13 @@ export class HistoryService implements IDataProvider {
   // }
 
   async updateOne(payload: Partial<any>): Promise<any> {
-    // const { data } = await this.client.get('/history/update', payload)
-    console.log('payload', payload)
+    const { id, newText } = payload
 
-    const { data } = await this.client.get(
-      `/history/update?id=123&proposalText=${encodeURIComponent('Hola mundo')}`,
-      payload,
-    )
+    const url = `/history/update?id=${id}&newText=${encodeURIComponent(
+      newText,
+    )}`
+
+    const { data } = await this.client.get(url, payload)
 
     return data.proposal
   }

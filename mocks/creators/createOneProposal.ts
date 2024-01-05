@@ -9,5 +9,6 @@ export const createOneProposal = (): ProposalDTO => {
     sustain: faker.lorem.sentence({ min: 10, max: 20 }),
     time: faker.date.past(),
     action: faker.helpers.arrayElement(proposalActionValues),
+    avatar: faker.internet.avatar(),
   }
 }
