@@ -75,7 +75,7 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({ rule }) => {
             borderRadius: 2,
           }}
         >
-          {'Lorem 30 ??'}
+          {rule.rule}
         </Typography>
         <Typography color='primary' mt={1}>
           DESCRIPCIÓN DE LA REGLA
