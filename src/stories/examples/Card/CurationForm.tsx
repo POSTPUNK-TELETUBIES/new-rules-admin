@@ -26,7 +26,10 @@ const ButtonSwitch = (
   if (isEditing) {
     return 'Guardar'
   }
-  return hasSwitch ? (initialIsActive ? 'Desactivar' : 'Activar') : 'Guardar'
+
+  const text = initialIsActive ? 'Desactivar' : 'Activar'
+
+  return hasSwitch ? text : 'Guardar'
 }
 
 // TODO: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
