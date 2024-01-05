@@ -13,7 +13,7 @@ interface Options {
 
 interface IJsonFileGenerator {
   //Todo: Change to private methods and create a public method to generate the json files
-  generateRules(options?: Options): void;
+  generateAllJson(): void;
 }
 
 const defaultOptions: Options = {
@@ -28,8 +28,7 @@ class JsonFileGenerator implements IJsonFileGenerator {
 
   ) { }
 
-  public generateRules() {
-
+  private generateRules() {
 
     const allRules = this.mswDb.rule.findMany({ strict: true })
     const parsedRules = JSON.stringify(allRules)
@@ -38,6 +37,10 @@ class JsonFileGenerator implements IJsonFileGenerator {
     fs.writeFileSync(pathFileCreate, parsedRules)
     console.log('Rules generated Succesfully!')
 
+  }
+
+  public generateAllJson(){
+    this.generateRules()
   }
 
 }
