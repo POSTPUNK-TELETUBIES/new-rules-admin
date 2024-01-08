@@ -1,10 +1,10 @@
-import { HttpResponse, ResponseResolver } from 'msw'
+import { HttpResponse } from 'msw'
 import { DB_MOCK } from '../../database/db'
+import { MswArguments } from '../../../src/types/msw'
 
-const historyUpdateResolver: ResponseResolver = ({ request }) => {
-  const url = new URL(request.url)
-  const id = url.searchParams.get('id')
-  const explanation = url.searchParams.get('explanation')
+const historyUpdateResolver = async ({ request, params }: MswArguments) => {
+  const id = params.id
+  const payload = (await request.json()) as { explanation: string }
 
   const proposal = DB_MOCK.proposal.update({
     where: {
@@ -13,7 +13,7 @@ const historyUpdateResolver: ResponseResolver = ({ request }) => {
       },
     },
     data: {
-      sustain: explanation,
+      sustain: payload.explanation,
     },
   })
 

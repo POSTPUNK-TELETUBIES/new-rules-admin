@@ -12,5 +12,5 @@ export const handlers = [
 
   http.get('/api/history', historyListResolver),
   http.post('/api/history/:id', historyAddResolver),
-  http.put('/api/history', historyUpdateResolver),
+  http.put('/api/history/:id', historyUpdateResolver),
 ]

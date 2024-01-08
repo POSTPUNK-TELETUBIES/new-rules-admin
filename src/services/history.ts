@@ -18,19 +18,16 @@ export class HistoryService implements IDataProvider {
 
   async createOne(payload: any): Promise<void | Partial<any>> {
     const { ruleId, ...others } = payload
+    const url = `/history/${ruleId}`
 
-    const { data } = await this.client.get(`/history/${ruleId}`, others)
+    const { data } = await this.client.get(url, others)
     return data
   }
 
   async updateOne(payload: Partial<any>): Promise<any> {
-    const { id, explanation } = payload
+    const { id, ...others } = payload
 
-    const url = `/history/?id=${id}&explanation=${encodeURIComponent(
-      explanation,
-    )}`
-
-    const { data } = await this.client.put(url, payload)
+    const { data } = await this.client.put(`/history/${id}`, others)
 
     return data.proposal
   }

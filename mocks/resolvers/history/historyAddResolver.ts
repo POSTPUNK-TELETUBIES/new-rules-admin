@@ -1,11 +1,11 @@
 import { ProposalDTO } from '../../../src/types/proposal'
 import { DB_MOCK } from '../../database/db'
-import { HttpResponse, ResponseResolver } from 'msw'
+import { HttpResponse } from 'msw'
 import { createOneProposal } from '../../factories/createOneProposal'
+import { MswArguments } from '../../../src/types/msw'
 
-const historyAddResolver: ResponseResolver = async ({ request }) => {
-  const url = new URL(request.url)
-  const ruleId = url.searchParams.get('id')
+const historyAddResolver = async ({ request, params }: MswArguments) => {
+  const ruleId = params.id
 
   const payload = (await request.json()) as Pick<
     ProposalDTO,
