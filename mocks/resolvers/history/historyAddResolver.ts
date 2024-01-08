@@ -1,4 +1,3 @@
-// import { ProposalAction, ProposalDTO } from '../../../src/types/proposal'
 import { ProposalDTO } from '../../../src/types/proposal'
 import { DB_MOCK } from '../../database/db'
 import { HttpResponse, ResponseResolver } from 'msw'
