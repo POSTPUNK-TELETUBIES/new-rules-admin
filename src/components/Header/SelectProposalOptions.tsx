@@ -23,12 +23,8 @@ const ITEMS: ItemOfSelector[] = [
   {
     icon: <DownloadIcon />,
     text: 'Descargar reportes',
-    onClick: async () => {
-      try {
-        await generateExcel()
-      } catch (error) {
-        console.error('Error al generar el Excel:', error)
-      }
+    onClick: () => {
+      generateExcel()
     },
   },
 ]
