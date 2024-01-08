@@ -5,9 +5,9 @@ export enum ProposalAction {
 
 export interface ProposalDTO {
   id: string
-  user: string
-  sustain: string
-  time: Date
-  action: ProposalAction
+  user: string /*  */
+  sustain: string /*  */
+  time: Date /*  */
+  action: ProposalAction /*  */
   avatar: string
 }

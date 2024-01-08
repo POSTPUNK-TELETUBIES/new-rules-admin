@@ -1,27 +1,25 @@
+// import { ProposalAction, ProposalDTO } from '../../../src/types/proposal'
+import { ProposalDTO } from '../../../src/types/proposal'
 import { DB_MOCK } from '../../database/db'
 import { HttpResponse, ResponseResolver } from 'msw'
+import { createOneProposal } from '../../factories/createOneProposal'
 
-const historyAddResolver: ResponseResolver = ({ request }) => {
-  const url = new URL(request.url)
-  const id = Number(url.searchParams.get('id') ?? 20)
-  const proposalText = Number(url.searchParams.get('proposalText') ?? 0)
+const historyAddResolver: ResponseResolver = async ({ request }) => {
+  const payload = (await request.json()) as Pick<
+    ProposalDTO,
+    'user' | 'sustain' | 'time' | 'action'
+  >
 
-  const proposal = DB_MOCK.rule.update({
-    where: {
-      id: {
-        equals: id,
-      },
-    },
-    data: {
-      history: {
-        push: proposalText,
-      },
-    },
+  const proposalBase = createOneProposal()
+
+  const proposal = DB_MOCK.proposal.create({
+    ...proposalBase,
+    ...payload,
   })
 
   return HttpResponse.json(
     {
-      proposal,
+      proposal: proposal,
     },
     {
       status: 200,
