@@ -1,4 +1,4 @@
-import { createHistory } from '../../../mocks/factories/dataHistory'
+import { createHistory } from '../../../mocks/creators/createOneHistory'
 import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import TimelineSection from '../../components/Drawer/TimelineComponent';

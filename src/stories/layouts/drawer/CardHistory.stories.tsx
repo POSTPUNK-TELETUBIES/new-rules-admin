@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import CardHistory, { CardHistoryProps } from '../../../components/Drawer/CardHistory';
-import { createHistory } from '../../../../mocks/factories/dataHistory';
+import { createHistory } from '../../../../mocks/creators/createOneHistory';
 
 export default {
   title: 'layouts/CardHistory',
