@@ -5,7 +5,7 @@ import SyncAltIcon from '@mui/icons-material/SyncAlt'
 import Badge from '@mui/material/Badge'
 import StorageIcon from '@mui/icons-material/Storage'
 import type { ItemOfSelector } from '../SelectOptions'
-import { generarExcel } from '../ExcelReport/excelReport'
+import { generateExcel } from '../ExcelReport/excelReport'
 
 const SelectOptions = lazy(() => import('../SelectOptions'))
 
@@ -23,7 +23,7 @@ const ITEMS: ItemOfSelector[] = [
   {
     icon: <DownloadIcon />,
     text: 'Descargar reportes',
-    onClick: () => {generarExcel()},
+    onClick: () => generateExcel(),
   },
 ]
 

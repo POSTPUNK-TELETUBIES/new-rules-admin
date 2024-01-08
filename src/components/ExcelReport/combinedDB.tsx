@@ -1,4 +1,5 @@
-import { StoredRuleDTO, obtenerHistorias, obtenerRules } from './dexieDB'
+import { getHistory, getRules } from './databaseService'
+import { StoredRuleDTO } from './models'
 
 export type CombinedDataDTO = {
   ruleCode: string
@@ -10,20 +11,20 @@ export type CombinedDataDTO = {
   historyTime: Date
 }
 
-export async function obtenerDatosCombinados(): Promise<CombinedDataDTO[]> {
+export async function getCombinedData(): Promise<CombinedDataDTO[]> {
   try {
-    const historias = await obtenerHistorias()
-    const reglas = await obtenerRules()
+    const historias = await getHistory()
+    const rules = await getRules()
 
-    const reglasIndexadas: Record<string, StoredRuleDTO> = {}
-    reglas.forEach((regla) => {
-      reglasIndexadas[regla.id] = regla
+    const indexRules: Record<string, StoredRuleDTO> = {}
+    rules.forEach((rule) => {
+      indexRules[rule.id] = rule
     })
 
     const combinedData: CombinedDataDTO[] = []
 
-    historias.forEach((historia) => {
-      const rule = historia.ruleId ? reglasIndexadas[historia.ruleId] : null
+    historias.forEach((history) => {
+      const rule = history.ruleId ? indexRules[history.ruleId] : null
 
       if (rule) {
         combinedData.push({
@@ -31,9 +32,9 @@ export async function obtenerDatosCombinados(): Promise<CombinedDataDTO[]> {
           ruleRule: rule.rule,
           ruleIsActiveSonarqube: rule.is_active_sonarqube,
           ruleDate: rule.date,
-          historyUser: historia.user,
-          historySustain: historia.sustain,
-          historyTime: historia.time,
+          historyUser: history.user,
+          historySustain: history.sustain,
+          historyTime: history.time,
         })
       }
     })
