@@ -2,10 +2,10 @@ import { ProposalDTO } from '../../../src/types/proposal'
 import { DB_MOCK } from '../../database/db'
 import { HttpResponse } from 'msw'
 import { createOneProposal } from '../../factories/createOneProposal'
-import { MswArguments } from '../../../src/types/msw'
+import { ResponseResolverMSW } from '../../../src/types/msw'
 
-const historyAddResolver = async ({ request, params }: MswArguments) => {
-  const ruleId = params.id
+const historyAddResolver: ResponseResolverMSW = async ({ request, params }) => {
+  const ruleId = params.ruleId
 
   const payload = (await request.json()) as Pick<
     ProposalDTO,

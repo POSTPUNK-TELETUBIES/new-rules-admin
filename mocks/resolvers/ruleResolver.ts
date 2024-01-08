@@ -1,9 +1,7 @@
 import { ResponseResolver, HttpResponse } from 'msw'
 import { DB_MOCK } from './../database/db'
 
-export const ruleResolver: ResponseResolver = ({
-  request,
-}) => {
+export const ruleResolver: ResponseResolver = ({ request }) => {
   const url = new URL(request.url)
   const limit = Number(url.searchParams.get('limit') ?? 20)
   const offset = Number(url.searchParams.get('offset') ?? 0)

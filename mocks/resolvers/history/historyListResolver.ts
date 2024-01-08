@@ -1,7 +1,8 @@
+import { ResponseResolverMSW } from '../../../src/types/msw'
 import { DB_MOCK } from '../../database/db'
-import { HttpResponse, ResponseResolver } from 'msw'
+import { HttpResponse } from 'msw'
 
-const historyListResolver: ResponseResolver = ({ request }) => {
+const historyListResolver: ResponseResolverMSW = ({ request }) => {
   const url = new URL(request.url)
   const id_rule = url.searchParams.get('id')
 

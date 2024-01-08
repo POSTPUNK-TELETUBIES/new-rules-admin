@@ -1,8 +1,11 @@
 import { HttpResponse } from 'msw'
 import { DB_MOCK } from '../../database/db'
-import { MswArguments } from '../../../src/types/msw'
+import { ResponseResolverMSW } from '../../../src/types/msw'
 
-const historyUpdateResolver = async ({ request, params }: MswArguments) => {
+const historyUpdateResolver: ResponseResolverMSW = async ({
+  request,
+  params,
+}) => {
   const id = params.id
   const payload = (await request.json()) as { explanation: string }
 
