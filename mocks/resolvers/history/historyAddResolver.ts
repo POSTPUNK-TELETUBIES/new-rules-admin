@@ -4,6 +4,9 @@ import { HttpResponse, ResponseResolver } from 'msw'
 import { createOneProposal } from '../../factories/createOneProposal'
 
 const historyAddResolver: ResponseResolver = async ({ request }) => {
+  const url = new URL(request.url)
+  const ruleId = url.searchParams.get('id')
+
   const payload = (await request.json()) as Pick<
     ProposalDTO,
     'user' | 'sustain' | 'time' | 'action'
@@ -14,6 +17,7 @@ const historyAddResolver: ResponseResolver = async ({ request }) => {
   const proposal = DB_MOCK.proposal.create({
     ...proposalBase,
     ...payload,
+    rule: ruleId,
   })
 
   return HttpResponse.json(

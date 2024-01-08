@@ -13,7 +13,6 @@ import { ProposalDTO } from '../../types/proposal'
 const SectionHistory = () => {
   const { itemActive } = useContext(DrawerContext)
   const getHistory = useGetOne(AsynProviderNames.HISTORY)
-  /* ESTADO */
 
   const { data } = useQuery<ProposalDTO[], string>({
     queryFn: async () => {
@@ -86,7 +85,6 @@ const SectionHistory = () => {
         order={order}
         handleChangeOrder={handleChangeOrder}
       />
-      {/* TU COMPOENTE  */}
     </>
   )
 }

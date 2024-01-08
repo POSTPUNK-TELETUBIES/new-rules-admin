@@ -17,7 +17,9 @@ export class HistoryService implements IDataProvider {
   }
 
   async createOne(payload: any): Promise<void | Partial<any>> {
-    const { data } = await this.client.get('/history', payload)
+    const { ruleId, ...others } = payload
+
+    const { data } = await this.client.get(`/history/${ruleId}`, others)
     return data
   }
 
