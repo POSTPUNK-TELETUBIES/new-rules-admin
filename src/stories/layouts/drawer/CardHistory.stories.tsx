@@ -1,13 +1,15 @@
-import { Meta } from '@storybook/react';
-import CardHistory, { CardHistoryProps } from '../../../components/Drawer/CardHistory';
-import { createHistory } from '../../../../mocks/factories/dataHistory';
+import { Meta } from '@storybook/react'
+import CardHistory, {
+  CardHistoryProps,
+} from '../../../components/Drawer/CardHistory'
+import { createManyProposals } from '../../../../mocks/factories/createManyProposals'
 
 export default {
   title: 'layouts/CardHistory',
   component: CardHistory,
-} as Meta;
+} as Meta
 
-const data = createHistory();
+const data = createManyProposals()
 
 export const userCard = (_args: CardHistoryProps) => (
   <div>
@@ -15,4 +17,4 @@ export const userCard = (_args: CardHistoryProps) => (
       <CardHistory key={item.id} {...item} />
     ))}
   </div>
-);
+)

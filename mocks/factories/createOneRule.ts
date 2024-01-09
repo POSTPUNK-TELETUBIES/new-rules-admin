@@ -6,8 +6,8 @@ import {
   ruleTypeValues,
 } from '../database/arrayOfEnums'
 
-export const createOneRule = (): RuleDTO => {
-  const rule: RuleDTO = {
+export const createOneRule = (): Omit<RuleDTO, 'history'> => {
+  return {
     id: faker.string.uuid(),
     code: `${faker.helpers.arrayElement(ruleLanguageValues)}:${faker.number.int(
       {
@@ -21,7 +21,6 @@ export const createOneRule = (): RuleDTO => {
     is_active_sonarqube: faker.datatype.boolean(),
     is_active_local: faker.datatype.boolean(),
     date: faker.date.anytime(),
+    description: '<h1>Hola mundo</h1><input type="text" />',
   }
-
-  return rule
 }
