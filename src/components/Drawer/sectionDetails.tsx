@@ -8,18 +8,17 @@ import { AsynProviderNames } from '../../types/providers'
 
 const SectionDetails = () => {
   const { itemActive } = useContext(DrawerContext)
-  const getDetails = useGetOne(AsynProviderNames.DETAILS)
+  const getRule = useGetOne(AsynProviderNames.RULE)
 
   const { data } = useQuery<RuleDTO, string>({
     queryFn: async () => {
-      const data = await getDetails({
-        filter: {
-          id: itemActive,
-        },
+      const data = await getRule({
+        id: itemActive,
       })
-      return data
+
+      return data.rule
     },
-    queryKey: ['details'],
+    queryKey: ['rule'],
   })
 
   return (

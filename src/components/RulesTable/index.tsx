@@ -8,7 +8,7 @@ import { useGetList } from 'data_providers'
 import { AsynProviderNames } from '../../types/providers'
 
 const RulesTable = () => {
-  const getRules = useGetList(AsynProviderNames.RULES)
+  const getRules = useGetList(AsynProviderNames.RULE)
 
   const { data, error, isLoading } = useQuery<RuleDTO[], string>({
     queryFn: async () => {
