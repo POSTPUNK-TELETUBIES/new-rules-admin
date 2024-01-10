@@ -65,6 +65,7 @@ const CardHistory = ({
         <CurationForm
           onSubmit={handleSave}
           isEditing={isEditing}
+          setIsEditing={setIsEditing}
           initialValues={{ explanation: justification }}
         />
       ) : (

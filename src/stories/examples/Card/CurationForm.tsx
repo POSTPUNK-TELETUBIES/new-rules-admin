@@ -9,6 +9,7 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { resolver } from './CurationValidation'
 import { CurationDTO } from './types'
+import { Dispatch, SetStateAction } from 'react'
 
 export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   onSubmit?: SubmitHandler<CurationDTO>
@@ -16,6 +17,7 @@ export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   initialIsActive?: boolean
   initialValues?: Partial<CurationDTO>
   isEditing?: boolean
+  setIsEditing?: Dispatch<SetStateAction<boolean>>
 }
 
 const ButtonSwitch = (
@@ -40,6 +42,7 @@ export const CurationForm = ({
   initialIsActive,
   initialValues,
   isEditing = false,
+  setIsEditing = () => {},
   ...boxProps
 }: Readonly<CurationFormProps>) => {
   const {
@@ -55,15 +58,18 @@ export const CurationForm = ({
       )}
       <TextField
         multiline
-        defaultValue = { initialValues?.explanation}
+        defaultValue={initialValues?.explanation}
         {...register('explanation')}
         size='small'
-        sx={{ mt: 2, mb: 1 }}
+        sx={{ mt: 2, mb: 1, width: '100%' }}
       />
       <Typography>{errors.explanation?.message}</Typography>
       <Box display='flex'>
         <Button type='submit'>
           {ButtonSwitch(hasSwitch, initialIsActive, isEditing)}
+        </Button>
+        <Button type='button' onClick={() => setIsEditing(false)}>
+          Cancelar
         </Button>
       </Box>
     </Box>
