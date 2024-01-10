@@ -57,7 +57,11 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({
                 user={item.user}
                 action={item.action}
                 sustain={item.sustain}
-                showEditButton={index === 0}
+                showEditButton={
+                  order === Order.Ascending
+                    ? index === sortedHistory.length - 1
+                    : index === 0
+                }
               />
             </Suspense>
           </TimelineContent>
