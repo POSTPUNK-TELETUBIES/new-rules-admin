@@ -54,7 +54,8 @@ export const CurationForm = ({
         <Switch defaultChecked={initialIsActive} {...register('isActive')} />
       )}
       <TextField
-        placeholder='sustento'
+        multiline
+        defaultValue = { initialValues?.explanation}
         {...register('explanation')}
         size='small'
         sx={{ mt: 2, mb: 1 }}
