@@ -13,7 +13,7 @@ const DrawerBase = ({ children }: PropsWithChildren) => {
       open={isOpenDrawer}
       onClose={() => setIsOpenDrawer(false)}
     >
-      <Box>
+      <Box width={1} maxWidth={700} minWidth={700}>
         <Suspense fallback={<LinearProgress />}>{children}</Suspense>
       </Box>
     </Drawer>

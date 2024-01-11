@@ -6,15 +6,14 @@ import {
   useMemo,
   PropsWithChildren,
 } from 'react'
-import { RuleDTO } from '../../../types/rule'
 
 interface IDrawerContext {
   isOpenDrawer: boolean
   setIsOpenDrawer: Dispatch<SetStateAction<boolean>>
   columnActive: string
   setColumnActive: Dispatch<SetStateAction<string>>
-  itemActive: RuleDTO
-  setItemActive: Dispatch<SetStateAction<RuleDTO>>
+  itemActive: string
+  setItemActive: Dispatch<SetStateAction<string>>
 }
 
 export const DrawerContext = createContext<IDrawerContext>({} as IDrawerContext)
@@ -22,7 +21,7 @@ export const DrawerContext = createContext<IDrawerContext>({} as IDrawerContext)
 export const DrawerProvider = ({ children }: PropsWithChildren) => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false)
   const [columnActive, setColumnActive] = useState<string>('')
-  const [itemActive, setItemActive] = useState<RuleDTO>({} as RuleDTO)
+  const [itemActive, setItemActive] = useState<string>('')
 
   const sharedData: IDrawerContext = useMemo(
     () => ({

@@ -19,7 +19,7 @@ const TableOptionSelector = ({ item }: TableOptionSelectorProps) => {
     (columnIndex: string) => () => {
       setIsOpenDrawer(true)
       setColumnActive(columnIndex)
-      setItemActive(item)
+      setItemActive(item.id)
     },
     [setIsOpenDrawer, setColumnActive],
   )
