@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 import { ProposalDTO } from '../../src/types/proposal'
 import { proposalActionValues } from '../database/arrayOfEnums'
 
-export const createOneProposal = (): Omit<ProposalDTO, 'rule'> => {
+export const createOneProposal = (): Omit<ProposalDTO, 'ruleId'> => {
   return {
     id: faker.string.uuid(),
     user: faker.internet.email(),

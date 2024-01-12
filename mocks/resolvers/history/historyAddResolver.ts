@@ -17,7 +17,7 @@ const historyAddResolver: ResponseResolverMSW = async ({ request, params }) => {
   const proposal = DB_MOCK.proposal.create({
     ...proposalBase,
     ...payload,
-    rule: ruleId,
+    ruleId: ruleId,
   })
 
   return HttpResponse.json(

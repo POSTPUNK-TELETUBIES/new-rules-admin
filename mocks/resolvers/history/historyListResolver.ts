@@ -4,15 +4,29 @@ import { HttpResponse } from 'msw'
 
 const historyListResolver: ResponseResolverMSW = ({ request }) => {
   const url = new URL(request.url)
-  const id_rule = url.searchParams.get('id')
+  const ruleId = url.searchParams.get('id')
+  const limit = Number(url.searchParams.get('limit') ?? 20)
+  const offset = Number(url.searchParams.get('offset') ?? 0)
 
-  const rule = DB_MOCK.rule.findFirst({
-    where: { id: { equals: id_rule } },
-  })
+  const shouldUseCustomLimit = limit && offset
+
+  const history = shouldUseCustomLimit
+    ? DB_MOCK.proposal.findMany({
+        where: {
+          ruleId: { equals: ruleId },
+        },
+        take: limit,
+        skip: offset,
+      })
+    : DB_MOCK.proposal.findMany({
+        where: {
+          ruleId: { equals: ruleId },
+        },
+      })
 
   return HttpResponse.json(
     {
-      history: rule?.history,
+      history: history,
     },
     {
       status: 200,

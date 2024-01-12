@@ -7,14 +7,14 @@ export const fillDB = () => {
   const countRules = faker.number.int({ min: 15, max: 20 })
 
   Array.from({ length: countRules }, () => {
-    const countProposals = faker.number.int({ min: 1, max: 5 })
+    const countProposals = faker.number.int({ min: 5, max: 30 })
 
     const rule_base = createOneRule()
 
     const history = Array.from({ length: countProposals }, () =>
       DB_MOCK.proposal.create({
         ...createOneProposal(),
-        rule: rule_base.id,
+        ruleId: rule_base.id,
       }),
     )
 
