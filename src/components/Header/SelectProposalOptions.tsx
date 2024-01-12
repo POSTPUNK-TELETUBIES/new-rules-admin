@@ -5,7 +5,7 @@ import SyncAltIcon from '@mui/icons-material/SyncAlt'
 import Badge from '@mui/material/Badge'
 import StorageIcon from '@mui/icons-material/Storage'
 import type { ItemOfSelector } from '../SelectOptions'
-import { generateExcel } from '../ExcelReport/excelReport'
+import { generateExcel } from '../../utils/ExcelReport/excelReport'
 
 const SelectOptions = lazy(() => import('../SelectOptions'))
 

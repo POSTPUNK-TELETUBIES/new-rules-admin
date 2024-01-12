@@ -1,5 +1,5 @@
 import { getHistory, getRules } from './databaseService'
-import { StoredRuleDTO } from './models'
+import { StoredRuleDTO } from '../../types/modelsExcel'
 
 export type CombinedDataDTO = {
   ruleCode: string
@@ -13,7 +13,7 @@ export type CombinedDataDTO = {
 
 export async function getCombinedData(): Promise<CombinedDataDTO[]> {
   try {
-    const historias = await getHistory()
+    const histories = await getHistory()
     const rules = await getRules()
 
     const indexRules: Record<string, StoredRuleDTO> = {}
@@ -23,7 +23,7 @@ export async function getCombinedData(): Promise<CombinedDataDTO[]> {
 
     const combinedData: CombinedDataDTO[] = []
 
-    historias.forEach((history) => {
+    histories.forEach((history) => {
       const rule = history.ruleId ? indexRules[history.ruleId] : null
 
       if (rule) {

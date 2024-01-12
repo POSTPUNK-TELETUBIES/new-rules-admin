@@ -1,7 +1,7 @@
 import { HistoryDTO } from '../../types/history'
 import { RuleDTO } from '../../types/rule'
-import db from './dexieDB'
-import { StoredHistoryDTO, StoredRuleDTO } from './models'
+import { dexieDB } from './dexieDB'
+import { StoredHistoryDTO, StoredRuleDTO } from '../../types/modelsExcel'
 
 export async function addHistory(history: HistoryDTO): Promise<number> {
   const historyToStore: StoredHistoryDTO = {
@@ -11,11 +11,11 @@ export async function addHistory(history: HistoryDTO): Promise<number> {
     ruleId: history.ruleId,
   }
 
-  return await db.historias.add(historyToStore)
+  return await dexieDB.histories.add(historyToStore)
 }
 
 export async function getHistory(): Promise<StoredHistoryDTO[]> {
-  const storedStories = await db.historias.toArray()
+  const storedStories = await dexieDB.histories.toArray()
 
   const recentHistory_ruleId: Record<string, StoredHistoryDTO> = {}
   storedStories.forEach((history) => {
@@ -43,15 +43,15 @@ export async function addRule(rule: RuleDTO): Promise<number> {
     date: rule.date,
   }
 
-  return await db.rules.add(ruleToStore)
+  return await dexieDB.rules.add(ruleToStore)
 }
 
 export async function getRules(): Promise<StoredRuleDTO[]> {
-  const storedRules = await db.rules.toArray()
+  const storedRules = await dexieDB.rules.toArray()
   return storedRules
 }
 
 export async function cleanDataBase(): Promise<void> {
-  await db.historias.clear()
-  await db.rules.clear()
+  await dexieDB.histories.clear()
+  await dexieDB.rules.clear()
 }

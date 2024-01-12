@@ -7,7 +7,7 @@ import {
   addHistory,
   addRule,
   cleanDataBase,
-} from '../../src/components/ExcelReport/databaseService'
+} from '../../src/utils/ExcelReport/databaseService'
 
 export const seeds = async () => {
   await cleanDataBase()

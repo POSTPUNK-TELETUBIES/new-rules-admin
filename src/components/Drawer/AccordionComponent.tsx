@@ -33,12 +33,17 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({
   }
 
   useEffect(() => {
-    // Filtrar autores basándose en el ruleId específico
     const uniqueAuthors = data
-      ? [...new Set(data.filter(item => item.ruleId === ruleId).map((item) => item.user))]
-      : [];
+      ? [
+          ...new Set(
+            data
+              .filter((item) => item.ruleId === ruleId)
+              .map((item) => item.user),
+          ),
+        ]
+      : []
 
-    setFilteredAuthors(uniqueAuthors);
+    setFilteredAuthors(uniqueAuthors)
   }, [data, ruleId])
 
   return (
@@ -59,8 +64,8 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({
               key={author}
               control={
                 <Checkbox
-                checked={selectedUsers.has(author)}
-                onChange={() => handleCheckboxChange(author)}
+                  checked={selectedUsers.has(author)}
+                  onChange={() => handleCheckboxChange(author)}
                 />
               }
               label={author}
