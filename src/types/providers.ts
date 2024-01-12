@@ -1,5 +1,4 @@
 export enum AsynProviderNames {
-  RULE = 'rule',
+  RULES = 'rules',
   REPORTS = 'reports',
-  HISTORY = 'history',
 }

@@ -1,8 +1,7 @@
-import { historyProvider, reportsProvider, ruleProvider } from '../modules'
+import { reportsProvider, rulesProvider } from '../modules'
 import { AsynProviderNames } from '../types/providers'
 
 export const providerNames = {
-  [AsynProviderNames.RULE]: ruleProvider,
+  [AsynProviderNames.RULES]: rulesProvider,
   [AsynProviderNames.REPORTS]: reportsProvider,
-  [AsynProviderNames.HISTORY]: historyProvider,
 }

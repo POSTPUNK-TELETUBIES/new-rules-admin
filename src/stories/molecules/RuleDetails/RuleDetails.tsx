@@ -1,12 +1,21 @@
 import { useEffect, useRef } from 'react'
 import { Box, Chip, Typography } from '@mui/material'
-import { RuleDTO } from '../../../types/rule'
 
 interface RuleDetailsProps {
-  rule: RuleDTO
+  type: string
+  severity: string
+  isActive: boolean
+  subtitle: string
+  htmlCode: string
 }
 
-const RuleDetails: React.FC<RuleDetailsProps> = ({ rule }) => {
+const RuleDetails: React.FC<RuleDetailsProps> = ({
+  type,
+  severity,
+  isActive,
+  subtitle,
+  htmlCode,
+}) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
   useEffect(() => {
@@ -20,17 +29,17 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({ rule }) => {
             <meta charset="UTF-8" />
           </head>
           <body>
-            ${rule.description}
+            ${htmlCode}
           </body>
         </html>
         `,
       )
       iframeDocument.close()
     }
-  }, [rule.description])
+  }, [htmlCode])
 
   return (
-    <Box display='flex' flexDirection='column' gap={3}>
+    <Box display='flex' flexDirection='column' gap={2}>
       <Box
         style={{
           display: 'flex',
@@ -39,21 +48,21 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({ rule }) => {
         }}
       >
         <Box display='flex' gap={1}>
-          <Chip label={rule.type} variant='outlined' title='tipo de regla' />
           <Chip
-            label={rule.severity}
+            label={severity}
             variant='outlined'
             title='Severidad de la regla'
           />
+          <Chip label={type} variant='outlined' title='tipo de regla' />
         </Box>
         <Typography>
           Regla{' '}
           <Typography component='span' color='primary' fontWeight='bold'>
-            {rule.is_active_sonarqube ? 'Activa' : 'Inactiva'}
+            {isActive ? 'Activa' : 'Inactiva'}
           </Typography>{' '}
           desde:{' '}
           <Typography component='span' color='primary' fontWeight='bold'>
-            {new Date(rule.date).toLocaleDateString()}
+            {new Date().toLocaleDateString()}
           </Typography>
         </Typography>
       </Box>
@@ -75,11 +84,9 @@ const RuleDetails: React.FC<RuleDetailsProps> = ({ rule }) => {
             borderRadius: 2,
           }}
         >
-          {rule.rule}
+          {subtitle}
         </Typography>
-        <Typography color='primary' mt={1}>
-          DESCRIPCIÓN DE LA REGLA
-        </Typography>
+        <Typography color='primary'>DESCRIPCIÓN DE LA REGLA</Typography>
 
         <iframe ref={iframeRef} title='Descripción de la regla' />
       </Box>

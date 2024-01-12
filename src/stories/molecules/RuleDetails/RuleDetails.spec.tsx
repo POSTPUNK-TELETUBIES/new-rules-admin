@@ -1,13 +1,18 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import RuleDetails from './RuleDetails'
 import { afterEach, beforeEach, expect, test } from 'vitest'
-import { createOneRule } from '../../../../mocks/factories/createOneRule'
-
-const rule = { ...createOneRule(), history: [] }
 
 test('RuleDetails', () => {
   beforeEach(() => {
-    render(<RuleDetails rule={rule} />)
+    render(
+      <RuleDetails
+        type='type'
+        severity='severity'
+        isActive={true}
+        subtitle='subtitle'
+        htmlCode='<p>htmlCode</p>'
+      />,
+    )
   })
 
   afterEach(() => {
@@ -41,10 +46,26 @@ test('RuleDetails', () => {
 
 test('RuleDetails iframe', () => {
   test('updates the content of the iframe when htmlCode changes', async () => {
-    const { rerender } = render(<RuleDetails rule={rule} />)
+    const { rerender } = render(
+      <RuleDetails
+        type='type'
+        severity='severity'
+        isActive={true}
+        subtitle='subtitle'
+        htmlCode='<p>htmlCode</p>'
+      />,
+    )
     expect(screen.getByText('htmlCode')).not.toBeNull()
 
-    rerender(<RuleDetails rule={rule} />)
+    rerender(
+      <RuleDetails
+        type='type'
+        severity='severity'
+        isActive={true}
+        subtitle='subtitle'
+        htmlCode='<p>newHtmlCode</p>'
+      />,
+    )
     await screen.findByText('newHtmlCode')
   })
 })
