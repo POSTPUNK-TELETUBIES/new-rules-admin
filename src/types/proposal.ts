@@ -10,5 +10,5 @@ export interface ProposalDTO {
   time: Date
   action: ProposalAction
   avatar: string
-  ruleId: string
+  ruleId: number
 }

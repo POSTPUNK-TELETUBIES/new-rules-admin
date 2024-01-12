@@ -1,7 +1,7 @@
-import { CombinedDataDTO } from './combinedDB'
 import * as XLSX from 'xlsx'
+import { ReportDataDTO } from '../src/types/dexie'
 
-function downloadExcelFile(combinedData: CombinedDataDTO[]): Promise<void> {
+function downloadExcelFile(combinedData: ReportDataDTO[]): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       const workbook = XLSX.utils.book_new()

@@ -7,7 +7,7 @@ export const fillDB = () => {
   const countRules = faker.number.int({ min: 15, max: 20 })
 
   Array.from({ length: countRules }, () => {
-    const countProposals = faker.number.int({ min: 5, max: 30 })
+    const countProposals = faker.number.int({ min: 25, max: 30 })
 
     const rule_base = createOneRule()
 

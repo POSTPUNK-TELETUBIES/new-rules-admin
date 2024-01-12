@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "mocks/factories/createOneRule.ts"],
+  "include": ["src", "mocks/factories/createOneRule.ts", "dexie"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
