@@ -24,8 +24,9 @@ jobs:
         with:
           version: 8
           run_install: false
+      - name: Use prod package.json
+        run: rm package.json && mv package.prod.json package.json
       - name: Build
-        working-directory: ./src
         run: |
           pnpm install
           pnpm build
