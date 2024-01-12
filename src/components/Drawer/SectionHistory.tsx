@@ -1,6 +1,5 @@
 import { useState, Suspense, useEffect, useContext } from 'react'
-import Avatar from '@mui/material/Avatar'
-import { Box, LinearProgress } from '@mui/material'
+import { LinearProgress } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { sortByOrder, Order } from './historyUtils'
 import { TimelineSection } from './TimelineComponent'
@@ -9,6 +8,7 @@ import { AsynProviderNames } from '../../types/providers'
 import { useGetOne } from 'data_providers'
 import { DrawerContext } from '../../stories/examples/drawer/Drawercontext'
 import { ProposalDTO } from '../../types/proposal'
+import AvatarList from './AvatarList'
 
 const SectionHistory = () => {
   const { itemActive } = useContext(DrawerContext)
@@ -64,16 +64,7 @@ const SectionHistory = () => {
   return (
     <>
       <Suspense fallback={<LinearProgress />}>
-        <Box sx={{ display: 'flex', flexDirection: 'row', mb: 3 }}>
-          {data?.map((item) => (
-            <Avatar
-              key={item.id}
-              alt={item.user}
-              src={item.avatar}
-              sx={{ ml: 0.5 }}
-            />
-          ))}
-        </Box>
+        <AvatarList sortedHistory={sortedHistory} />
       </Suspense>
       <AccordionComponent
         data={data ?? []}
