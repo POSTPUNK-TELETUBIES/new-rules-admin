@@ -1,8 +1,5 @@
 import { Reports } from '../services/Reports'
-import { RuleService } from '../services/Rule'
-import { axiosInstance } from '../services/axios'
-import { HistoryService } from '../services/history'
+import { Rules } from '../services/Rules'
 
-export const ruleProvider = new RuleService(axiosInstance)
+export const rulesProvider = new Rules()
 export const reportsProvider = new Reports()
-export const historyProvider = new HistoryService(axiosInstance)

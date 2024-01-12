@@ -1,16 +1,16 @@
-import { createManyProposals } from '../../../mocks/factories/createManyProposals'
+import { createHistory } from '../../../mocks/factories/dataHistory'
 
 export default {
-  title: 'atoms/HistoryAPI',
-}
+    title: 'atoms/HistoryAPI',
+};
 
 export const HistoryAPI = () => {
-  const historyData = createManyProposals()
+    const historyData = createHistory();
 
-  return (
-    <div>
-      <h1>Console log de datos de historia:</h1>
-      <pre>{JSON.stringify(historyData, null, 2)}</pre>
-    </div>
-  )
-}
+    return (
+        <div>
+            <h1>Console log de datos de historia:</h1>
+            <pre>{JSON.stringify(historyData, null, 2)}</pre>
+        </div>
+    );
+};

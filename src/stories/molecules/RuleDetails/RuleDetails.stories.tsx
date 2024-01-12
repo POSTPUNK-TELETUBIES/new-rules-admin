@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Box, Paper } from '@mui/material'
 import RuleDetails from './RuleDetails'
-import { createOneRule } from '../../../../mocks/factories/createOneRule'
 
 const meta = {
   title: 'molecules/RuleDetails',
@@ -25,10 +24,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const rule = { ...createOneRule(), history: [] }
-
 export const Primary: Story = {
   args: {
-    rule: rule,
+    type: 'BUG',
+    severity: 'MAJOR',
+    isActive: true,
+    subtitle:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum alias illum culpa sunt aliquid id, optio rem ab sint at!',
+    htmlCode: `<h1 style="color: red">jaen 🎉</h1><input type="search"><button>Buscar</button>`,
   },
 }

@@ -9,30 +9,17 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { resolver } from './CurationValidation'
 import { CurationDTO } from './types'
-import { Dispatch, SetStateAction } from 'react'
 
 export interface CurationFormProps extends Omit<BoxProps, 'onSubmit'> {
   onSubmit?: SubmitHandler<CurationDTO>
   hasSwitch?: boolean
   initialIsActive?: boolean
-  initialValues?: Partial<CurationDTO>
-  isEditing?: boolean
-  setIsEditing?: Dispatch<SetStateAction<boolean>>
 }
 
 const ButtonSwitch = (
-  hasSwitch: boolean = false,
-  initialIsActive: boolean = false,
-  isEditing: boolean = false,
-) => {
-  if (isEditing) {
-    return 'Guardar'
-  }
-
-  const text = initialIsActive ? 'Desactivar' : 'Activar'
-
-  return hasSwitch ? text : 'Guardar'
-}
+  hasSwitch: boolean = false, 
+  initialIsActive: boolean  = false ) =>
+  hasSwitch ? 'Guardar' : initialIsActive ? 'Desactivar' : 'Activar';
 
 // TODO: Evaluar el agregar la capacidad de que este formulario también sirva para edición, no solo creación.
 
@@ -40,9 +27,6 @@ export const CurationForm = ({
   onSubmit = async () => Promise.resolve(undefined),
   hasSwitch,
   initialIsActive,
-  initialValues,
-  isEditing = false,
-  setIsEditing = () => {},
   ...boxProps
 }: Readonly<CurationFormProps>) => {
   const {
@@ -56,20 +40,11 @@ export const CurationForm = ({
       {hasSwitch && (
         <Switch defaultChecked={initialIsActive} {...register('isActive')} />
       )}
-      <TextField
-        multiline
-        defaultValue={initialValues?.explanation}
-        {...register('explanation')}
-        size='small'
-        sx={{ mt: 2, mb: 1, width: '100%' }}
-      />
+      <TextField placeholder='sustento' {...register('explanation')} />
       <Typography>{errors.explanation?.message}</Typography>
       <Box display='flex'>
         <Button type='submit'>
-          {ButtonSwitch(hasSwitch, initialIsActive, isEditing)}
-        </Button>
-        <Button type='button' onClick={() => setIsEditing(false)}>
-          Cancelar
+          {ButtonSwitch(hasSwitch, initialIsActive)}
         </Button>
       </Box>
     </Box>

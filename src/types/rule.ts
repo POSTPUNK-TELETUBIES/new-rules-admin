@@ -1,4 +1,3 @@
-import { ProposalDTO } from './proposal'
 import { RuleSeverity, RuleType } from './ruleEnums'
 
 export interface RuleDTO {
@@ -10,6 +9,4 @@ export interface RuleDTO {
   is_active_sonarqube: boolean
   is_active_local: boolean
   date: Date
-  history: ProposalDTO[]
-  description: string
 }
