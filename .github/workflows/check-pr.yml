@@ -1,6 +1,6 @@
 on:
   pull_request:
-    branches: dev
+    branches: '*'
 
 permissions: write-all
 env:
@@ -9,6 +9,7 @@ env:
   PR_COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
   PR_ADDITIONS: ${{ github.event.pull_request.additions }}
   PR_DELETIONS: ${{ github.event.pull_request.deletions }}
+  PR_DESTINATION_BRANCH: ${{ github.event.pull_request.base.ref }}
 jobs:
   check_pr_size:
     runs-on: ubuntu-latest
@@ -19,10 +20,9 @@ jobs:
 
       - name: Obtain the total number of modified lines of the lock files
         run: |
-          chmod +x scripts/lines-of-lock.sh
+          chmod +x bash-scripts/lines-of-lock.sh
 
-          PR_MODIFY_LOCK=$(scripts/lines-of-lock.sh)
-          PR_MODIFY_LOCK=${PR_MODIFY_LOCK:-0}
+          PR_MODIFY_LOCK=$(bash-scripts/lines-of-lock.sh)
 
           echo "PR_MODIFY_LOCK=${PR_MODIFY_LOCK}" >> $GITHUB_ENV
 
@@ -43,10 +43,8 @@ jobs:
 
       - name: Generate the message for commenting on the pr
         run: |
-          OVER_THE_LIMIT=$(($PR_MODIFY_REST - $MAX_LINES_PR))
-
-          if [[ OVER_THE_LIMIT ]]; then
-            NOTE="@${{ github.actor }} Ups, tu pull request tiene mas de $MAX_LINES_PR lineas modificadas, tienes un total de $PR_MODIFY_REST, por favor considera dividir este pull request."
+          if [[ $PR_MODIFY_REST -gt $MAX_LINES_PR ]]; then
+            NOTE="@${{ github.actor }} Ups, tu pull request tiene mas de $MAX_LINES_PR lineas modificadas, tienes un total de $PR_MODIFY_REST, considera dividir este pull request."
           else
             NOTE="Perfecto, el pull request no sobrepasa las $MAX_LINES_PR lineas modificadas."
           fi
@@ -61,7 +59,6 @@ jobs:
               -e "s/PR_EXTRA/$PR_EXTRA/" templates/pr-report.md)
 
           echo "MESSAGE=${MESSAGE}" >> $GITHUB_ENV
-          echo "OVER_THE_LIMIT=${OVER_THE_LIMIT}" >> $GITHUB_ENV
 
       - name: Remove previous reports from comments
         run: |
@@ -97,7 +94,7 @@ jobs:
 
       - name: Stop the execution of the workflow if the limit of modified lines is exceeded.
         run: |
-          if [[ $OVER_THE_LIMIT ]]
+          if [[ $PR_MODIFY_REST -gt $MAX_LINES_PR ]]
           then
               echo "Warning - total lines changed is greater than" $MAX_LINES_PR.
               echo "Please consider breaking this PR down."
