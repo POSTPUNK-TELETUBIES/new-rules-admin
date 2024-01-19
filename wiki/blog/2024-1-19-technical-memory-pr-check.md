@@ -1,4 +1,7 @@
 ---
+SLug: technical-memory-pr-check
+Title: Memoria técnica de la verificación de número de lineas modificadas en el pull request
+authors: jaenfigueroa
 ---
 
 # Memoria técnica de la verificación de número de lineas modificadas en el pull request
