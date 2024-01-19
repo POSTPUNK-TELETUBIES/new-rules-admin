@@ -2,6 +2,8 @@
 
 Este README proporciona información detallada sobre el sistema de reportes de reglas de SonarQube. El sistema de reportes permite a los desarrolladores rastrear y analizar las reglas de calidad de código aplicadas por SonarQube en un proyecto.
 
+ccccc
+
 # Contenido
 
 - [README - Sistema de Reportes de Reglas de SonarQube](#readme---sistema-de-reportes-de-reglas-de-sonarqube)
