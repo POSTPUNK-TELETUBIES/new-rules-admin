@@ -59,9 +59,7 @@ This are those requirements like:
 - The page should point 90 or more in web vitals health
 - If Java Script logic fail should not block the other components' JS
 - Should work in IE11 (yeah, there are some people using it to see our page, don't ask me why)
-- Should work in a cellphone that has low specs (And other components of
-  the page already have tons of js and there lots of JS scripts for monitoring
-  and business metrics running already)
+- Should work in a cellphone that has low specs (And other components of the page already have tons of js and there lots of JS scripts for monitoring and business metrics running already)
 - Non-critical css should be deferred
 
 My, my, now is being kind of complicated to take all of this in account
@@ -71,8 +69,7 @@ And about bugs?
 - Other components in the website are interacting with yours making it appear like a Picasso's
 - There are shift layouts because of your css is interacting with previous css code
 - Previous css code is overriding yours
-- In the future will be more an more bugs because components continue changing
-  and people continue to add external scripts
+- In the future will be more an more bugs because components continue changing and people continue to add external scripts
 
 If you are a front end dev, there are tools at your disposition that can help you to
 keep track of the performance of you application
