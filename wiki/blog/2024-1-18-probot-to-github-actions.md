@@ -1,12 +1,12 @@
 ---
-SLug: probot-to-github-actions
+slug: probot-to-github-actions
 Title: ¿Por que se cambió de probot a actions?
 authors: jaenfigueroa
 ---
 
 # ¿Por que se cambió de probot a actions?
 
-| Caracteristica                                                  |                                                                      Probot                                                                      |                                                                                  Github actions                                                                                   |
+| Característica                                                  |                                                                      Probot                                                                      |                                                                                  Github actions                                                                                   |
 | --------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | Arquitectura y el entorno de ejecución                          |                                  Es un servidor de express que tiene que estar corriendoy trabajar con webhooks                                  |                                              Corre dentro de la misma infraestructura de github y tiene acceso al repo y sus secrets                                              |
 | Resiliencia y la capacidad de gestión de fallos                 |                                 Implica que si se muere o hay un timeout en la respuesta perdemos funcionalidad                                  |  Implica que no hay timeout peligroso (6 horas máximo) y que es parte de nuestro de nuestro CI/CD, parte del repo y hasta reusable en la organización, no necesita persistencia   |

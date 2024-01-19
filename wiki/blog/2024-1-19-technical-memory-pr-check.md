@@ -1,10 +1,10 @@
 ---
-SLug: technical-memory-pr-check
-Title: Memoria técnica de la verificación de número de lineas modificadas en el pull request
+slug: technical-memory-pr-check
+Title: Memoria técnica de la verificación de número de líneas modificadas en el pull request
 authors: jaenfigueroa
 ---
 
-# Memoria técnica de la verificación de número de lineas modificadas en el pull request
+# Memoria técnica de la verificación de número de líneas modificadas en el pull request
 
 ## 1. Iniciar action workflow
 
@@ -39,9 +39,9 @@ jobs:
       ... more tasks
 ```
 
-## 2. Obtener el total de numero de lineas cambiadas de todos los archivos de tipo lock
+## 2. Obtener el total de numero de líneas cambiadas de todos los archivos de tipo lock
 
-- Tenemos un script que ejecuta `git diff --stat origin/NOMBRE_RAMA`, de donde vamos a obtener el numero de lienas cambiadas de todos lo archivos de tipo lock
+- Tenemos un script que ejecuta `git diff --stat origin/NOMBRE_RAMA`, de donde vamos a obtener el numero de líneas cambiadas de todos lo archivos de tipo lock
 - El resultado se guardará dentro de una variable PR_MODIFY_LOCK, luego lo guardamos como una nueva variable de entorno
 
 ```yml
@@ -59,8 +59,8 @@ jobs:
 ## 3. Calcular los valores para el reporte
 
 - Calculamos el numero de lienas editadas en total
-- Calculamos el numero de lineas editadas sin contar el numero de lineas editadas de tipo lock
-- Calculamos el numero de lineas restantes
+- Calculamos el numero de líneas editadas sin contar el numero de líneas editadas de tipo lock
+- Calculamos el numero de líneas restantes
 - Finalmente los guardamos como nuevas variables de entorno
 
 ```yml
@@ -90,9 +90,9 @@ jobs:
 - name: Generate the message for commenting on the pr
   run: |
     if [[ $PR_MODIFY_REST -gt $MAX_LINES_PR ]]; then
-      NOTE="@${{ github.actor }} Ups, tu pull request tiene mas de $MAX_LINES_PR lineas modificadas, tienes un total de $PR_MODIFY_REST, considera dividir este pull request."
+      NOTE="@${{ github.actor }} Ups, tu pull request tiene más de $MAX_LINES_PR líneas modificadas, tienes un total de $PR_MODIFY_REST, considera dividir este pull request."
     else
-      NOTE="Perfecto, el pull request no sobrepasa las $MAX_LINES_PR lineas modificadas."
+      NOTE="Perfecto, el pull request no sobrepasa las $MAX_LINES_PR líneas modificadas."
     fi
 
     MESSAGE=$(sed \
@@ -156,9 +156,9 @@ jobs:
     --data "{ \"body\": \"$MESSAGE\" }"
 ```
 
-## 7. Comprobar si la cantidad de lineas modificadas no sobrepasa el limite
+## 7. Comprobar si la cantidad de líneas modificadas no sobrepasa el limite
 
-- Comprobamos que el numero de lineas modificadas no superé el limite establecido, en caso se superé el limite mostrar un error de tal manera que no permita realizar el merge, hasta que se realizen las modificaciones
+- Comprobamos que el numero de líneas modificadas no superé el limite establecido, en caso se superé el limite mostrar un error de tal manera que no permita realizar el merge, hasta que se realizen las modificaciones
 
 ```yml
 - name: Stop the execution of the workflow if the limit of modified lines is exceeded.
@@ -173,10 +173,10 @@ jobs:
 
 ## 8. Resultados
 
-- Si el numero de lineas modificadas no supera el limite establecido
+- Si el numero de líneas modificadas no supera el limite establecido
 
 ![image](./img/pr-report-ok.png)
 
-- Si el numero de lineas modificadas supera el limite establecido
+- Si el numero de líneas modificadas supera el limite establecido
 
 ![image](./img/pr-report-error.png)
