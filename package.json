@@ -59,7 +59,7 @@
     "prettier": "^3.0.3",
     "storybook": "^7.5.1",
     "typescript": "^5.0.2",
-    "vite": "^4.4.12",
+    "vite": "^4.5.2",
     "vitest": "^0.34.6"
   },
   "msw": {
