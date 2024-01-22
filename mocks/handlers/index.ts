@@ -1,11 +1,13 @@
-import { rest } from "msw";
-import { getRules } from './../resolvers/index'
-import handleHistoryRequest from './apiHistoryHandler';
+import { getRulesHandlers } from './rules'
+import { getHistoryHandlers } from './history'
 
-export const handlers = [
-  rest.get('/api/rules', getRules),
-  rest.get('/api/history',handleHistoryRequest),
-];
+
+export const registerHandlers  = (basePath = '/api')=>{
+  return [
+    ... getRulesHandlers(basePath + '/rules'),
+    ... getHistoryHandlers(basePath + '/history')
+  ]
+}
 
 
 
