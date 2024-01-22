@@ -21,7 +21,8 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       provider: 'v8',
-      all: true
-    }
+      all: true,
+      reporter: ['lcov', 'text'],
+    },
   }
 })
