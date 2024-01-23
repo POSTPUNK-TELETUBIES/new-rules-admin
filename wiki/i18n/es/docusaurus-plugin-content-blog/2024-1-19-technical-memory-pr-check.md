@@ -175,8 +175,8 @@ jobs:
 
 - Si el numero de líneas modificadas no supera el limite establecido
 
-![image](./img/pr-report-ok.png)
+![image](../../../blog/img/pr-report-ok.png)
 
 - Si el numero de líneas modificadas supera el limite establecido
 
-![image](./img/pr-report-error.png)
+![image](../../../blog/img/pr-report-error.png)
