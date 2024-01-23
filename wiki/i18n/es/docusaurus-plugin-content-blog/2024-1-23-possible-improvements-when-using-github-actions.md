@@ -68,6 +68,8 @@ Aprovechar las capacidades de notificación y comentarios en GitHub Actions. Se 
 
 Se pueden crear acciones personalizadas y luego usarlas en varios flujos de trabajo
 
+`comment-workflow.yml`
+
 ```yml
 name: 'Añadir Comentario'
 
@@ -83,11 +85,13 @@ jobs:
 
     steps:
       - name: Añadir Comentario
-        run: |
-          echo "Comentario personalizado: ${{ inputs.comment }}"
         env:
           COMMENT: ${{ inputs.comment }}
+        run: |
+          echo "Comentario personalizado: ${{ inputs.comment }}"
 ```
+
+`principal-workflow.yml`
 
 ```yml
 name: 'Flujo de Trabajo Principal'
@@ -111,5 +115,4 @@ jobs:
           comment: 'Gracias por abrir este issue. Estamos revisando tu problema.'
 ```
 
-- El flujo de trabajo principal (main-workflow.yml) se ejecuta solo en un push a la rama main.
 - La acción personalizada (comment-workflow.yml) acepta un parámetro comment que se puede personalizar en el flujo de trabajo principal.

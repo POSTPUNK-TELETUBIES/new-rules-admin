@@ -68,6 +68,8 @@ Harness the notification and comment capabilities in GitHub Actions. You can con
 
 Custom actions can be created and then utilized in multiple workflows.
 
+`comment-workflow.yml`
+
 ```yml
 name: 'Añadir Comentario'
 
@@ -88,6 +90,8 @@ jobs:
         env:
           COMMENT: ${{ inputs.comment }}
 ```
+
+`principal-workflow.yml`
 
 ```yml
 name: 'Flujo de Trabajo Principal'
@@ -111,5 +115,4 @@ jobs:
           comment: 'Gracias por abrir este issue. Estamos revisando tu problema.'
 ```
 
-- The main workflow (main-workflow.yml) runs only on a push to the main branch.
 - The custom action (comment-workflow.yml) accepts a parameter "comment" that can be customized in the main workflow.
