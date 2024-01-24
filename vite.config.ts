@@ -23,6 +23,7 @@ export default defineConfig({
       provider: 'v8',
       all: true,
       reporter: ['lcov', 'text'],
+      exclude: ['wiki'],
     },
   }
 })
