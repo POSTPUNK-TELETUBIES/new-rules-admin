@@ -1,18 +1,18 @@
 ---
 slug: technical-memory-pr-check
-Title: Technical Memory for Verification of Modified Lines Count in Pull Request
+Title: Memoria técnica de la verificación de número de líneas modificadas en el pull request
 authors: jaenfigueroa
 ---
 
-# Technical Memory for Verification of Modified Lines Count in Pull Request
+# Memoria técnica de la verificación de número de líneas modificadas en el pull request
 
-## 1. Initiate Action Workflow
+## 1. Iniciar action workflow
 
-- This YAML file will run the first time a new pull request is created, as well as every time the pull request is updated.
-- We grant the necessary write permissions.
-- Designate the execution environment.
-- Declare the environment variables to be used for the tasks.
-- Specify the version of GitHub Actions to be used.
+- Este archivo yml se ejecutará la primera vez que se cree un nuevo pull request, también cada vez que se actualize el pr
+- Damos los permisos de escritura
+- Designamos el entorno de ejecución
+- Declaramos las variables de entorno que vamos a usar para las tareas
+- Indicamos la versión de actions que vamos a usar
 
 ```yml
 on:
@@ -39,10 +39,10 @@ jobs:
       ... more tasks
 ```
 
-## 2. Obtain the Total Number of Changed Lines for All Lock Files
+## 2. Obtener el total de numero de líneas cambiadas de todos los archivos de tipo lock
 
-- We have a script that executes `git diff --stat origin/BRANCH_NAME`, from which we extract the number of changed lines for all lock files.
-- The result is stored within a variable named PR_MODIFY_LOCK, which is then saved as a new environment variable.
+- Tenemos un script que ejecuta `git diff --stat origin/NOMBRE_RAMA`, de donde vamos a obtener el numero de líneas cambiadas de todos lo archivos de tipo lock
+- El resultado se guardará dentro de una variable PR_MODIFY_LOCK, luego lo guardamos como una nueva variable de entorno
 
 ```yml
 - name: Obtain the total number of modified lines of the lock files
@@ -56,12 +56,12 @@ jobs:
     echo "PR_MODIFY_LOCK=${PR_MODIFY_LOCK}" >> $GITHUB_ENV
 ```
 
-## 3. Calculate Values for the Report
+## 3. Calcular los valores para el reporte
 
-- Calculate the total number of edited lines.
-- Calculate the number of edited lines excluding the number of edited lines for lock files.
-- Calculate the remaining number of lines.
-- Finally, save these calculated values as new environment variables.
+- Calculamos el numero de lienas editadas en total
+- Calculamos el numero de líneas editadas sin contar el numero de líneas editadas de tipo lock
+- Calculamos el numero de líneas restantes
+- Finalmente los guardamos como nuevas variables de entorno
 
 ```yml
 - name: Obtaining missing data for reporting purposes
@@ -80,11 +80,11 @@ jobs:
     echo "PR_EXTRA=${PR_EXTRA}" >> $GITHUB_ENV
 ```
 
-## 4. Generate the Message to be Displayed in the Repor
+## 4. Generar el mensaje que se va mostrar en el reporte
 
-- First, generate the note for the report.
-- Utilize the template we have for the report and use `sed` to replace the variables.
-- Finally, save the generated message as a new environment variable.
+- Primero generamos la nota, para el reporte
+- Usamos la plantilla que tenemos del reporte y haciendo uso de sed vamos a reemplazar las variables
+- Finamente guardamos el mensaje como una nueva variable de entorno
 
 ```yml
 - name: Generate the message for commenting on the pr
@@ -109,12 +109,12 @@ jobs:
     echo "MESSAGE=${MESSAGE}" >> $GITHUB_ENV
 ```
 
-## 5. Delete Previous Reports from Comments
+## 5. Eliminar los reportes anteriores de los comentarios
 
-- Make a request to obtain a list of all comments.
-- Filter the list for those containing the phrase "Results of the PR pre-review."
-- Obtain a list of IDs for the remaining comments.
-- Iterate through the list to delete each of them.
+- Realizamos una petición para obtener una lista de todos los comentarios
+- Filtramos la lista por los que contengan la frase "Resultados de la pre-revisión del PR"
+- Obtenemos una lista de IDs de los comentarios restantes
+- Recorremos la lista para eliminar cada uno de ellos
 
 ```yml
 - name: Remove previous reports from comments
@@ -141,9 +141,9 @@ jobs:
     done
 ```
 
-## 6. Display the Report as a Comment in the Pull Request
+## 6. Mostramos el reporte como comentario en el pull request
 
-- Make a request to add the new message, using the previously saved message as an environment variable.
+- Realizamos una petición para agregar el nuevo mensaje, enviando el mensaje que guardamos antes como una variable de entorno
 
 ```yml
 - name: Shows the report as a comment in the pr
@@ -156,9 +156,9 @@ jobs:
     --data "{ \"body\": \"$MESSAGE\" }"
 ```
 
-## 7. Check if the Number of Modified Lines Does Not Exceed the Limit
+## 7. Comprobar si la cantidad de líneas modificadas no sobrepasa el limite
 
-- Verify that the number of modified lines does not exceed the established limit. If the limit is exceeded, display an error preventing the merge until the necessary modifications are made.
+- Comprobamos que el numero de líneas modificadas no superé el limite establecido, en caso se superé el limite mostrar un error de tal manera que no permita realizar el merge, hasta que se realizen las modificaciones
 
 ```yml
 - name: Stop the execution of the workflow if the limit of modified lines is exceeded.
@@ -171,12 +171,12 @@ jobs:
     fi
 ```
 
-## 8. Results
+## 8. Resultados
 
-- If the number of modified lines does not exceed the established limit
+- Si el numero de líneas modificadas no supera el limite establecido
 
-![image](./img/pr-report-ok.png)
+![image](../../../blog/img/pr-report-ok.png)
 
-- If the number of modified lines exceeds the established limit
+- Si el numero de líneas modificadas supera el limite establecido
 
-![image](./img/pr-report-error.png)
+![image](../../../blog/img/pr-report-error.png)
