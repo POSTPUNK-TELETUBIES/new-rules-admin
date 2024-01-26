@@ -142,4 +142,3 @@ Estos son los pasos que realiza el trabajo:
 
 - Una vez escrito se desplegará el storybook con sus respectivos componentes.
 ![image](./img/dev-storybook-page.png)
-
