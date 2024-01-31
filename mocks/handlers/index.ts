@@ -1,13 +1,13 @@
-import { rest } from "msw";
+import { getRulesHandlers } from './rules'
+import { getHistoryHandlers } from './history'
 
-export const handlers = [
-  rest.get('/resource', (_req, res, ctx) => {
-    return res(
-      // Respond with a 200 status code
-      ctx.status(200),
-      ctx.json({
-        name: 'puerco potter'
-      })
-    )
-  })
-]
+
+export const registerHandlers  = (basePath = '/api')=>{
+  return [
+    ... getRulesHandlers(basePath + '/rules'),
+    ... getHistoryHandlers(basePath + '/history')
+  ]
+}
+
+
+

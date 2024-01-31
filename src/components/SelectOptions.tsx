@@ -39,7 +39,7 @@ const SelectOptions = ({ icon, items }: Props) => {
               element.onClick()
               setAnchorEl(null)
             }}
-            key={crypto.randomUUID()}
+            key={element.text}
           >
             <ListItemIcon>{element.icon}</ListItemIcon>
             <Typography variant='button' noWrap>

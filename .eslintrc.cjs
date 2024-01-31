@@ -23,4 +23,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['scripts/**/*'],
+      rules: {
+        env: { node: true },
+      },
+    },
+  ],
 }
